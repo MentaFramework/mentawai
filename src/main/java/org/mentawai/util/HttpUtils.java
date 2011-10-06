@@ -24,9 +24,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.mentawai.core.ActionConfig;
-import org.mentawai.core.ApplicationManager;
-
 public class HttpUtils {
 
 	private static final String ENC = "UTF-8";
