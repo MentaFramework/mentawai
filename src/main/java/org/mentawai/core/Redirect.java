@@ -26,8 +26,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.mentawai.util.ActionUtils;
-import org.mentawai.util.DebugServletFilter;
-import org.mentawai.util.HttpUtils;
 
 /**
  * A redirect consequence that has the following features:
