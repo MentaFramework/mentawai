@@ -1,0 +1,169 @@
+/*
+ * Mentawai Web Framework http://mentawai.lohis.com.br/
+ * Copyright (C) 2005  Sergio Oliveira Jr. (sergio.oliveira.jr@gmail.com)
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
+package org.mentawai.filter;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
+import org.apache.commons.lang.exception.ExceptionUtils;
+import org.mentawai.core.Action;
+import org.mentawai.core.Filter;
+import org.mentawai.core.InvocationChain;
+import org.mentawai.core.Output;
+
+/**
+ * <p>
+ * A filter for handling exceptions that may occour during the action's
+ * execution. The filter catchs all the exceptions throwed by the action and
+ * call the method handleException. The default implementation of the
+ * handleException method put in the action's output the following attributes:
+ * </p>
+ *
+ * <p>
+ * "message" - The message of the Exception (e.getMessage()) <br/> 
+ * "stacktrace" - The Exception's stacktrace (e.getStackTrace()) <br/> 
+ * "stackheader" - The Exception's first stacktrace (e.getStackTrace()[0]) <br/> 
+ * </p>
+ * <p>
+ * Also, the method e.printStackTrace() is called if the attribute "trace"
+ * is setted to true. </p>
+ * <p>
+ * After that, the filter return "exception" as the action's result. A 
+ * Consequence must be mapped for this result.<p>
+ * <p>
+ * The behavior of this filter can be changed by extending it's class and
+ * overriding the handleException method.
+ * </p>
+ * 
+ * @author Rubem Azenha (rubem.azenha@gmail.com)
+ */
+public class ExceptionFilter implements Filter {
+
+	public static String MESSAGE_KEY = "message";
+	
+	public static String EXCEPTION_KEY = "exception";
+
+	public static String STACK_TRACE_KEY = "stacktrace";
+
+	public static String STACK_HEADER_KEY = "stackheader";
+	
+	public static String EXCEPTION = "exception";
+
+	private boolean trace = true;
+
+	public ExceptionFilter() {
+
+	}
+
+	public ExceptionFilter(boolean trace) {
+		this.trace = trace;
+	}
+
+	/**
+	 * Execute the chain and cacth any exception that occours, delegating to the
+	 * handleException() method the resposability to handle the exception
+	 * throwed by the chain's execution.
+	 * 
+	 * @return the result of the action's execution.
+	 */
+	public String filter(InvocationChain chain) throws Exception {
+		try {
+			return chain.invoke();
+		} catch (Throwable throwable) {
+			return handleException(chain.getAction(), throwable);
+		}
+	}
+	
+	/**
+	 * Handle the exception, putting in the action's output the message of the
+	 * exception, all the StackTrace elements and the first StackTrace element.
+	 * <br/> This method can be overrided to change the behavior of the
+	 * ExceptionFilter.
+	 * 
+	 * @param a
+	 *            the action that has throwed the exception.
+	 * @param throwable
+	 *            the exception throwed by the action's execution.
+	 * @return the result of the action's execution.
+	 */
+	protected String handleException(Action a, Throwable throwable) {
+		
+		String message = ExceptionUtils.getRootCauseMessage(throwable);
+		
+		Throwable t = ExceptionUtils.getRootCause(throwable);
+		
+		String exp = t != null ? t.getClass().getName() : throwable.getClass().getName();
+		
+		Output output = a.getOutput();
+		output.setValue(EXCEPTION_KEY, exp);
+		output.setValue(MESSAGE_KEY, message);
+		
+		StringWriter sw = new StringWriter();
+	      
+	    PrintWriter pw = new PrintWriter(sw, true);
+	      
+	    ExceptionUtils.printRootCauseStackTrace(throwable, pw);
+	    
+	    String full_trace = sw.getBuffer().toString();
+	      
+	    String[] lines = full_trace.split("\\n");
+	    
+	    output.setValue(STACK_HEADER_KEY, lines[0]);
+	    
+	    output.setValue(STACK_TRACE_KEY, prepareStackTrace(lines));
+	  
+		if (trace) {
+			ExceptionUtils.printRootCauseStackTrace(throwable);
+		}
+			
+		return EXCEPTION;
+	}
+	
+	protected String prepareStackTrace(String[] stacktrace) {
+		StringBuffer sb = new StringBuffer(stacktrace.length * 75);
+		for (int i = 0; i < stacktrace.length; i++) {
+			String s = stacktrace[i];
+			if (i != 0)
+				sb.append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+			sb.append(prepareForHtml(s)).append("<br/>");
+		}
+		return sb.toString();
+	}
+	
+	protected String prepareStackTrace(StackTraceElement[] stacktrace) {
+		StringBuffer sb = new StringBuffer(stacktrace.length * 75);
+		for (int i = 0; i < stacktrace.length; i++) {
+			String s = stacktrace[i].toString();
+			if (i != 0)
+				sb.append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+			sb.append(prepareForHtml(s)).append("<br/>");
+		}
+		return sb.toString();
+	}
+
+	protected String prepareForHtml(String s) {
+		s = s.replaceAll("<", "&lt;");
+		s = s.replaceAll(">", "&gt;");
+		return s;
+	}
+
+	public void destroy() {
+	}
+
+}

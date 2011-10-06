@@ -1,0 +1,195 @@
+id	hasStates	name_pt_BR	name_en_US
+1	T	Brasil	Brazil
+2	T	USA	USA
+3	F	França	France
+4	F	Portugal	Portugal
+5	F	Bélgica	Belgium
+6	F	Dinamarca	Denmark
+7	F	Itália	Italy
+8	F	Noruega	Norway
+9	F	Espanha	Spain
+10	F	Suécia	Sweden
+11	T	Alemanha	Germany
+12	T	Mexico	Mexico
+13	T	Reino Unido	United Kingdom
+14	F	Japão	Japan
+15	F	Angola	Angola
+16	T	Canada	Canada
+17	F	Suiça	Switzerland
+18	F	Argentina	Argentina
+19	T	Austrália	Australia
+20	F	Austria	Austria
+21	F	Bolívia	Bolivia
+22	F	Chile	Chile
+23	F	Colômbia	Colombia
+24	F	Formosa	Taiwan
+25	T	China	China
+26	F	Paraguai	Paraguay
+27	F	Peru	Peru
+28	F	Uruguai	Uruguay
+29	F	Venezuela	Venezuela
+30	F	Bulgária	Bulgary
+31	T	Países Baixos	Netherlands
+32	F	República Tcheca	Czech Republic
+33	F	Finlândia	Finland
+34	F	Grécia	Greece
+35	F	Hungria	Hungary
+36	F	India	India
+37	F	Indonésia	Indonesia
+38	F	Irlanda	Ireland
+39	F	Israel	Israel
+40	F	Coreia do Sul	South Korea
+41	F	Malasia	Malaysia
+42	F	Nova Zelândia	New Zealand
+43	F	Filipinas	Philipines
+44	F	Polônia	Poland
+45	F	Romênia	Romania
+46	F	Rússia	Russia
+47	F	Singapura	Singapore
+48	F	Africa do Sul	South Africa
+49	F	Tailândia	Thailand
+50	F	Turquia	Turkey
+51	T	Sérvia e Montenegro	Serbia and Montenegro
+52	T	Catar	Qatar
+53	T	Laos	Laos
+54	T	Quênia	Kenya
+56	T	República do Congo	Congo
+57	T	Namíbia	Namibia
+58	T	São Marinho	San Marino
+63	T	Níger	Niger
+64	F	Brunei	Brunei
+65	T	Eslovênia	Slovenia
+67	F	Islândia	Iceland
+68	T	Chade	Chad
+69	T	Somália	Somalia
+71	T	Gabão	Gabon
+72	F	Samoa	Samoa
+73	T	Quirguistão	Kyrgyzstan
+74	T	Jamaica	Jamaica
+75	T	Mauritânia	Mauritania
+76	T	Jordânia	Jordan
+78	T	Equador	Ecuador
+79	T	Maurício	Mauritius
+80	T	Macedônia	Macedonia
+82	T	Sudão	Sudan
+83	T	Costa Rica	Costa Rica
+84	T	República Popular do Congo	Congo, Democratic Republic of The
+85	T	Santa Lúcia	Saint Lucia
+86	T	Geórgia	Georgia
+87	T	Serra Leoa	Sierra Leone
+88	T	Omã	Oman
+89	T	Arábia Saudita	Saudi Arabia
+90	T	Marrocos	Morocco
+91	F	Ilhas Salomão	Solomon Islands
+92	T	Sri Lanka	Sri Lanka
+93	T	Gâmbia	Gambia, The
+95	T	Bahrein	Bahrain
+96	T	Cazaquistão	Kazakhstan
+97	T	Granada	Grenada
+99	T	Síria	Syria
+100	T	Barbados	Barbados
+101	T	Groenlândia	Greenland
+106	T	Ilhas Comores	Comoros
+108	T	Burundi	Burundi
+110	T	Argélia	Algeria
+111	T	Guiné Equatorial	Equatorial Guinea
+112	T	Emirados Árabes Unidos	United Arab Emirates
+113	T	Maldivas	Maldives
+114	T	Camarões	Cameroon
+115	T	Paquistão	Pakistan
+116	T	Senegal	Senegal
+119	T	Guiana	Guyana
+120	T	Butão	Bhutan
+121	T	Vanuatu	Vanuatu
+122	T	Domínica	Dominica
+123	T	Vietnã	Vietnam
+125	F	Kiribati	Kiribati
+127	T	Croácia	Croatia
+129	F	Seicheles	Seychelles
+130	F	Ilhas Cayman	Cayman Islands
+131	F	Santa Helena	Saint Helena
+133	F	Ilhas Spratly	Spratly Islands
+134	T	Afeganistão	Afghanistan
+138	T	Zâmbia	Zambia
+140	F	Ilhas Paracel	Paracel Islands
+141	T	Iêmen	Yemen
+143	T	Guiné-Bissau	Guinea-Bissau
+146	T	República Dominicana	Dominican Republic
+148	T	Nigéria	Nigeria
+149	T	Tunísia	Tunisia
+150	F	Etiópia	Ethiopia
+151	T	Tadjiquistão	Tajikistan
+152	F	Eritréia	Eritrea
+153	T	Côte d'Ivoire (Costa do Marfim)	Côte d'Ivoire
+154	T	Moçambique	Mozambique
+155	T	Papua-Nova Guiné	Papua New Guinea
+156	T	São Vicente e Granadinas	Saint Vincent and The Grenadines
+157	T	Andorra	Andorra
+158	T	Coréia do Norte	North Korea
+159	T	Bermuda	Bermuda
+161	T	Togo	Togo
+163	T	Botsuana	Botswana
+164	F	Macau	Macau
+166	T	Zimbábue	Zimbabwe
+167	T	Bahamas	Bahamas, The
+168	T	Líbano	Lebanon
+169	T	Azerbaijão	Azerbaijan
+170	T	Irã	Iran
+171	T	Lituânia	Lithuania
+173	T	Tonga	Tonga
+174	T	Montserrat	Montserrat
+176	T	Letônia	Latvia
+177	T	Gana	Ghana
+178	T	Mongólia	Mongolia
+179	T	Armênia	Armenia
+180	T	Ucrânia	Ukraine
+181	T	São Tomé e Príncipe	Sao Tome and Principe
+183	T	Uzbequistão	Uzbekistan
+185	T	Panamá	Panama
+187	T	Lesoto	Lesotho
+189	T	Bangladeche	Bangladesh
+190	T	Suazilândia	Swaziland
+191	T	Albânia	Albania
+193	T	Ruanda	Rwanda
+194	T	Burquina Faso	Burkina Faso
+195	T	Chipre	Cyprus
+197	T	Antígua e Barbuda	Antigua and Barbuda
+198	T	Egito	Egypt
+199	T	Trinidad e Tobago	Trinidad and Tobago
+200	T	São Cristóvão e Névis	Saint Kitts and Nevis
+202	T	Guiné	Guinea
+203	T	Kuwait	Kuwait
+204	T	Uganda	Uganda
+205	T	Belorússia	Belarus
+206	F	Nepal	Nepal
+209	T	Mali	Mali
+210	T	Madagascar	Madagascar
+211	T	Haiti	Haiti
+215	F	Nauru	Nauru
+216	T	Listenstaine	Liechtenstein
+217	T	Fiji	Fiji
+218	T	Jibuti	Djibouti
+219	T	Honduras	Honduras
+221	T	Tanzânia	Tanzania
+224	T	Belize	Belize
+225	T	Estônia	Estonia
+226	T	Burma	Burma
+227	T	Cuba	Cuba
+228	T	Eslováquia	Slovakia
+229	T	Libéria	Liberia
+230	T	Benin	Benin
+232	T	Guatemala	Guatemala
+233	T	Malávi	Malawi
+234	T	Moldova	Moldova
+235	T	Turcomenistão	Turkmenistan
+237	T	Líbia	Libya
+238	T	El Salvador	El Salvador
+239	T	Suriname	Suriname
+240	T	Iraque	Iraq
+241	T	Micronésia	Micronesia, Federated States of
+243	T	Camboja	Cambodia
+244	T	Nicarágua	Nicaragua
+245	T	República Centro-Africana	Central African Republic
+246	T	Bósnia e Herzegovina	Bosnia and Herzegovina
+248	T	Luxemburgo	Luxembourg
+251	F	Cabo Verde	Cape Verde

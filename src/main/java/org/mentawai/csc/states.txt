@@ -1,0 +1,1393 @@
+1	1	AC
+2	1	AL
+3	1	AM
+4	1	AP
+5	1	BA
+6	1	CE
+7	1	DF
+8	1	ES
+9	1	GO
+10	1	MA
+11	1	MG
+12	1	MS
+13	1	MT
+14	1	PA
+15	1	PB
+16	1	PE
+17	1	PI
+18	1	PR
+19	1	RJ
+20	1	RN
+21	1	RO
+22	1	RR
+23	1	RS
+24	1	SC
+25	1	SE
+26	1	SP
+27	1	TO
+28	3	-
+29	4	-
+30	5	-
+31	6	-
+32	7	-
+33	8	-
+34	9	-
+35	10	-
+36	2	Alaska
+37	2	Alabama
+38	2	Arkansas
+39	2	American Samoa
+40	2	Arizona
+41	2	California
+42	2	Colorado
+43	2	Connecticut
+44	2	District of Columbia
+45	2	Delaware
+46	2	Florida
+47	2	Federated States of Micronesia
+48	2	Georgia
+49	2	Guam
+50	2	Hawaii
+51	2	Iowa
+52	2	Idaho
+53	2	Illinois
+54	2	Indiana
+55	2	Kansas
+56	2	Kentucky
+57	2	Louisiana
+58	2	Massachusetts
+59	2	Maryland
+60	2	Maine
+61	2	Republic of Marshall Islands
+62	2	Michigan
+63	2	Minnesota
+64	2	Missouri
+65	2	Northern Mariana Islands
+66	2	Mississippi
+67	2	Montana
+68	2	North Carolina
+69	2	North Dakota
+70	2	Nebraska
+71	2	New Hampshire
+72	2	New Jersey
+73	2	New Mexico
+74	2	Nevada
+75	2	New York
+76	2	Ohio
+77	2	Oklahoma
+78	2	Oregon
+79	2	Pennsylvania
+80	2	Puerto Rico
+81	2	Republic of Palau
+82	2	Rhode Island
+83	2	South Carolina
+84	2	South Dakota
+85	2	Tennessee
+86	2	Texas
+87	2	Utah
+88	2	Virginia
+89	2	U.S. Virgin Islands
+90	2	Vermont
+91	2	Washington
+92	2	Wisconsin
+93	2	West Virginia
+94	2	Wyoming
+95	11	Baden-Wuerttemberg
+96	11	Bayern
+97	11	Berlin
+98	11	Brandenburg
+99	11	Bremen
+100	11	Hamburg
+101	11	Hessen
+102	11	Mecklenburg-Vorpommern
+103	11	Niedersachsen
+104	11	Nordrhein-Westfalen
+105	11	Rheinland-Pfalz
+106	11	Saarland
+107	11	Sachsen
+108	11	Sachsen-Anhalt
+109	11	Schleswig-Holstein
+110	11	Thueringen
+111	12	Aguascalientes
+112	12	Baja California
+113	12	Baja California Sur
+114	12	Campeche
+115	12	Chiapas
+116	12	Chihuahua
+117	12	Coahuila de Zaragoza
+118	12	Colima
+119	12	Distrito Federal
+120	12	Durango
+121	12	Guanajuato
+122	12	Guerrero
+123	12	Hidalgo
+124	12	Jalisco
+125	12	Mexico
+126	12	Michoacan de Ocampo
+127	12	Morelos
+128	12	Nayarit
+129	12	Nuevo Leon
+130	12	Oaxaca
+131	12	Puebla
+132	12	Queretaro de Arteaga
+133	12	Quintana Roo
+134	12	San Luis Potosi
+135	12	Sinaloa
+136	12	Sonora
+137	12	Tabasco
+138	12	Tamaulipas
+139	12	Tlaxcala
+140	12	Veracruz-Llave
+141	12	Yucatan
+142	12	Zacatecas
+143	13	England
+144	13	Northern-Ireland
+145	13	Scotland
+146	13	Wales
+147	13	Isle of Man
+148	13	Jersey
+149	13	Guernsey
+150	14	-
+151	15	-
+152	16	Alberta
+153	16	British Columbia
+154	16	Manitoba
+155	16	New Brunswick
+156	16	Newfoundland
+157	16	Northwest Territories
+158	16	Nova Scotia
+159	16	Ontario
+160	16	Prince Edward Island
+161	16	Quebec
+162	16	Saskatchewan
+163	16	Yukon
+164	16	Newfoundland (Island)
+165	16	Newfoundland (Labrador)
+166	17	-
+168	18	-
+169	19	New South Wales
+170	19	Northern Territory
+171	19	Queensland
+172	19	South Australia
+173	19	Tasmania
+174	19	Victoria
+175	19	Western Australia
+176	19	Australian Capital
+178	20	-
+179	21	-
+180	30	-
+181	22	-
+182	23	-
+183	24	-
+184	25	Hong Kong
+185	26	-
+186	27	-
+187	28	-
+188	29	-
+189	25	Anhui
+190	25	Fujian
+191	25	Gansu
+192	25	Guangdong
+193	25	Guangxi
+194	25	Guizhou
+195	25	Hebei
+196	25	Heilongjiang
+197	25	Henan
+198	25	Hubei
+199	25	Hunan
+200	25	Jiangsu
+201	25	Jiangxi
+202	25	Jilin
+203	25	Liaoning
+204	25	Nei Mongol
+205	25	Ningxia
+206	25	Quinghai
+207	25	Shaanxi
+208	25	Shandong
+209	25	Shanxi
+210	25	Sichuan
+211	25	Xinjiang Uygur
+213	25	Yunnan
+214	25	Zhejiang
+215	25	Beijing
+216	25	Chongqing
+217	25	Taiwan
+218	25	Shanghai
+219	25	Tianjin
+220	25	Hainan
+221	25	Macau
+222	31	Drenthe
+223	31	Flevoland
+224	31	Friesland
+225	31	Gelderland
+226	31	Groningen
+227	31	Limburg
+228	31	Noord-Brabant
+229	31	Noord-Holland
+230	31	Overijssel
+231	31	Utrecht
+232	31	Zeeland
+233	31	Zuid-Holland
+234	32	-
+235	33	-
+236	34	-
+237	35	-
+238	36	-
+239	37	-
+240	38	-
+241	39	-
+242	40	-
+243	41	-
+244	42	-
+245	43	-
+246	44	-
+247	45	-
+248	46	-
+249	47	-
+250	48	-
+251	49	-
+252	50	-
+2972	51	Srbija (Serbia)
+2973	52	Ad Dawhah
+2975	52	Al Jumayliyah
+2976	52	Al Khawr
+2978	52	Madinat ash Shamal
+2979	52	Umm Salal
+2985	53	Houaphan
+2987	53	Xiagnabouli
+2991	53	Louangphabang
+3001	54	Central
+3002	54	Coast
+3003	54	Eastern
+3004	54	Nairobi Area
+3005	54	North-Eastern
+3006	54	Nyanza
+3007	54	Rift Valley
+3008	54	Western
+3009	56	Bouenza
+3010	56	Kouilou
+3011	56	Lékoumou
+3012	56	Likouala
+3015	56	Sangha
+3016	56	Pool
+3017	56	Brazzaville
+3018	56	Cuvette
+3019	56	Cuvette-Ouest
+3020	57	Khomas
+3021	57	Caprivi
+3022	57	Erongo
+3024	57	Karas
+3025	57	Kunene
+3026	57	Ohangwena
+3029	57	Omusati
+3030	57	Oshana
+3031	57	Oshikoto
+3033	58	Acquaviva
+3039	58	San Marino
+3041	58	Serravalle
+3046	63	Agadez
+3048	63	Dosso
+3050	63	Tahoua
+3051	63	Zinder
+3052	63	Niamey
+3053	63	Tillabéri
+3057	65	Bohinj
+3062	65	Brezovica
+3255	68	Batha
+3256	68	Biltine
+3257	68	Borkou-Ennedi-Tibesti
+3258	68	Chari-Baguirmi
+3260	68	Kanem
+3261	68	Lac
+3262	68	Logone Occidental
+3263	68	Logone Oriental
+3264	68	Mayo-Kébbi
+3265	68	Moyen-Chari
+3266	68	Ouaddaï
+3268	68	Tandjilé
+3275	69	Hiiraan
+3277	69	Jubbada Hoose
+3279	69	Nugaal
+3280	69	Sanaag
+3286	71	Ogooué-Lolo
+3287	71	Ogooué-Maritime
+3288	71	Woleu-Ntem
+3289	71	Estuaire
+3290	71	Haut-Ogooué
+3291	71	Moyen-Ogooué
+3292	71	Ngounié
+3293	71	Nyanga
+3305	73	Bishkek
+3306	73	Chüy
+3307	73	Jalal-Abad
+3309	73	Talas
+3310	73	Ysyk-Köl
+3312	73	Batken
+3313	74	Clarendon
+3314	74	Hanover
+3315	74	Manchester
+3316	74	Portland
+3317	74	Saint Andrew
+3318	74	Saint Ann
+3319	74	Saint Catherine
+3320	74	Saint Elizabeth
+3321	74	Saint James
+3322	74	Saint Mary
+3323	74	Saint Thomas
+3324	74	Trelawny
+3325	74	Westmoreland
+3326	74	Kingston-Saint John
+3329	75	Assaba
+3330	75	Gorgol
+3332	75	Trarza
+3334	75	Dakhlet Nouadhibou
+3338	75	Inchiri
+3340	76	Al Karak
+3341	76	At Tafilah
+3343	76	`Amman
+3351	78	Galápagos
+3352	78	Azuay
+3353	78	Bolívar
+3354	78	Cañar
+3355	78	Carchi
+3356	78	Chimborazo
+3357	78	Cotopaxi
+3358	78	El Oro
+3359	78	Esmeraldas
+3360	78	Guayas
+3361	78	Imbabura
+3362	78	Loja
+3363	78	Los Ríos
+3364	78	Manabí
+3365	78	Morona-Santiago
+3366	78	Pastaza
+3367	78	Pichincha
+3368	78	Tungurahua
+3369	78	Zamora-Chinchipe
+3370	78	Sucumbios
+3371	78	Napo
+3372	78	Orellana
+3373	79	Black River
+3374	79	Flacq
+3375	79	Grand Port
+3376	79	Moka
+3378	79	Plaines Wilhems
+3379	79	Port Louis
+3381	79	Savanne
+3384	79	Rodrigues
+3508	82	Al Khartum
+3509	82	A`ali an Nil
+3510	82	Al Bahr al Ahmar
+3512	82	Al Jazirah
+3513	82	Al Qadarif
+3521	82	Gharb Darfur
+3524	82	Janub Kurdufan
+3526	82	Kassala
+3527	82	Nahr an Nil
+3529	82	Shamal Darfur
+3531	82	Sharq al Istiwa¼iyah
+3532	82	Sinnar
+3534	83	Alajuela
+3535	83	Cartago
+3536	83	Guanacaste
+3537	83	Heredia
+3538	83	Limón
+3539	83	Puntarenas
+3540	83	San José
+3541	84	Bandundu
+3542	84	Équateur
+3546	84	Kinshasa
+3547	84	Bas-Congo
+3548	84	Orientale
+3550	84	Nord-Kivu
+3553	85	Dauphin
+3554	85	Castries
+3555	85	Choiseul
+3558	85	Laborie
+3559	85	Micoud
+3561	85	Vieux-Fort
+3562	85	Praslin
+3563	86	Abashis Raioni
+3566	86	Ajaria
+3573	86	Baghdat¼is Raioni
+3581	86	Dushet¼is Raioni
+3584	86	Goris Raioni
+3594	86	Lagodekhis Raioni
+3597	86	Marneulis Raioni
+3600	86	Mts¼khet¼is Raioni
+3604	86	P¼ot¼i
+3605	86	Qazbegis Raioni
+3609	86	Sagarejos Raioni
+3613	86	T¼bilisi
+3623	86	Vanis Raioni
+3632	88	Masqat
+3634	88	Zufar
+3635	87	Eastern
+3636	87	Northern
+3637	87	Southern
+3638	87	Western Area
+3639	89	Al Bahah
+3640	89	Al Madinah
+3641	89	Ash Sharqiyah
+3643	89	Ar Riyad
+3645	89	Ha¼il
+3646	89	Makkah
+3647	89	Al Hudud ash Shamaliyah
+3649	89	Jizan
+3650	89	Tabuk
+3657	91	-
+3661	90	Agadir
+3665	90	Beni Mellal
+3667	90	Casablanca
+3669	90	El Jadida
+3671	90	Er Rachidia
+3673	90	Fès
+3675	90	Kenitra
+3676	90	Khemisset
+3677	90	Khenifra
+3678	90	Khouribga
+3679	90	Marrakech
+3680	90	Meknès
+3681	90	Nador
+3682	90	Ouarzazate
+3683	90	Oujda
+3684	90	Rabat-Salé
+3685	90	Safi
+3686	90	Settat
+3687	90	Tanger
+3689	90	Taza
+3692	90	Laâyoune
+3693	90	Tan-Tan
+3694	90	Taounate
+3696	90	Taroudannt
+3697	90	Tétouan
+3702	92	Central
+3703	92	North Central
+3704	92	North Eastern
+3705	92	North Western
+3706	92	Sabaragamuwa
+3707	92	Southern
+3708	92	Uva
+3709	92	Western
+3710	93	Banjul
+3712	93	Central River
+3715	93	North Bank
+3716	95	Al Hadd
+3717	95	Al Manamah
+3718	95	Al Muharraq
+3720	95	Sitrah
+3721	95	Al Mintaqah al Gharbiyah
+3726	95	Ar Rifa` wa al Mintaqah al Janubiyah
+3728	96	Almaty
+3729	96	Almaty Qalasy
+3730	96	Aqmola
+3731	96	Aqtöbe
+3732	96	Astana Qalasy
+3733	96	Atyrau
+3734	96	Batys Qazaqstan
+3735	96	Bayqongyr Qalasy
+3736	96	Mangghystau
+3738	96	Pavlodar
+3739	96	Qaraghandy
+3741	96	Qyzylorda
+3743	96	Soltüstik Qazaqstan
+3744	96	Zhambyl
+3745	97	Saint Andrew
+3747	97	Saint George
+3749	97	Saint Mark
+3750	97	Saint Patrick
+3757	99	Dayr az Zawr
+3758	99	Rif Dimashq
+3759	99	Halab
+3760	99	Hamah
+3761	99	Hims
+3763	99	Dimashq
+3764	99	Tartus
+3765	100	Christ Church
+3768	100	Saint James
+3769	100	Saint John
+3770	100	Saint Joseph
+3771	100	Saint Lucy
+3775	100	Saint Thomas
+3776	101	Nordgrønland
+3777	101	Østgrønland
+3778	101	Vestgrønland
+3780	106	Grande Comore
+3782	108	Bujumbura
+3783	108	Bubanza
+3784	108	Bururi
+3785	108	Cankuzo
+3786	108	Cibitoke
+3787	108	Gitega
+3788	108	Karuzi
+3790	108	Kirundo
+3791	108	Makamba
+3792	108	Muyinga
+3793	108	Ngozi
+3795	108	Ruyigi
+3798	110	Alger
+3799	110	Batna
+3800	110	Constantine
+3801	110	Médéa
+3802	110	Mostaganem
+3803	110	Oran
+3805	110	Sétif
+3806	110	Tiaret
+3807	110	Tizi Ouzou
+3808	110	Tlemcen
+3809	110	Bejaïa
+3810	110	Biskra
+3811	110	Blida
+3812	110	Bouira
+3813	110	Djelfa
+3816	110	Laghouat
+3817	110	Mascara
+3820	110	Sidi Bel Abbès
+3821	110	Skikda
+3823	110	Adrar
+3824	110	Aïn Defla
+3825	110	Aïn Temouchent
+3826	110	Annaba
+3827	110	Béchar
+3829	110	Boumerdes
+3830	110	Chlef
+3832	110	El Oued
+3835	110	Illizi
+3839	110	Ouargla
+3840	110	Relizane
+3844	110	Tipaza
+3845	110	Tissemsilt
+3847	111	Bioko Norte
+3848	111	Bioko Sur
+3849	111	Centro Sur
+3850	111	Kié-Ntem
+3851	111	Litoral
+3852	111	Wele-Nzas
+3853	112	Abu Zaby
+3854	112	`Ajman
+3855	112	Dubayy
+3856	112	Al Fujayrah
+3857	112	Ra¼s al Khaymah
+3858	112	Ash Shariqah
+3859	112	Umm al Qaywayn
+3860	113	Seenu
+3872	113	Maale
+3880	114	Est
+3881	114	Littoral
+3882	114	Nord-Ouest
+3883	114	Ouest
+3884	114	Sud-Ouest
+3885	114	Adamaoua
+3886	114	Centre
+3887	114	Extreme-Nord
+3888	114	Nord
+3889	114	Sud
+3890	115	North-West Frontier
+3891	115	Punjab
+3892	115	Sindh
+3893	115	Azad Kashmir
+3894	115	Federally Administered Tribal Areas
+3895	115	Balochistan
+3896	115	Northern Areas
+3897	115	Islamabad
+3898	116	Dakar
+3899	116	Diourbel
+3900	116	Tambacounda
+3901	116	Thiès
+3902	116	Fatick
+3903	116	Kaolack
+3904	116	Kolda
+3905	116	Ziguinchor
+3906	116	Louga
+3907	116	Saint-Louis
+3909	120	Bumthang
+3910	120	Chhukha
+3911	120	Chirang
+3912	120	Daga
+3913	120	Geylegphug
+3914	120	Ha
+3915	120	Lhuntshi
+3916	120	Mongar
+3917	120	Paro
+3919	120	Punakha
+3920	120	Samchi
+3921	120	Samdrup
+3923	120	Tashigang
+3924	120	Thimphu
+3925	120	Tongsa
+3926	120	Wangdi Phodrang
+3927	119	Barima-Waini
+3928	119	Cuyuni-Mazaruni
+3929	119	Demerara-Mahaica
+3932	119	Mahaica-Berbice
+3933	119	Pomeroon-Supenaam
+3934	119	Potaro-Siparuni
+3935	119	Upper Demerara-Berbice
+3936	119	Upper Takutu-Upper Essequibo
+3938	121	Sanma
+3939	121	Shepherd
+3940	121	Tafea
+3944	122	Saint Andrew
+3945	122	Saint David
+3946	122	Saint George
+3947	122	Saint John
+3948	122	Saint Joseph
+3949	122	Saint Luke
+3950	122	Saint Mark
+3951	122	Saint Patrick
+3952	122	Saint Paul
+3953	122	Saint Peter
+3954	123	An Giang
+3960	123	Ho Chi Minh
+3965	123	Quang Ninh
+3973	123	Ha Noi
+3979	123	Hà Giang
+3980	123	Hà Tây
+3982	123	Hòa Bình
+3985	123	Lào Cai
+3986	123	Nghe An
+3989	123	Phú Yên
+3991	123	Quang  Ngai
+3992	123	Quang Tri
+3996	123	Tuyên Quang
+3998	123	Yên Bái
+3999	123	Bac Giang
+4000	123	Bac Kan
+4001	123	Bac Lieu
+4018	127	Bjelovarsko-Bilogorska
+4019	127	Brodsko-Posavska
+4020	127	Dubrovacko-Neretvanska
+4021	127	Istarska
+4022	127	Karlovacka
+4023	127	Koprivnicko-Krizevacka
+4024	127	Krapinsko-Zagorska
+4025	127	Licko-Senjska
+4026	127	Medimurska
+4027	127	Osjecko-Baranjska
+4029	127	Primorsko-Goranska
+4030	127	`ibensko-Kniniska
+4031	127	Sisacko-Moslavacka
+4032	127	Splitsko-Dalmatinska
+4036	127	Zadarska
+4037	127	Zagrebacka
+4038	127	Zagreb, Grad
+4075	133	-
+4076	134	Badakhshan
+4078	134	Baghlan
+4079	134	Bamian
+4080	134	Farah
+4082	134	Ghazni
+4086	134	Kabol
+4087	134	Kapisa
+4088	134	Lowgar
+4089	134	Nangarhar
+4090	134	Nimruz
+4092	134	Parvan
+4093	134	Kandahar
+4095	134	Takhar
+4096	134	Vardak
+4097	134	Zabol
+4099	134	Balkh
+4102	134	Sar-e Pol
+4103	134	Konar
+4106	134	Khowst
+4107	134	Nurestan
+4108	138	North-Western
+4109	138	Copperbelt
+4110	138	Western
+4112	138	Central
+4113	138	Eastern
+4115	138	Luapula
+4116	138	Lusaka
+4119	141	Adan
+4120	141	Al Mahrah
+4121	141	Hadramawt
+4125	141	Dhamar
+4128	141	San`a¼
+4137	143	Bafatá
+4138	143	Quinara
+4139	143	Oio
+4140	143	Bolama
+4141	143	Cacheu
+4142	143	Tombali
+4143	143	Gabú
+4144	143	Bissau
+4145	143	Biombo
+4149	146	Dajabón
+4150	146	Distrito Nacional
+4151	146	Duarte
+4154	146	La Altagracia
+4155	146	Elías Piña
+4156	146	La Romana
+4158	146	Monte Cristi
+4161	146	Puerto Plata
+4165	146	San Juan
+4166	146	San Pedro de Macorís
+4167	146	Santiago
+4169	146	Valverde
+4170	146	El Seíbo
+4172	146	La Vega
+4173	146	Monseñor Nouel
+4175	146	San Cristóbal
+4176	148	Lagos
+4177	148	Abuja Federal Capital Territory
+4178	148	Ogun
+4179	148	Akwa Ibom
+4180	148	Cross River
+4181	148	Kaduna
+4183	148	Anambra
+4186	148	Imo
+4187	148	Kano
+4188	148	Kwara
+4189	148	Niger
+4190	148	Oyo
+4191	148	Adamawa
+4192	148	Delta
+4193	148	Edo
+4196	148	Kogi
+4197	148	Osun
+4199	148	Yobe
+4200	148	Abia
+4202	148	Enugu
+4203	148	Ondo
+4204	148	Plateau
+4205	148	Rivers
+4206	148	Sokoto
+4207	148	Bayelsa
+4208	148	Ebonyi
+4209	148	Ekiti
+4212	148	Zamfara
+4214	149	Al Qayrawan
+4215	149	Jundubah
+4216	149	Kef
+4219	149	Bajah
+4220	149	Banzart
+4221	149	Nabul
+4222	149	Silyanah
+4224	149	Bin `Arus
+4225	149	Madanin
+4226	149	Qabis
+4227	149	Qafsah
+4233	149	Tunis
+4234	149	Zaghwan
+4248	151	Kuhistoni Badakhshon
+4250	151	Leninobod
+4257	153	Agnéby
+4258	153	Bafing
+4259	153	Bas-Sassandra
+4260	153	Denguélé
+4261	153	Dix-Huit Montagnes
+4262	153	Fromager
+4263	153	Haut-Sassandra
+4264	153	Lacs
+4265	153	Lagunes
+4266	153	Marahoué
+4267	153	Moyen-Cavally
+4268	153	Moyen-Comoé
+4269	153	N¼zi-Comoe
+4270	153	Savanes
+4272	153	Sud-Comoé
+4273	153	Vallée du Bandama
+4274	153	Worodougou
+4275	153	Zanzan
+4276	154	Cabo Delgado
+4277	154	Gaza
+4278	154	Inhambane
+4279	154	Maputo
+4280	154	Sofala
+4281	154	Nampula
+4282	154	Niassa
+4283	154	Tete
+4284	154	Zambézia
+4285	154	Manica
+4287	156	Charlotte
+4288	156	Saint Andrew
+4289	156	Saint David
+4290	156	Saint George
+4291	156	Saint Patrick
+4292	156	Grenadines
+4293	155	Central
+4295	155	Milne Bay
+4298	155	Western
+4302	155	East New Britain
+4303	155	East Sepik
+4305	155	Manus
+4306	155	Morobe
+4312	155	National Capital
+4314	157	Canillo
+4315	157	Encamp
+4316	157	La Massana
+4317	157	Ordino
+4318	157	Sant Julià de Lòria
+4319	157	Andorra la Vella
+4320	157	Escaldes-Engordany
+4321	158	Chagang-do
+4322	158	Hamgyong-namdo
+4323	158	Hwanghae-namdo
+4324	158	Hwanghae-bukto
+4325	158	Kaesong-si
+4326	158	Kangwon-do
+4328	158	P'yongyang-si
+4329	158	Yanggang-do
+4331	158	P'yongan-namdo
+4332	158	Hamgyong-bukto
+4333	158	Najin Sonbong-si
+4335	159	Hamilton
+4336	159	Hamilton
+4337	159	Paget
+4339	159	Saint George
+4342	159	Smith¼s
+4344	159	Warwick
+4345	161	Centrale
+4346	161	Kara
+4347	161	Maritime
+4348	161	Plateaux
+4349	161	Savanes
+4350	163	Central
+4351	163	Ghanzi
+4353	163	Kgatleng
+4354	163	Kweneng
+4355	163	North East
+4356	163	South East
+4357	163	Southern
+4359	164	-
+4363	166	Mashonaland Central
+4364	166	Mashonaland East
+4366	166	Matabeleland North
+4367	166	Matabeleland South
+4368	166	Masvingo
+4371	167	Bimini
+4372	167	Cat Island
+4373	167	Exuma
+4375	167	Long Island
+4376	167	Mayaguana
+4379	167	New Providence
+4380	167	Acklins and Crooked Islands
+4382	167	Fresh Creek
+4383	167	Governor¼s Harbour
+4384	167	Green Turtle Cay
+4385	167	High Rock
+4389	167	Rock Sound
+4390	167	Sandy Point
+4392	168	Béqaa
+4393	168	Liban-Nord
+4394	168	Beyrouth
+4395	168	Mont-Liban
+4396	168	Liban-Sud
+4398	169	Abseron
+4399	169	Agcabadi
+4401	169	Agdas
+4404	169	Ali Bayramli
+4406	169	Baki
+4407	169	Balakan
+4409	169	Beylaqan
+4410	169	Bilasuvar
+4414	169	Davaci
+4419	169	Göyçay
+4424	169	Kurdamir
+4468	169	Zardab
+4469	170	Azarbayjan-e Sharqi
+4470	170	Chahar Mahall va Bakhtiari
+4471	170	Sistan va Baluchestan
+4472	170	Kohgiluyeh va Buyer Ahmad
+4473	170	Fars
+4474	170	Gilan
+4475	170	Hamadan
+4476	170	Ilam
+4477	170	Hormozgan
+4478	170	Kermanshah
+4479	170	Khuzestan
+4480	170	Kordestan
+4481	170	Bushehr
+4482	170	Lorestan
+4483	170	Semnan
+4484	170	Tehran
+4485	170	Esfahan
+4486	170	Kerman
+4487	170	Khorasan
+4488	170	Yazd
+4489	170	Ardebil
+4490	170	Azarbayjan-e Gharbi
+4491	170	Markazi
+4492	170	Mazandaran
+4494	170	Golestan
+4495	170	Qazvin
+4497	171	Alytaus Apskritis
+4498	171	Kauno Apskritis
+4499	171	Klaipedos Apskritis
+4502	171	Siauliu Apskritis
+4506	171	Vilniaus Apskritis
+4508	173	Tongatapu
+4510	174	Saint Anthony
+4511	174	Saint Georges
+4512	174	Saint Peter
+4513	176	Aizkraukles Rajons
+4524	176	Jelgavas Rajons
+4537	176	Riga
+4538	176	Rigas Rajons
+4541	176	Tukuma Rajons
+4546	177	Greater Accra
+4547	177	Ashanti
+4548	177	Brong-Ahafo
+4549	177	Central
+4550	177	Eastern
+4551	177	Northern
+4552	177	Volta
+4553	177	Western
+4554	177	Upper East
+4555	177	Upper West
+4556	178	Arhangay
+4557	178	Bayanhongor
+4561	178	Dundgovi
+4563	178	Govi-Altay
+4566	178	Hövsgöl
+4568	178	Övörhangay
+4569	178	Selenge
+4571	178	Töv
+4572	178	Uvs
+4573	178	Ulaanbaatar
+4577	178	Orhon
+4578	179	Aragatsotn
+4579	179	Ararat
+4580	179	Armavir
+4581	179	Geghark¼unik¼
+4582	179	Kotayk¼
+4584	179	Shirak
+4585	179	Syunik¼
+4587	179	Vayots¼ Dzor
+4588	179	Yerevan
+4589	180	Chernivets'ka Oblast'
+4590	180	Dnipropetrovs'ka Oblast'
+4591	180	Donets'ka Oblast'
+4592	180	Ivano-Frankivs'ka Oblast'
+4593	180	Kharkivs'ka Oblast'
+4594	180	Khersons'ka Oblast'
+4595	180	Cherkas'ka Oblast'
+4596	180	Chernihivs'ka Oblast'
+4597	180	Khmel'nyts'ka Oblast'
+4598	180	Kirovohrads'ka Oblast'
+4599	180	Krym, Avtonomna Respublika
+4601	180	Kyyivs'ka Oblast'
+4602	180	Luhans'ka Oblast'
+4603	180	L'vivs'ka Oblast'
+4604	180	Mykolayivs'ka Oblast'
+4605	180	Odes'ka Oblast
+4606	180	Poltavs'ka Oblast'
+4607	180	Rivnens'ka Oblast'
+4608	180	Sevastopol', Misto
+4609	180	Sums'ka Oblast'
+4610	180	Ternopil's'ka Oblast'
+4611	180	Vinnyts'ka Oblast'
+4612	180	Volyns'ka Oblast'
+4613	180	Zakarpats'ka Oblast'
+4614	180	Zaporiz'ka Oblast'
+4615	180	Zhytomyrs'ka Oblast'
+4616	181	Príncipe
+4617	181	São Tomé
+4618	183	Andijon
+4619	183	Buxoro
+4620	183	Farg ona
+4621	183	Xorazm
+4622	183	Namangan
+4627	183	Surxondaryo
+4630	183	Jizzax
+4631	183	Sirdaryo
+4632	185	Bocas del Toro
+4633	185	Chiriquí
+4634	185	Coclé
+4635	185	Colón
+4638	185	Los Santos
+4639	185	Panamá
+4641	185	Veraguas
+4643	187	Butha-Buthe
+4646	187	Maseru
+4647	187	Mohale¼s Hoek
+4651	187	Thaba-Tseka
+4652	189	Dhaka
+4653	189	Khulna
+4654	189	Rajshahi
+4655	189	Barisal
+4656	189	Chittagong
+4658	190	Hhohho
+4659	190	Lubombo
+4660	190	Manzini
+4661	190	Shiselweni
+4662	191	Berat
+4663	191	Dibër
+4664	191	Durrës
+4665	191	Elbasan
+4668	191	Korçë
+4669	191	Kukës
+4672	191	Tiranë
+4673	191	Vlorë
+4674	193	Butare
+4675	193	Byumba
+4678	193	Gisenyi
+4680	193	Kibungo
+4681	193	Kibuye
+4682	193	Kigali
+4684	194	Bam
+4685	194	Boulkiemdé
+4686	194	Ganzourgou
+4688	194	Kouritenga
+4690	194	Passore
+4693	194	Tapoa
+4694	194	Zoundwéogo
+4695	194	Balé
+4696	194	Banwa
+4697	194	Bazèga
+4698	194	Bougouriba
+4699	194	Boulgou
+4700	194	Gourma
+4701	194	Houet
+4702	194	Ioba
+4703	194	Kadiogo
+4705	194	Comoé
+4708	194	Kossi
+4709	194	Koulpélogo
+4710	194	Kourwéogo
+4711	194	Léraba
+4712	194	Loroum
+4713	194	Mouhoun
+4714	194	Namentenga
+4715	194	Nahouri
+4716	194	Nayala
+4717	194	Noumbiel
+4718	194	Oubritenga
+4719	194	Poni
+4721	194	Séno
+4723	194	Sourou
+4725	194	Yagha
+4726	194	Yatenga
+4727	194	Ziro
+4728	194	Zondoma
+4729	195	Famagusta
+4730	195	Kyrenia
+4731	195	Larnaca
+4732	195	Nicosia
+4733	195	Limassol
+4734	195	Paphos
+4735	197	Barbuda
+4736	197	Saint George
+4738	197	Saint Mary
+4739	197	Saint Paul
+4741	197	Saint Philip
+4742	198	Ad Daqahliyah
+4743	198	Al Bahr al Ahmar
+4744	198	Al Buhayrah
+4745	198	Al Fayyum
+4746	198	Al Gharbiyah
+4747	198	Al Iskandariyah
+4748	198	Al Isma`iliyah
+4749	198	Al Jizah
+4750	198	Al Minufiyah
+4751	198	Al Minya
+4752	198	Al Qahirah
+4754	198	Al Wadi al Jadid
+4755	198	Ash Sharqiyah
+4756	198	As Suways
+4757	198	Aswan
+4758	198	Asyut
+4759	198	Bani Suwayf
+4760	198	Bur Sa`id
+4761	198	Dumyat
+4762	198	Kafr ash Shaykh
+4763	198	Matruh
+4764	198	Qina
+4765	198	Suhaj
+4766	198	Janub Sina¼
+4767	198	Shamal Sina¼
+4768	199	Arima
+4769	199	Caroni
+4772	199	Port-of-Spain
+4775	199	Saint George
+4776	199	Saint Patrick
+4777	199	San Fernando
+4778	199	Tobago
+4779	199	Victoria
+4780	200	Christ Church Nichola Town
+4785	200	Saint John Capesterre
+4789	200	Saint Paul Charlestown
+4790	200	Saint Peter Basseterre
+4794	202	Beyla
+4795	202	Boffa
+4796	202	Boké
+4797	202	Conakry
+4798	202	Dabola
+4799	202	Dalaba
+4802	202	Forécariah
+4803	202	Fria
+4804	202	Gaoual
+4805	202	Guéckédou
+4806	202	Kérouané
+4808	202	Kissidougou
+4811	202	Macenta
+4812	202	Mali
+4813	202	Mamou
+4818	202	Coyah
+4820	202	Kankan
+4822	202	Labé
+4826	202	Nzérékoré
+4827	202	Siguiri
+4828	203	Al `Asimah
+4830	203	Al Ahmadi
+4831	203	Al Jahra¼
+4841	204	Kampala
+4844	204	Kasese
+4868	204	Arua
+4878	204	Mbale
+4887	204	Wakiso
+4889	205	Brestskaya Voblasts¼
+4892	205	Mahilyowskaya Voblasts¼
+4893	205	Minsk, Horad
+4895	205	Vitsyebskaya Voblasts¼
+4910	209	Bamako
+4911	209	Kayes
+4913	209	Ségou
+4914	209	Sikasso
+4915	209	Koulikoro
+4916	209	Tombouctou
+4917	209	Gao
+4919	210	Antsiranana
+4920	210	Fianarantsoa
+4921	210	Mahajanga
+4922	210	Toamasina
+4923	210	Antananarivo
+4924	210	Toliara
+4926	211	Artibonite
+4927	211	Centre
+4928	211	Grand¼Anse
+4929	211	Nord
+4930	211	Nord-Est
+4931	211	Ouest
+4932	211	Sud
+4933	211	Sud-Est
+4948	217	Central
+4949	217	Eastern
+4950	217	Northern
+4952	217	Western
+4953	216	Balzers
+4956	216	Mauren
+4959	216	Schaan
+4960	216	Schellenberg
+4961	216	Triesen
+4963	216	Vaduz
+4964	218	Ali Sabieh
+4966	218	Tadjourah
+4969	218	Arta
+4970	219	Atlántida
+4972	219	Colón
+4973	219	Comayagua
+4975	219	Cortés
+4976	219	El Paraíso
+4977	219	Francisco Morazán
+4981	219	La Paz
+4982	219	Lempira
+4985	219	Santa Bárbara
+4987	219	Yoro
+4988	221	Pwani
+4991	221	Kigoma
+4992	221	Kilimanjaro
+4996	221	Morogoro
+4998	221	Mwanza
+5009	221	Dar es Salaam
+5011	221	Zanzibar Urban/West
+5012	221	Arusha
+5014	224	Belize
+5015	224	Cayo
+5016	224	Corozal
+5017	224	Orange Walk
+5018	224	Stann Creek
+5019	224	Toledo
+5020	225	Harjumaa
+5021	225	Hiiumaa
+5025	225	Läänemaa
+5026	225	Lääne-Virumaa
+5030	225	Saaremaa
+5032	225	Valgamaa
+5033	225	Viljandimaa
+5034	225	Võrumaa
+5035	226	Rakhine State
+5036	226	Chin State
+5037	226	Ayeyarwady
+5038	226	Kachin State
+5039	226	Kayin State
+5040	226	Kayah State
+5041	226	Mandalay
+5042	226	Sagain
+5043	226	Shan State
+5044	226	Tanintharyi
+5046	226	Magway
+5047	226	Bago
+5048	226	Yangon
+5049	227	Pinar del Río
+5050	227	Ciudad de La Habana
+5051	227	Matanzas
+5052	227	Isla de la Juventud
+5053	227	Camagüey
+5054	227	Ciego de Ávila
+5055	227	Cienfuegos
+5056	227	Granma
+5057	227	Guantánamo
+5058	227	La Habana
+5059	227	Holguín
+5060	227	Las Tunas
+5061	227	Sancti Spíritus
+5062	227	Santiago de Cuba
+5063	227	Villa Clara
+5064	228	Banskobystrický
+5065	228	Bratislavský
+5066	228	Koaický
+5067	228	Nitriansky
+5068	228	Preaovský
+5069	228	Trenciansky
+5070	228	Trnavský
+5071	228	}ilinský
+5072	229	Bong
+5073	229	Nimba
+5075	229	Grand Bassa
+5077	229	Maryland
+5078	229	Montserrado
+5079	229	Bomi
+5080	229	Grand Kru
+5081	229	Margibi
+5083	229	Grand Gedeh
+5084	229	Lofa
+5087	230	Alibori
+5088	230	Atakora
+5089	230	Atlantique
+5090	230	Borgou
+5091	230	Collines
+5092	230	Kouffo
+5093	230	Donga
+5094	230	Littoral
+5095	230	Mono
+5096	230	Quémé
+5097	230	Plateau
+5098	230	Zou
+5099	232	Alta Verapaz
+5102	232	Chiquimula
+5104	232	Escuintla
+5105	232	Guatemala
+5108	232	Jalapa
+5111	232	Quetzaltenango
+5112	232	Quiché
+5114	232	Sacatepéquez
+5115	232	San Marcos
+5116	232	Santa Rosa
+5120	232	Zacapa
+5121	233	Chikwawa
+5125	233	Dedza
+5129	233	Lilongwe
+5141	233	Blantyre
+5147	233	Phalombe
+5151	234	Anenii Noi
+5152	234	Balti
+5154	234	Bender
+5171	234	Leova
+5174	234	Orhei
+5177	234	Sîngerei
+5179	234	Soroca
+5180	234	Stefan-Voda
+5184	234	Ungheni
+5185	235	Ahal
+5187	235	Dasoguz
+5189	235	Mary
+5194	237	Murzuq
+5195	237	Sabha
+5206	237	Banghazi
+5212	237	Surt
+5213	237	Tarabulus
+5214	237	Yafran
+5215	238	Ahuachapán
+5216	238	Cabañas
+5217	238	Chalatenango
+5218	238	Cuscatlán
+5219	238	La Libertad
+5220	238	La Paz
+5221	238	La Unión
+5222	238	Morazán
+5223	238	San Miguel
+5224	238	San Salvador
+5225	238	Santa Ana
+5226	238	San Vicente
+5227	238	Sonsonate
+5228	238	Usulután
+5230	239	Commewijne
+5231	239	Coronie
+5234	239	Para
+5235	239	Paramaribo
+5238	239	Wanica
+5240	240	Al Basrah
+5243	240	As Sulaymaniyah
+5244	240	Babil
+5245	240	Baghdad
+5246	240	Dahuk
+5249	240	Arbil
+5250	240	Karbala¼
+5251	240	At Ta¼mim
+5253	240	Ninawa
+5254	240	Wasit
+5255	240	An Najaf
+5257	241	Kosrae
+5258	241	Pohnpei
+5259	241	Chuuk
+5260	241	Yap
+5261	243	Kâmpóng Cham
+5262	243	Kampong Chhnang
+5263	243	Kâmpóng Spoe
+5264	243	Kâmpóng Thum
+5265	243	Kândal
+5266	243	Kaoh Kong
+5267	243	Krâchéh
+5268	243	Môndól Kiri
+5269	243	Pouthisat
+5270	243	Preah Vihear
+5271	243	Prey Vêng
+5272	243	Stoeng Treng
+5273	243	Svay Rieng
+5274	243	Takêv
+5279	243	Banteay Mean Cheay
+5285	244	Boaco
+5287	244	Chinandega
+5289	244	Estelí
+5290	244	Granada
+5291	244	Jinotega
+5292	244	León
+5294	244	Managua
+5295	244	Masaya
+5296	244	Matagalpa
+5297	244	Nueva Segovia
+5299	244	Rivas
+5301	244	Atlántico Sur
+5302	245	Bamingui-Bangoran
+5304	245	Haute-Kotto
+5307	245	Kémo
+5308	245	Lobaye
+5311	245	Ouaka
+5312	245	Ouham
+5314	245	Vakaga
+5315	245	Nana-Grébizi
+5316	245	Sangha-Mbaéré
+5318	245	Bangui
+5319	246	Federation of Bosnia and Herzegovina
+5320	246	Republika Srpska
+5321	246	Brcko Distrikt
+5322	248	Diekirch
+5323	248	Grevenmacher
+5324	248	Luxembourg
+5337	251	-
+5338	170	Qom
+5339	170	Zanjan
+5340	152	-
+5341	125	-
+5342	129	-
+5343	215	-
+5344	206	-
+5345	130	-
+5346	67	-
+5347	150	-
+5348	131	-
+5349	140	-
+5350	72	-
+5351	64	-
