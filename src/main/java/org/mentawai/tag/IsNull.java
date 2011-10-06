@@ -21,8 +21,6 @@ package org.mentawai.tag;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.Tag;
 
-import org.mentawai.core.Input;
-import org.mentawai.core.Output;
 import org.mentawai.tag.util.ConditionalTag;
 import org.mentawai.tag.util.Context;
 

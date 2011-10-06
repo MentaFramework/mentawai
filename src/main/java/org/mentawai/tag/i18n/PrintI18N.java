@@ -21,7 +21,6 @@ package org.mentawai.tag.i18n;
 import java.util.Locale;
 
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.BodyContent;
 import javax.servlet.jsp.tagext.Tag;
 
 import org.mentawai.i18n.I18N;

@@ -11,7 +11,6 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 import net.sf.json.JSONObject;
 
 import org.mentawai.tag.Out;
-import org.mentawai.tag.html.Select;
 import org.mentawai.tag.util.Context;
 import org.mentawai.tag.util.PrintTag;
 
