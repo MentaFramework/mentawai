@@ -20,8 +20,10 @@ public class Error {
             boolean isConsole = Boolean.getBoolean("logConsole");
             
             if (isConsole) {
-                
+                // testing
                 logger = new SimpleLogger(System.err);
+                
+                System.out.println("Testing commit mentawai!");
                 
             } else {
             
