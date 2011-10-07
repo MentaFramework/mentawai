@@ -38,6 +38,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionBindingListener;
 
+import org.mentaregex.Regex;
 import org.mentawai.coc.ConsequenceProvider;
 import org.mentawai.coc.DefaultConsequenceProvider;
 import org.mentawai.filter.GlobalFilterFreeMarkerFilter;
@@ -48,7 +49,6 @@ import org.mentawai.list.ListManager;
 import org.mentawai.log.Debug;
 import org.mentawai.log.Info;
 import org.mentawai.util.DebugServletFilter;
-import org.mentawai.util.Regex;
 
 /**
  * The Mentawai central controller. Mentawai actions are intercepted and

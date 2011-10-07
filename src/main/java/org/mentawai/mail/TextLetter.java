@@ -26,9 +26,9 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import org.mentaregex.Regex;
 import org.mentawai.core.ApplicationManager;
 import org.mentawai.util.IOUtils;
-import org.mentawai.util.Regex;
 
 public class TextLetter implements Letter {
 	
@@ -93,7 +93,7 @@ public class TextLetter implements Letter {
     		
     		String value = props.get(key);
     		
-    		result = Regex.sub(result, "s/#$" + key + "/" + Regex.escapeValue(value, "#") +"/g", '#');
+    		result = Regex.sub(result, "s/#$" + key + "/" + Regex.escapeSlash(value, "#") +"/g", '#');
     	}
     	
     	return result;

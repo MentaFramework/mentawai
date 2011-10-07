@@ -27,6 +27,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.Tag;
 
+import org.mentaregex.Regex;
 import org.mentawai.core.Action;
 import org.mentawai.core.Input;
 import org.mentawai.core.Output;
@@ -38,7 +39,6 @@ import org.mentawai.list.ListData;
 import org.mentawai.list.ListManager;
 import org.mentawai.tag.util.Context;
 import org.mentawai.tag.util.PrintTag;
-import org.mentawai.util.Regex;
 
 /**
  * @author Sergio Oliveira

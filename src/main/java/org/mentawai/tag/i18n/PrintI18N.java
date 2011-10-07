@@ -23,12 +23,12 @@ import java.util.Locale;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.Tag;
 
+import org.mentaregex.Regex;
 import org.mentawai.i18n.I18N;
 import org.mentawai.i18n.LocaleManager;
 import org.mentawai.tag.Out;
 import org.mentawai.tag.util.Context;
 import org.mentawai.tag.util.PrintTag;
-import org.mentawai.util.Regex;
 
 /**
  * @author Sergio Oliveira

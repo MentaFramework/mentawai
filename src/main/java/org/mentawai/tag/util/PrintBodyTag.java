@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.jsp.JspException;
 
-import org.mentawai.util.Regex;
+import org.mentaregex.Regex;
 
 public abstract class PrintBodyTag extends PrintTag {
 	

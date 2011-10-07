@@ -20,7 +20,7 @@ package org.mentawai.tag.html;
 
 import javax.servlet.jsp.JspException;
 
-import org.mentawai.util.Regex;
+import org.mentaregex.Regex;
 
 /**
  * @author Sergio Oliveira

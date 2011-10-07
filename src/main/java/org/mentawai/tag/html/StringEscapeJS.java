@@ -2,8 +2,8 @@ package org.mentawai.tag.html;
 
 import javax.servlet.jsp.JspException;
 
+import org.mentaregex.Regex;
 import org.mentawai.tag.util.PrintTag;
-import org.mentawai.util.Regex;
 
 public class StringEscapeJS extends PrintTag {
 	

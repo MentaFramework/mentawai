@@ -18,10 +18,10 @@
  */
 package org.mentawai.filter;
 
+import org.mentaregex.Regex;
 import org.mentawai.core.Filter;
 import org.mentawai.core.InputWrapper;
 import org.mentawai.core.InvocationChain;
-import org.mentawai.util.Regex;
 
 /**
  * A filter that will do AUTO-WIRING of dependencies in a totaly transparent way.

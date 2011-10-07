@@ -92,6 +92,13 @@
     	<version>0.9.7</version>
 	</dependency>
 	
+		<dependency>
+    	<groupId>me.soliveirajr</groupId>
+    	<artifactId>menta-regex</artifactId>
+    	<version>0.9.5</version>
+	</dependency>
+	
+	
 	<dependency>
     	<groupId>org.beanshell</groupId>
     	<artifactId>bsh</artifactId>
@@ -267,6 +274,7 @@
               <artifactSet>
                 <includes>
                   <include>me.soliveirajr:menta-container</include>
+                  <include>me.soliveirajr:menta-regex</include>
                 </includes>
               </artifactSet>
             </configuration>

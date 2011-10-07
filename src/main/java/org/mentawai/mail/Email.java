@@ -37,7 +37,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-import org.mentawai.util.Regex;
+import org.mentaregex.Regex;
 import org.mentawai.util.StringUtils;
 
 // Revision: 193103

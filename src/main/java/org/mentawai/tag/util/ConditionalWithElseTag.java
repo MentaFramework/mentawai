@@ -29,12 +29,12 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyContent;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
+import org.mentaregex.Regex;
 import org.mentawai.action.BaseLoginAction;
 import org.mentawai.core.Action;
 import org.mentawai.core.Forward;
 import org.mentawai.i18n.LocaleManager;
 import org.mentawai.tag.Out;
-import org.mentawai.util.Regex;
 
 /**
  * @author Sergio Oliveira
