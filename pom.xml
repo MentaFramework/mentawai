@@ -277,6 +277,7 @@
             <configuration>
 			  <finalName>mentawai-all</finalName>   
               <shadedArtifactAttached>true</shadedArtifactAttached>
+              <shadedClassifierName>all</shadedClassifierName>
               <artifactSet>
                 <includes>
                   <include>me.soliveirajr:menta-container</include>
