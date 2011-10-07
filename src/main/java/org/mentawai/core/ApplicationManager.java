@@ -34,13 +34,13 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.mentabean.BeanConfig;
 import org.mentacontainer.Container;
 import org.mentacontainer.Factory;
 import org.mentacontainer.Scope;
 import org.mentacontainer.impl.MentaContainer;
 import org.mentawai.ajax.AjaxConsequence;
 import org.mentawai.ajax.AjaxRenderer;
-import org.mentawai.bean.BeanConfig;
 import org.mentawai.coc.ConsequenceProvider;
 import org.mentawai.db.ConnectionHandler;
 import org.mentawai.filter.AuthenticationFilter;
