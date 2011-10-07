@@ -8,8 +8,8 @@
   <groupId>me.soliveirajr</groupId>
   <artifactId>mentawai</artifactId>
   <version>2.1.2-SNAPSHOT</version>
-  <name>Mentawai Web Framework 2.0</name>
-  <description>A Java full-stack web framework that uses programmatic configuration instead of XML and Annotations.</description>
+  <name>Mentawai2 Web Framework</name>
+  <description>A Java full-stack web framework with programmatic configuration instead of XML and Annotations.</description>
   <url>http://www.mentaframework.org</url>
   <licenses>
     <license>
