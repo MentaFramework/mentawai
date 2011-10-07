@@ -33,9 +33,9 @@ public class ContainsRule extends BasicRule {
 	private final static Map<String, ContainsRule> cache = new HashMap<String, ContainsRule>();
 	
     /**
-     * Creates a RegexRule with the given regex pattern.
+     * Creates a ContainsRule that checks for words.
      *
-     * @param pattern The regex pattern.
+     * @param words The words to check
      */
 	public ContainsRule(String ... words) {
 		this.words = words;

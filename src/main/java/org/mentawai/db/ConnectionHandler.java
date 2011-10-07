@@ -54,7 +54,7 @@ public interface ConnectionHandler extends Factory, Interceptor<Connection> {
 	/**
 	 * Print the status of this connection pool if any.
 	 * 
-	 * @return
+	 * @return The status
 	 */
 	public String getStatus();
 
