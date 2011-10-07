@@ -7,9 +7,9 @@
   </parent>
   <groupId>me.soliveirajr</groupId>
   <artifactId>mentawai</artifactId>
-  <version>2.0.1-SNAPSHOT</version>
-  <name>Mentawai</name>
-  <description>Mentawai Web Framework - Java full-stack web framework with no xml or annotations.</description>
+  <version>2.1.0-SNAPSHOT</version>
+  <name>Mentawai Web Framework 2.0</name>
+  <description>A Java full-stack web framework that uses programmatic configuration instead of XML and Annotations.</description>
   <url>http://www.mentaframework.org</url>
   <licenses>
     <license>
