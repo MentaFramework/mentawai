@@ -20,6 +20,10 @@ package org.mentawai.core;
 
 import java.util.Locale;
 
+import org.mentawai.filter.AuthenticationFilter;
+import org.mentawai.filter.AuthorizationFilter;
+import org.mentawai.filter.ExceptionFilter;
+
 /**
  * Describes a Mentawai action, the central idea of the framework architecture.
  * An action has an input (org.mentawai.core.Input) and an output (org.mentawai.core.Output).
@@ -78,6 +82,14 @@ public interface Action {
    public static final String AJAX = "ajax";
    
    public static final String STREAM = "stream";
+  
+   public static final String ACCESSDENIED = AuthorizationFilter.ACCESSDENIED;
+   
+   public static final String LOGIN = AuthenticationFilter.LOGIN;
+
+   public static final String EXCEPTION = ExceptionFilter.EXCEPTION;
+   
+   
 	
 	/**
 	 * Executes the action, returning a result.
