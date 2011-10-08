@@ -1764,7 +1764,7 @@ public abstract class ApplicationManager {
     * @param consequenceProvider
     * @since 2.1.2
     */  
-	public static ConsequenceProvider getConsequenceProvider() {
+	public ConsequenceProvider getConsequenceProvider() {
 		return Controller.getConsequenceProvider();
 	}
 
