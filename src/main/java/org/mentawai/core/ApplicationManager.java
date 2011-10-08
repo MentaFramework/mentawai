@@ -1757,6 +1757,16 @@ public abstract class ApplicationManager {
 
       Controller.setConsequenceProvider(consequenceProvider);
    }
+   
+   /**
+    * Get the consequence provider that will be used by the controller.
+    *
+    * @param consequenceProvider
+    * @since 2.1.2
+    */  
+	public static ConsequenceProvider getConsequenceProvider() {
+		return Controller.getConsequenceProvider();
+	}
 
    /**
     * Adds the list to the ListManager, so there is no need to use ListManager.addList

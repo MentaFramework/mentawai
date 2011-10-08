@@ -277,8 +277,11 @@ public class Controller extends HttpServlet {
 	}
 
 	public static void setConsequenceProvider(ConsequenceProvider provider) {
-
 		Controller.consequenceProvider = provider;
+	}
+	
+	public static ConsequenceProvider getConsequenceProvider() {
+		return consequenceProvider;
 	}
 
     private static File findAppManagerClass() {
