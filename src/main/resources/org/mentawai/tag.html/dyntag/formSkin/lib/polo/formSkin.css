@@ -1,0 +1,77 @@
+	  .mtwFormSupLeft{
+	  	background: url(mtwFormSupLeft.gif) no-repeat; 		
+		height:22px;
+		width: 14px;		  		 
+	  } 
+	  .mtwFormSupCenter{
+	  	background: url(mtwFormSupCenter.gif) repeat;
+		background-position: center;
+		height: 22px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 13px;
+		font-weight: bold;
+		color: White;				
+		text-align: left;		
+	  }  
+	  .mtwFormSupRight{
+	  	background: url(mtwFormSupRight.gif) no-repeat;
+		height: 22px;
+		width: 70px;
+		text-align: right;		
+	  } 
+	  .mtwFormButtonClose{
+	  	background: url(mtwFormButtonClose.gif) no-repeat;
+		border: 0px;
+		height: 17px;
+		width: 17px;
+		cursor:pointer;		 
+	  }
+	  .mtwFormBorderLeft{
+	  	background-color: #E3E4DC;
+		border-left:4px solid #708BA2;		 		 
+		border-bottom:3px solid #708BA2;		 		 
+	  }
+	  .mtwFormBody{
+	  	 background-color: #E3E4DC;
+		 border-bottom:3px solid #708BA2;
+		 text-align: left;
+		 width:100%;
+		 padding-bottom: 5px;
+	  }
+	  .mtwFormBorderRight{
+	  	 background-color: #E3E4DC;
+		 border-right:3px solid #708BA2;
+		 border-bottom:3px solid #708BA2;		 		 
+	  }
+	  .mtwLabel{
+	  	 font-family: Arial,Verdana;
+	     font-size: 12px;
+		 color: Black;
+	  }  
+	  .mtwInputText{
+	  	 border:1px solid #AFAB9F;
+	     font-family: Arial,Verdana;
+	     font-size: 12px;
+	     height: 20px;
+	  }
+	  .mtwButton{
+	  	 border: 1px solid #003C74;
+	     background: url(mtwButton.gif) repeat;
+	     font-family: Arial,Verdana;
+     	 font-size: 12px;
+	     height: 25px;	    
+	  }
+	  .mtwFieldset{
+         border: 1px solid #919B9C;		  
+	  }
+
+    .mtwLegend{
+         background: url(mtwLegend.gif) repeat;
+	     padding: 0.2em 0.5em;
+         border:1px solid #91A7B4;
+         font-family: Arial,Verdana;
+         font-weight: bold;
+	     font-size: 12px;
+	     color:Black;
+	     height: 15px;
+    }
