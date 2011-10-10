@@ -35,10 +35,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.mentabean.BeanConfig;
+import org.mentabean.BeanManager;
 import org.mentacontainer.Container;
 import org.mentacontainer.Factory;
 import org.mentacontainer.Scope;
 import org.mentacontainer.impl.MentaContainer;
+import org.mentacontainer.impl.WrapperFactory;
 import org.mentawai.ajax.AjaxConsequence;
 import org.mentawai.ajax.AjaxRenderer;
 import org.mentawai.coc.ConsequenceProvider;
@@ -60,7 +62,6 @@ import org.mentawai.ioc.Bean;
 import org.mentawai.ioc.DefaultComponent;
 import org.mentawai.ioc.Dependency;
 import org.mentawai.ioc.ScopeComponent;
-import org.mentawai.ioc.WrappedMentaComponent;
 import org.mentawai.jruby.RubyActionConfig;
 import org.mentawai.list.DBListData;
 import org.mentawai.list.ListData;
@@ -144,7 +145,7 @@ public abstract class ApplicationManager {
 
     private static String viewDir = null;
 
-    private Map<Class<? extends Object>, BeanConfig> beans = new HashMap<Class<? extends Object>, BeanConfig>();
+    private final BeanManager beanManager = new BeanManager();
 
     private static ActionConfig defaultAction = null;
 
@@ -435,7 +436,7 @@ public abstract class ApplicationManager {
 
 	public BeanConfig addBeanConfig(BeanConfig bc) {
 
-		beans.put(bc.getBeanClass(), bc);
+		beanManager.addBeanConfig(bc);
 
 		return bc;
 
@@ -443,7 +444,11 @@ public abstract class ApplicationManager {
 
 	public BeanConfig getBeanConfig(Class<? extends Object> beanClass) {
 
-		return beans.get(beanClass);
+		return beanManager.getBeanConfig(beanClass);
+	}
+	
+	public BeanManager getBeanManager() {
+		return beanManager;
 	}
 
 	public BeanConfig bean(Class<? extends Object> beanClass, String tableName) {
@@ -1406,6 +1411,24 @@ public abstract class ApplicationManager {
     	
     	return addDependency(klass, target, source);
     }
+    
+    public Dependency autowire(String target, Class<? extends Object> klass) {
+    	
+    	return addDependency(klass, target, target);
+    }
+    
+    public Dependency autowire(String sourceFromContainer) {
+    	
+    	Dependency d;
+
+    	container.autowire(sourceFromContainer);
+    	
+    	Class<? extends Object> klass = container.getType(sourceFromContainer);
+
+    	dependencies.add(d = new Dependency(klass, sourceFromContainer, sourceFromContainer));
+
+    	return d;
+    }
 
     public Dependency addDependency(Class<? extends Object> klass, String target, String source) {
 
@@ -1434,6 +1457,9 @@ public abstract class ApplicationManager {
     	return addDependency(klass, target, source);
     }
 
+    /**
+     * @deprecated Use autowire instead.
+     */
     public Dependency autoWiring(String target, Class<? extends Object> klass) {
     	return di(target, klass);
     }
@@ -1447,6 +1473,9 @@ public abstract class ApplicationManager {
     	return di(target, klass);
     }
 
+    /**
+     * @deprecated Use autowire instead.
+     */
     public Dependency autoWiring(String target, Class<? extends Object> klass, String source) {
 
     	return di(target, klass, source);
@@ -1493,7 +1522,7 @@ public abstract class ApplicationManager {
     	
     	if (comp == null) return null;
     	
-    	/**
+    	/*
     	 * MentaContainerFilter will clean the thread scope.
     	 * 
     	 * Since this are actions, it does not hurt to use a THREAD scope
@@ -1508,7 +1537,7 @@ public abstract class ApplicationManager {
     		if (sc.getScope() == APPLICATION) scope = Scope.SINGLETON;
     	}
     	
-    	container.ioc(name, new WrappedMentaComponent(comp), scope);
+    	container.ioc(name, comp.getType(), scope);
 
         components.put(name, comp);
 
@@ -1558,6 +1587,11 @@ public abstract class ApplicationManager {
     public void ioc(String name, Factory c) {
     	
     	ioc(name, c, Scope.THREAD);
+    }
+    
+    public void ioc(String name, Object singleInstance) {
+    	WrapperFactory f = new WrapperFactory(singleInstance);
+    	ioc(name, f);
     }
     
     public void ioc(String name, Factory c, Scope s) {
