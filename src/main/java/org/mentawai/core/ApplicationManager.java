@@ -1795,7 +1795,6 @@ public abstract class ApplicationManager {
    /**
     * Get the consequence provider that will be used by the controller.
     *
-    * @param consequenceProvider
     * @since 2.1.2
     */  
 	public ConsequenceProvider getConsequenceProvider() {
