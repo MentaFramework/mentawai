@@ -266,7 +266,7 @@ public class HibernateFilter extends InputWrapper implements
             Session session = hibernateSessionThreadLocal.get();
             if (session == null) {
             	
-                session = openSessionHibernate();
+                session = openSessionHibernate(this.sessionFactory);
                 
                 hibernateSessionThreadLocal.set(session);
                 
@@ -292,7 +292,7 @@ public class HibernateFilter extends InputWrapper implements
         return super.getValue(key);
     }
     
-	protected Session openSessionHibernate() {
+	protected Session openSessionHibernate(SessionFactory sessionFactory) {
 		return sessionFactory.openSession();
 	}
 	
