@@ -266,7 +266,8 @@ public class HibernateFilter extends InputWrapper implements
             Session session = hibernateSessionThreadLocal.get();
             if (session == null) {
             	
-                session = sessionFactory.openSession();
+                session = openSessionHibernate();
+                
                 hibernateSessionThreadLocal.set(session);
                 
                 if (transactional) {
@@ -290,4 +291,16 @@ public class HibernateFilter extends InputWrapper implements
 
         return super.getValue(key);
     }
+    
+    /**
+	 * Create database connection and open a <tt>Session</tt> on it.
+	 * 
+	 * @param SessionFactory
+	 * @param Action
+	 * @return Session
+	 */
+	protected Session openSessionHibernate() {
+		return sessionFactory.openSession();
+	}
+	
 }
