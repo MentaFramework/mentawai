@@ -4,7 +4,9 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
 
 import org.mentawai.util.InjectionUtils;
 import org.mentawai.util.StringUtils;
@@ -466,6 +468,25 @@ public abstract class AbstractInput implements Input {
 			return null;
 		try {
 			return Enum.valueOf(enumClass, value);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public <E extends Enum<E>> Set<E> getEnums(String key, Class<E> enumClass) {
+		String[] values = getStrings(key);
+		
+		if (values == null)
+			return null;
+		try {
+			
+			HashSet<E> result = new HashSet<E>(values.length);
+			
+			for (String v : values) {
+				result.add( Enum.valueOf(enumClass, v) );
+			}
+			
+			return result;
 		} catch (Exception e) {
 			return null;
 		}

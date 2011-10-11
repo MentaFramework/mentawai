@@ -341,4 +341,8 @@ public class InputWrapper implements Input, Map {
 	public <E extends Enum<E>> E getEnum(String name, Class<E> enumClass) {
 		return getInput().getEnum(name, enumClass);
 	}
+	
+	public <E extends Enum<E>> Set<E> getEnums(String name, Class<E> enumClass) {
+		return getInput().getEnums(name, enumClass);
+	}
 }

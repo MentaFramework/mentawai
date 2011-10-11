@@ -20,6 +20,7 @@ package org.mentawai.core;
 
 import java.util.Date;
 import java.util.Iterator;
+import java.util.Set;
 
 /**
  * Defines the behavior of an action input.
@@ -366,4 +367,13 @@ public interface Input {
 	 */
 	public <E extends Enum<E>> E getEnum(String name, Class<E> enumClass);
 	
+	/**
+	 * @author rgil
+	 * Convert the parameter value from this action input as an Array of Enums.
+	 * 
+	 * @param name the parameter's name
+	 * @param enumClass the Enum's class
+	 * @return Return the Enumeration
+	 */
+	public <E extends Enum<E>> Set<E> getEnums(String name, Class<E> enumClass);
 }
