@@ -368,7 +368,6 @@ public interface Input {
 	public <E extends Enum<E>> E getEnum(String name, Class<E> enumClass);
 	
 	/**
-	 * @author rgil
 	 * Convert the parameter value from this action input as an Array of Enums.
 	 * 
 	 * @param name the parameter's name
