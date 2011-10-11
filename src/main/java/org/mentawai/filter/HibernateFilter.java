@@ -292,13 +292,6 @@ public class HibernateFilter extends InputWrapper implements
         return super.getValue(key);
     }
     
-    /**
-	 * Create database connection and open a <tt>Session</tt> on it.
-	 * 
-	 * @param SessionFactory
-	 * @param Action
-	 * @return Session
-	 */
 	protected Session openSessionHibernate() {
 		return sessionFactory.openSession();
 	}
