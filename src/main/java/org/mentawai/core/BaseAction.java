@@ -617,6 +617,23 @@ public abstract class BaseAction implements StickyAction {
     }
     
     /**
+     * Shortcut for output.setValue(Redirect.REDIRURL_PARAM, "url"); <br/>
+     * Use redir() consequence for ActionConfig<br/><br/>
+     * 
+     * Example:<br/>
+     * In Action:<br/>
+     * redir("some.jsp?someparam=somevalue");<br/><br/>
+     * 
+     * In ApplicationManager:<br/>
+     * action("someAction.mtw").redir();
+     * 
+     * @param url
+     */
+    public void redir(String url) {
+    	output.setValue(Redirect.REDIRURL_PARAM, url);
+    }
+    
+    /**
      * 
      * @return String the ContextPath
      */

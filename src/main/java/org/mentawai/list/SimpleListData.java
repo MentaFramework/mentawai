@@ -68,6 +68,11 @@ public class SimpleListData implements ListData {
     	
     }
     
+    @SuppressWarnings("rawtypes")
+	public void add(Enum e, String msg) {
+    	add(e.toString(), msg);
+    }
+    
     public String getValue(String id) {
     	
     	return getValue(id, null);
