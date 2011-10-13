@@ -186,6 +186,10 @@ public abstract class ApplicationManager {
         REALPATH = realpath;
 
     }
+    
+    public void setAutowireEverything(boolean flag) {
+    	this.autowireEverything = flag; 
+    }
 
     public void setReqCharEncoding(String encoding) {
     	this.reqCharEncoding = encoding;
