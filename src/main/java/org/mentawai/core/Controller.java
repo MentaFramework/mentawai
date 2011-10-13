@@ -415,6 +415,12 @@ public class Controller extends HttpServlet {
 			ApplicationManager.setApplication(appContext);
 
 			appManager.init(appContext);
+			
+			// set some values...
+			
+			DebugServletFilter.addStaticInfo("Environment = " + appManager.getEnvironment().toString()); // for debug mode
+			
+			Info.log("Environment =", appManager.getEnvironment().toString());
 
 			appManager.setupDB();
 			

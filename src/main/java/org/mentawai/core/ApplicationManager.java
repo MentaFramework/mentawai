@@ -69,6 +69,7 @@ import org.mentawai.list.ListData;
 import org.mentawai.list.ListManager;
 import org.mentawai.spring.SpringActionConfig;
 import org.mentawai.util.DebugServletFilter;
+import org.mentawai.util.SystemUtils;
 
 /**
  * The central abstract base manager which controls actions, filters, locales and data lists.
@@ -159,6 +160,31 @@ public abstract class ApplicationManager {
     private boolean autowireEverything = true;
     
     private ApplicationManager parent;
+    
+    public enum Environment { TEST, DEV, INT, QA, PROD };
+    
+    private volatile Environment environment = null;
+    
+    public void setEnvironment(Environment env) {
+    	this.environment = env;
+    }
+    
+    public Environment getEnvironment() {
+    	
+    	if (environment == null) {
+    		
+    		String envString = SystemUtils.getString("env");
+    		
+    		if (envString == null) envString = SystemUtils.getString("ENV");
+    		
+    		if (envString == null) {
+    			this.environment = Environment.DEV;
+    		} else {
+    			this.environment = Environment.valueOf(envString.toUpperCase());
+    		}
+    	}
+    	return environment;
+    }
     
     public static void setRemoveActionFromName(boolean flag) {
     	ApplicationManager.removeActionFromName = flag;
@@ -276,6 +302,10 @@ public abstract class ApplicationManager {
     		throw new RuntimeException("Cannot find appManager.properties or appManager-HOSTNAME.properties inside WEB-INF!");
     	}
 
+    }
+    
+    public Props getProps() {
+    	return getProps(getEnvironment().toString().toLowerCase());
     }
     
     public Props getProps(String env) {
