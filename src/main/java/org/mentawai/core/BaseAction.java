@@ -556,14 +556,14 @@ public abstract class BaseAction implements StickyAction {
 		return loc;
 	}
 	
-	public Object getSessionObj() {
+	public <E> E getSessionObj() {
 		
-		return BaseLoginAction.getSessionObj(session);
+		return (E) BaseLoginAction.getSessionObj(session);
 	}
     
-    public Object getUserSession() {
+    public <E> E getUserSession() {
         
-        return BaseLoginAction.getUserSession(session);
+        return (E) BaseLoginAction.getUserSession(session);
         
     }
     
