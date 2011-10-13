@@ -4,7 +4,7 @@ import java.util.EnumSet;
 
 public enum Level {
 
-	DEBUG(1), INFO(2), EVENT(3), ERROR(4);
+	DEBUG(1), INFO(2), WARN(3), ERROR(4);
 	
 	private int code;
 
@@ -25,7 +25,7 @@ public enum Level {
     	
     	if (code == 1) Debug.enable(flag);
     	else if (code == 2) Info.enable(flag);
-    	else if (code == 3) Event.enable(flag);
+    	else if (code == 3) Warn.enable(flag);
     	else if (code == 4) Error.enable(flag);
     }
     

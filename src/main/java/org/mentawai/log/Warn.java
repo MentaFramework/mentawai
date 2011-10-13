@@ -5,11 +5,11 @@ import java.io.IOException;
 
 import org.mentawai.core.ApplicationManager;
 
-public class Event {
+public class Warn {
 	
 	private static boolean ENABLED = false;
     
-    public static String FILENAME = "EVENT.LOG";
+    public static String FILENAME = "WARN.LOG";
     
     private static Logger logger;
     
@@ -21,11 +21,11 @@ public class Event {
             
             if (isConsole) {
                 
-                logger = new SimpleLogger(System.err);
+                logger = new SimpleLogger(System.out);
                 
             } else {
             
-                String filename = System.getProperty("logEventFile", FILENAME);
+                String filename = System.getProperty("logWarnFile", FILENAME);
             
                 String dir = System.getProperty("logDir");
                 
@@ -48,12 +48,13 @@ public class Event {
                 
                 if (!noSystemOut) {
                 	
-                	sl.setAlsoSystemOut(true, "EVENT");
+                	sl.setAlsoSystemOut(true, "WARN");
                 }
                 
                 logger = sl;
-                
             }
+            
+            enable(true); // by deafult enabled...
             
         } catch(IOException e) {
             
@@ -100,6 +101,6 @@ public class Event {
      * Set custom logger
      */
     public static void setLogger(Logger logger) {
-		Event.logger = logger;
+		Warn.logger = logger;
 	}
 }

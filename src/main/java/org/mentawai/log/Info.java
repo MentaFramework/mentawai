@@ -21,7 +21,7 @@ public class Info {
             
             if (isConsole) {
                 
-                logger = new SimpleLogger(System.err);
+                logger = new SimpleLogger(System.out);
                 
             } else {
             
@@ -54,6 +54,8 @@ public class Info {
                 logger = sl;
                 
             }
+            
+            enable(true); // by default enabled...
             
         } catch(IOException e) {
             

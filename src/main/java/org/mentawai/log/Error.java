@@ -20,7 +20,7 @@ public class Error {
             boolean isConsole = Boolean.getBoolean("logConsole");
             
             if (isConsole) {
-                logger = new SimpleLogger(System.err);
+                logger = new SimpleLogger(System.out);
                 
             } else {
             
@@ -51,8 +51,9 @@ public class Error {
                 }
                 
                 logger = sl;
-                
             }
+            
+            enable(true); // Error by default enabled...
             
         } catch(IOException e) {
             

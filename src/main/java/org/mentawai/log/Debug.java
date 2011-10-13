@@ -21,7 +21,7 @@ public class Debug {
             
             if (isConsole) {
                 
-                logger = new SimpleLogger(System.err);
+                logger = new SimpleLogger(System.out);
                 
             } else {
             
@@ -49,10 +49,12 @@ public class Debug {
                 if (!noSystemOut) {
                 	
                 	sl.setAlsoSystemOut(true, "DEBUG");
-            }
+                }
             
                 logger = sl;
             }
+            
+            enable(false); // by deafult disabled
             
         } catch(Exception e) {
             
