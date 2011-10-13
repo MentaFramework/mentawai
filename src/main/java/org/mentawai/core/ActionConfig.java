@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+import org.mentacontainer.Container;
 import org.mentawai.ajax.AjaxConsequence;
 import org.mentawai.ajax.AjaxRenderer;
 
@@ -37,7 +38,7 @@ import org.mentawai.ajax.AjaxRenderer;
  */
 public class ActionConfig {
 	
-	protected Class<? extends Object> actionClass;
+	protected final Class<? extends Object> actionClass;
 	private String name = null;
 	private Map<String, Consequence> consequences = new HashMap<String, Consequence>();
     private Map<String, Map<String, Consequence>> innerConsequences = new HashMap<String, Map<String, Consequence>>();
@@ -139,6 +140,15 @@ public class ActionConfig {
 		this.name = getName(klass);
         this.innerAction = innerAction;
         this.dirName = getDirFromClass(klass);
+	}
+	
+	/**
+	 * Return the full name of the action class associated with this action config.
+	 * 
+	 * @return The action full name.
+	 */
+	public String getActionClassName() {
+		return actionClass.getName();
 	}
 	
     /**
@@ -825,7 +835,21 @@ public class ActionConfig {
      */
     public Action getAction() {
     	
+    	Container container = ApplicationManager.getContainer();
+    	
     	if (Action.class.isAssignableFrom(actionClass)) {
+    		
+    		// first try to get action from container...
+
+    		try {
+    			
+    			Action a = container.get(getActionClassName());
+    			
+    			if (a != null) return a;
+    			
+    		} catch(Exception e) {
+    			// ignore and try below...
+    		}
     		
 	        try {
 	        	
@@ -839,8 +863,23 @@ public class ActionConfig {
     	} else {
     		
     		try {
+    			
+    			// first try to get action from container...
+    			
+    			Object pojo = null;
+
+        		try {
+        			
+        			pojo = container.get(getActionClassName());
+        			
+        		} catch(Exception e) {
+        			// ignore and try below...
+        		}
+        		
+        		if (pojo == null) {
     		
-	        	Object pojo = actionClass.newInstance();
+        			pojo = actionClass.newInstance();
+        		}
 	        	
 	        	PojoAction pojoAction = new PojoAction(pojo);
 	        	
@@ -862,9 +901,6 @@ public class ActionConfig {
      * @since 1.2.1
      */
     public Class<? extends Object> getActionClass() {
-    	
-    	// must be action here, because constructor is checking...
-    	
         return actionClass;
     }
     

@@ -51,6 +51,7 @@ import org.mentawai.filter.DependencyFilter;
 import org.mentawai.filter.ExceptionFilter;
 import org.mentawai.filter.InjectionFilter;
 import org.mentawai.filter.IoCFilter;
+import org.mentawai.filter.MentaContainerFilter;
 import org.mentawai.filter.OutjectionFilter;
 import org.mentawai.filter.OutputFilter;
 import org.mentawai.filter.PushIoCFilter;
@@ -120,8 +121,8 @@ public abstract class ApplicationManager {
 
     public static final String REDIR = RedirectAfterLoginFilter.REDIR;
 
-    public static final String MENTAWAI_VERSION = "2.0.1";
-    public static final String MENTAWAI_BUILD = "20101218";
+    public static final String MENTAWAI_VERSION = "2.2.0";
+    public static final String MENTAWAI_BUILD = "20111012";
     public static String EXTENSION = "mtw";
     public static String CONTEXT_PATH = null;
     public static int PORT = 80;
@@ -154,6 +155,8 @@ public abstract class ApplicationManager {
     protected static Container container = null;
 
     static boolean removeActionFromName = false;
+    
+    private boolean autowireEverything = false;
     
     private ApplicationManager parent;
     
@@ -431,6 +434,11 @@ public abstract class ApplicationManager {
             }
             map.put(innerAction, ac);
         }
+        
+        // also add to container...
+        
+        container.ioc(ac.getActionClassName(), ac.getActionClass()); // scope NONE...
+
         return ac;
 	}
 
@@ -723,6 +731,14 @@ public abstract class ApplicationManager {
         if (last) {
 
             globalFiltersLast.add(filter);
+            
+        } else if (filter.getClass().equals(MentaContainerFilter.class)) {
+        	
+        	MentaContainerFilter f = (MentaContainerFilter) filter;
+        	
+        	autowireEverything = f.isAutowireEverything();
+        	
+        	globalFilters.add(filter);
 
         } else if (filter.getClass().equals(InjectionFilter.class)
                 || filter.getClass().equals(OutputFilter.class)
@@ -1538,6 +1554,10 @@ public abstract class ApplicationManager {
     	}
     	
     	container.ioc(name, comp.getType(), scope);
+    	
+    	if (autowireEverything) {
+    		container.autowire(name);
+    	}
 
         components.put(name, comp);
 
@@ -1599,6 +1619,10 @@ public abstract class ApplicationManager {
     	if (c != null) {
     	
     		container.ioc(name, c, s);
+    		
+    		if (autowireEverything) {
+    			container.autowire(name);
+    		}
     	}
     	
     }
