@@ -690,7 +690,24 @@ public abstract class BaseAction implements StickyAction {
 		setUserSession(user);
 	}
 	
-	public void setSessionGroups(String groups) {
+	public void setSessionGroup(Enum<?> e) {
+		setSessionGroup(e.toString());
+	}
+	
+	public void setSessionGroups(Enum<?> ... es) {
+		String[] s = new String[es.length];
+		int index = 0;
+		for(Enum<?> e : es) {
+			s[index++] = e.toString();
+		}
+		setSessionGroups(s);
+	}
+	
+	public void setSessionGroup(String group) {
+		setSessionGroups(group);
+	}
+	
+	public void setSessionGroups(String ... groups) {
 
 		BaseLoginAction.setUserGroups(session, groups);
 	}
