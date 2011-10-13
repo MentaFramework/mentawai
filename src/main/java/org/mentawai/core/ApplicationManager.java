@@ -51,7 +51,6 @@ import org.mentawai.filter.DependencyFilter;
 import org.mentawai.filter.ExceptionFilter;
 import org.mentawai.filter.InjectionFilter;
 import org.mentawai.filter.IoCFilter;
-import org.mentawai.filter.MentaContainerFilter;
 import org.mentawai.filter.OutjectionFilter;
 import org.mentawai.filter.OutputFilter;
 import org.mentawai.filter.PushIoCFilter;
@@ -156,7 +155,7 @@ public abstract class ApplicationManager {
 
     static boolean removeActionFromName = false;
     
-    private boolean autowireEverything = false;
+    private boolean autowireEverything = true;
     
     private ApplicationManager parent;
     
@@ -736,14 +735,6 @@ public abstract class ApplicationManager {
 
             globalFiltersLast.add(filter);
             
-        } else if (filter.getClass().equals(MentaContainerFilter.class)) {
-        	
-        	MentaContainerFilter f = (MentaContainerFilter) filter;
-        	
-        	autowireEverything = f.isAutowireEverything();
-        	
-        	globalFilters.add(filter);
-
         } else if (filter.getClass().equals(InjectionFilter.class)
                 || filter.getClass().equals(OutputFilter.class)
                 || filter.getClass().equals(OutjectionFilter.class)) {

@@ -31,19 +31,8 @@ public class MentaContainerFilter extends InputWrapper implements AfterConsequen
    
    private final Container container;
    
-   private final boolean autowireEverything;
-   
    public MentaContainerFilter() {
-	   this(true);
-   }
-   
-   public MentaContainerFilter(boolean autowireEverything) {
-	   this.autowireEverything = autowireEverything;
 	   this.container = ApplicationManager.getContainer();
-   }
-   
-   public boolean isAutowireEverything() {
-	   return autowireEverything;
    }
    
    public String filter(InvocationChain chain) throws Exception {
