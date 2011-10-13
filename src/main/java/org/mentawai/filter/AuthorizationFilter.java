@@ -54,7 +54,20 @@ public class AuthorizationFilter implements Filter {
 
     	// we want to use dynamic validation...
     }
-
+    
+    public AuthorizationFilter(Enum<?> ... es) {
+    	this(toString(es));
+    }
+    
+    private static String[] toString(Enum<?> ... es) {
+    	String[] s = new String[es.length];
+    	int index = 0;
+    	for(Enum<?> e : es) {
+    		s[index++] = e.toString();
+    	}
+    	return s;
+    }
+    
 	public AuthorizationFilter(String ... groups) {
 
 		this.groups = new ArrayList<String>(groups.length);
