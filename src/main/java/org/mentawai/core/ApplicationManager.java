@@ -240,6 +240,10 @@ public abstract class ApplicationManager {
         return null;
 
     }
+    
+    public static String getContextPath() {
+    	return CONTEXT_PATH;
+    }
 
     public static void setDefaultAction(ActionConfig ac) {
 

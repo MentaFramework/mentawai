@@ -382,18 +382,19 @@ public class Controller extends HttpServlet {
 	 * loaded
 	 */
 	private static void printInfoHeader() {
+		System.out.println();
 		System.out.println("==== [ Mentawai :: MVC WEB Framework ] ==========================================================");
 		System.out.println("- Version : " + ApplicationManager.MENTAWAI_VERSION+ " (" + ApplicationManager.MENTAWAI_BUILD + ")");
-		// System.out.println(" CloudMode :");
 		System.out.println("- ReloadAppManager: " + reloadAppManager);
-		System.out.println("- Debug Mode: " + debugMode);
-		System.out.println("- Auto View: " + autoView);
-		System.out.println("- Application Manager: " + appMgrClassname);
+		System.out.println("- DebugMode: " + debugMode);
+		System.out.println("- AutoView: " + autoView);
+		System.out.println("- ApplicationManager: " + appMgrClassname);
 		System.out.println("------------------------------------------------------------------------------------");
 		System.out.println("- Server: " + application.getServerInfo());
-		System.out.println("- Application Context: "+ application.getServletContextName());
-		System.out.println("");
+		System.out.println("- ApplicationContext: " + (ApplicationManager.getContextPath() != null ? ApplicationManager.getContextPath() : "???"));
+		System.out.println("- Environment: " + appManager.getEnvironment());
 		System.out.println("==================================================================================================");
+		System.out.println();
 	}
 
 	/**
@@ -402,8 +403,7 @@ public class Controller extends HttpServlet {
 	 * @throws ServletException
 	 */
 	private static void initApplicationManager() throws ServletException {
-		printInfoHeader();
-
+		
 		try {
 
 			Class<? extends Object> klass = Class.forName(appMgrClassname);
@@ -420,8 +420,6 @@ public class Controller extends HttpServlet {
 			
 			DebugServletFilter.addStaticInfo("Environment = " + appManager.getEnvironment().toString()); // for debug mode
 			
-			Info.log("Environment =", appManager.getEnvironment().toString());
-
 			appManager.setupDB();
 			
 			appManager.loadBeans();
@@ -448,6 +446,8 @@ public class Controller extends HttpServlet {
 			appManager.loadFormatters();
 
             appManager.onStarted(appContext);
+            
+            printInfoHeader();
 
 		} catch (IOException e) {
 			throw new ServletException(
