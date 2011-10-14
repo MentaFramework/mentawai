@@ -1,9 +1,12 @@
 package org.mentawai.core;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Properties;
+
+import org.mentaregex.Regex;
 
 public class Props {
 	
@@ -114,6 +117,14 @@ public class Props {
     public boolean has(String key) {
     	
     	return get(key) != null;
+    }
+    
+    public String getPath(String key) {
+    	String s = getString(key);
+    	if (File.separatorChar == '/') {
+    		return s;
+    	}
+    	return s.replaceAll("\\/", File.separator);
     }
     
 }
