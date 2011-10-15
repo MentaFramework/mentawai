@@ -6,8 +6,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Properties;
 
-import org.mentaregex.Regex;
-
 public class Props {
 	
 	public static String CHARSET = "UTF-8";
