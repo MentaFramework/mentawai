@@ -38,19 +38,19 @@ public class SimpleEmail extends Email {
     }
 
     /**
-     * Set the content of the mail
+     * Sets the content of the mail.
      *
-     * @param msg A String.
+     * @param messageBody A String.
      * @return An Email.
      * @throws EmailException see javax.mail.internet.MimeBodyPart
      *  for defintions
      */
-    public Email setMsg(String msg) throws EmailException {
-        if (StringUtils.isEmpty(msg)) {
-            throw new EmailException("Invalid message supplied");
+    public Email setMsg(String messageBody) throws EmailException {
+        if (StringUtils.getInstance().isEmpty(messageBody)) {
+            throw new EmailException("The message cannot be empty.");
         }
 
-        setContent(msg, TEXT_PLAIN);
+        setContent(messageBody, TEXT_PLAIN);
         return this;
     }
     
