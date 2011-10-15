@@ -57,5 +57,12 @@ public interface ConnectionHandler extends Factory, Interceptor<Connection> {
 	 * @return The status
 	 */
 	public String getStatus();
+	
+	public void exec(Exec exec);
+	
+	public static interface Exec {
+		
+		public void exec(Connection conn);
+	}
 
 }

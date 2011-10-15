@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class JdbcConnectionHandler implements ConnectionHandler {
+public class JdbcConnectionHandler extends AbstractConnectionHandler {
 	
 	private final String url;
 	private final String user;

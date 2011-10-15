@@ -34,7 +34,7 @@ import javax.sql.DataSource;
  *
  * @author Sergio Oliveira
  */
-public class JNDIConnectionHandler implements ConnectionHandler {
+public class JNDIConnectionHandler extends AbstractConnectionHandler {
 	
     private static Map<String, ConnectionHandler> single = new Hashtable<String, ConnectionHandler>();
     

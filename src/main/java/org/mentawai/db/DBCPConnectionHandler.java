@@ -33,7 +33,7 @@ import org.apache.commons.dbcp.BasicDataSource;
  *
  * @author Sergio Oliveira
  */
-public class DBCPConnectionHandler implements ConnectionHandler {
+public class DBCPConnectionHandler extends AbstractConnectionHandler {
     
     private DataSource bds;
   

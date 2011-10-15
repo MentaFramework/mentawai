@@ -34,7 +34,7 @@ import com.mchange.v2.c3p0.DataSources;
  *
  * @author Sergio Oliveira
  */
-public class C3P0ConnectionHandler implements ConnectionHandler {
+public class C3P0ConnectionHandler extends AbstractConnectionHandler {
 	
 	public static boolean DEBUG = false;
 	

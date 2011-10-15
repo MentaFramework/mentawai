@@ -29,7 +29,7 @@ import javax.sql.DataSource;
  *
  * @author Sergio Oliveira
  */
-public class DataSourceConnectionHandler implements ConnectionHandler {
+public class DataSourceConnectionHandler extends AbstractConnectionHandler {
     
     private DataSource ds = null;
     
