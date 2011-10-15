@@ -996,7 +996,7 @@ public class InjectionUtils {
 	public static String getProperty(Object bean, String nameProperty)
 			throws Exception {
 
-		if (StringUtils.getInstance().isEmpty(nameProperty))
+		if (StringUtils.isEmpty(nameProperty))
 			return null;
 		
 		String methodName = getter(nameProperty);

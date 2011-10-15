@@ -26,36 +26,7 @@ import java.util.Random;
 
 import org.mentawai.i18n.LocaleManager;
 
-/**
- * Helper class StringUtils.
- * 
- */
 public class StringUtils {
-	
-	
-    /**
-     * Attribute stringUtils of StringUtils.
-     */
-    private static StringUtils stringUtils;
-
-    /**
-     * Singleton getInstance method to ensure that only 
-     * one instance of a class is created.
-     * @return StringUtils
-     */
-    public static StringUtils getInstance() {
-        if (stringUtils == null) {
-        	stringUtils = new StringUtils();
-        }
-        return stringUtils;
-    }
-
-    /**
-     * Private constructor.
-     */
-    private StringUtils() {
-
-    }
 	
     private static final String[] CHARS = split("abcdefghijklmnopqrstuvxwyz");
 	
@@ -72,7 +43,7 @@ public class StringUtils {
      * @param str String
      * @return boolean
      */
-    public boolean isEmpty(String str) {
+    public static boolean isEmpty(String str) {
     	return str == null || str.trim().length() == 0;
     }
     
