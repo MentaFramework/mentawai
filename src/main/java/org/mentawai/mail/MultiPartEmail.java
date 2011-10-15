@@ -174,7 +174,7 @@ public class MultiPartEmail extends Email {
      */
     public Email setMsg(String msg) throws EmailException {
         // throw exception on null message
-        if (StringUtils.getInstance().isEmpty(msg)) {
+        if (StringUtils.isEmpty(msg)) {
             throw new EmailException("The message cannot be empty.");
         }
         try {
@@ -363,7 +363,7 @@ public class MultiPartEmail extends Email {
         String description,
         String disposition)
         throws EmailException {
-        if (StringUtils.getInstance().isEmpty(name)) {
+        if (StringUtils.isEmpty(name)) {
             name = ds.getName();
         }
         MimeBodyPart mbp = new MimeBodyPart();

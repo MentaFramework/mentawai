@@ -117,7 +117,7 @@ public class HtmlEmail extends MultiPartEmail {
      *  for defintions
      */
     public HtmlEmail setTextMsg(String aText) throws EmailException {
-        if (StringUtils.getInstance().isEmpty(aText)) {
+        if (StringUtils.isEmpty(aText)) {
             throw new EmailException("The message cannot be empty.");
         }
 
@@ -134,7 +134,7 @@ public class HtmlEmail extends MultiPartEmail {
      *  for defintions
      */
     public HtmlEmail setHtmlMsg(String aHtml) throws EmailException {
-        if (StringUtils.getInstance().isEmpty(aHtml)) {
+        if (StringUtils.isEmpty(aHtml)) {
             throw new EmailException("The message cannot be empty.");
         }
 
@@ -157,7 +157,7 @@ public class HtmlEmail extends MultiPartEmail {
      *  for defintions
      */
     public Email setMsg(String msg) throws EmailException {
-        if (StringUtils.getInstance().isEmpty(msg)) {
+        if (StringUtils.isEmpty(msg)) {
             throw new EmailException("The message cannot be empty.");
         }
 

@@ -46,7 +46,7 @@ public class SimpleEmail extends Email {
      *  for defintions
      */
     public Email setMsg(String messageBody) throws EmailException {
-        if (StringUtils.getInstance().isEmpty(messageBody)) {
+        if (StringUtils.isEmpty(messageBody)) {
             throw new EmailException("The message cannot be empty.");
         }
 
