@@ -127,4 +127,14 @@ public class Props {
     	return s.replaceAll("\\/", File.separator);
     }
     
+    public String getAbsolutePath(String key) {
+    	String start = ApplicationManager.getRealPath();
+    	String s = getPath(key);
+    	if (s.startsWith(File.separator)) {
+    		return start + s;
+    	} else {
+    		return start + File.separator + s;
+    	}
+    }
+    
 }
