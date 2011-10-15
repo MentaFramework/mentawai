@@ -98,7 +98,7 @@ public abstract class AbstractInput implements Input {
 		
 		String date = getString(name);
 		
-		if(StringUtils.isEmpty(date)){
+		if(StringUtils.getInstance().isEmpty(date)){
 			return null;
 		}
 		
