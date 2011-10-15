@@ -26,9 +26,38 @@ import java.util.Random;
 
 import org.mentawai.i18n.LocaleManager;
 
+/**
+ * Helper class StringUtils.
+ * 
+ */
 public class StringUtils {
 	
-	private static final String[] CHARS = split("abcdefghijklmnopqrstuvxwyz");
+	
+    /**
+     * Attribute stringUtils of StringUtils.
+     */
+    private static StringUtils stringUtils;
+
+    /**
+     * Singleton getInstance method to ensure that only 
+     * one instance of a class is created.
+     * @return StringUtils
+     */
+    public static StringUtils getInstance() {
+        if (stringUtils == null) {
+        	stringUtils = new StringUtils();
+        }
+        return stringUtils;
+    }
+
+    /**
+     * Private constructor.
+     */
+    private StringUtils() {
+
+    }
+	
+    private static final String[] CHARS = split("abcdefghijklmnopqrstuvxwyz");
 	
 	private static final String[] NUMBERS = split("0123456789");
 	
@@ -38,9 +67,15 @@ public class StringUtils {
         return s != null && s.length() > 0;
     }
     
-    public static boolean isEmpty(String s) {
-        return s == null || s.length() == 0;
+    /**
+     * Checks if String is null or empty.
+     * @param str String
+     * @return boolean
+     */
+    public boolean isEmpty(String str) {
+    	return str == null || str.trim().length() == 0;
     }
+    
     
     /**
      * Turns a line with strings separated by one
@@ -229,16 +264,6 @@ public class StringUtils {
 		return number;		
 	}
     
-    public static void main(String[] args) {
-    	
-    	System.out.println(StringUtils.randomString(6, true));
-    	
-    	System.out.println(StringUtils.randomString(6, true, true));
-    	
-    	System.out.println(StringUtils.randomNumber(6));
-    	
-    	System.out.println(StringUtils.randomString(6));
-    }
 }
 
 
