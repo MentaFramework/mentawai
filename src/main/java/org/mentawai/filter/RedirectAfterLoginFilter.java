@@ -18,6 +18,7 @@
  */
 package org.mentawai.filter;
 
+import org.mentawai.action.BaseLoginAction;
 import org.mentawai.core.Action;
 import org.mentawai.core.BaseAction;
 import org.mentawai.core.Context;
@@ -47,15 +48,19 @@ public class RedirectAfterLoginFilter implements Filter {
 	
 	public String filter(InvocationChain chain) throws Exception {
 		Action action = chain.getAction();
-		Context session = action.getSession();
-		String callback = (String) session.getAttribute(AuthenticationFilter.URL_KEY);
-		String result = chain.invoke();
-		if (callback != null && !result.equals(BaseAction.ERROR)) {
-			Output output = action.getOutput();
-			output.setValue(Redirect.REDIRURL_PARAM, callback);
-			return REDIR;
+		if (action instanceof BaseLoginAction) {
+    		Context session = action.getSession();
+    		String callback = (String) session.getAttribute(AuthenticationFilter.URL_KEY);
+    		String result = chain.invoke();
+    		if (callback != null && !result.equals(BaseAction.ERROR)) {
+    			Output output = action.getOutput();
+    			output.setValue(Redirect.REDIRURL_PARAM, callback);
+    			return REDIR;
+    		}
+    		return result;
+		} else {
+			return chain.invoke();
 		}
-		return result;
 	}
     
     public void destroy() { }
