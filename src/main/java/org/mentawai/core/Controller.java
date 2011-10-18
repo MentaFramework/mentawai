@@ -391,7 +391,7 @@ public class Controller extends HttpServlet {
 		System.out.println("- ApplicationManager: " + appMgrClassname);
 		System.out.println("------------------------------------------------------------------------------------");
 		System.out.println("- Server: " + application.getServerInfo());
-		System.out.println("- ApplicationContext: " + getContextPath());
+		if (getContextPath() != null) System.out.println("- ApplicationContext: " + getContextPath());
 		System.out.println("- Environment: " + appManager.getEnvironment());
 		System.out.println("==================================================================================================");
 		System.out.println();
@@ -401,7 +401,7 @@ public class Controller extends HttpServlet {
 		
 		String s = ApplicationManager.getContextPath();
 		
-		if (s == null) return "???";
+		if (s == null) return null;
 		
 		if (s.equals("")) return "ROOT";
 		
@@ -464,7 +464,7 @@ public class Controller extends HttpServlet {
             DebugServletFilter.addStaticInfo("ReloadAppManager = " + reloadAppManager); // for debug mode
             DebugServletFilter.addStaticInfo("AutoView = " + autoView); // for debug mode
             DebugServletFilter.addStaticInfo("Version = " + ApplicationManager.MENTAWAI_VERSION+ " (" + ApplicationManager.MENTAWAI_BUILD + ")");
-            DebugServletFilter.addStaticInfo("ContextPath = " + getContextPath());
+            if (getContextPath() != null) DebugServletFilter.addStaticInfo("ContextPath = " + getContextPath());
             DebugServletFilter.addStaticInfo("Server = " + application.getServerInfo());
 
 		} catch (IOException e) {
