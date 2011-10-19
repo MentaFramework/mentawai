@@ -473,10 +473,6 @@ public abstract class ApplicationManager {
             map.put(innerAction, ac);
         }
         
-        // also add to container...
-        
-        container.ioc(ac.getActionClassName(), ac.getActionClass()); // scope NONE...
-
         return ac;
 	}
 

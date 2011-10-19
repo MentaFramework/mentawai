@@ -142,15 +142,6 @@ public class ActionConfig {
         this.dirName = getDirFromClass(klass);
 	}
 	
-	/**
-	 * Return the full name of the action class associated with this action config.
-	 * 
-	 * @return The action full name.
-	 */
-	public String getActionClassName() {
-		return actionClass.getName();
-	}
-	
     /**
      * This method will imply a directory name from the action class name.
      * The action can then use this directory to look for JSPs in case of automatically
@@ -843,7 +834,7 @@ public class ActionConfig {
 
     		try {
     			
-    			Action a = container.get(getActionClassName());
+    			Action a = container.construct(actionClass);
     			
     			if (a != null) return a;
     			
@@ -870,7 +861,7 @@ public class ActionConfig {
 
         		try {
         			
-        			pojo = container.get(getActionClassName());
+        			pojo = container.construct(actionClass);
         			
         		} catch(Exception e) {
         			// ignore and try below...
