@@ -122,8 +122,8 @@ public abstract class ApplicationManager {
 
     public static final String REDIR = RedirectAfterLoginFilter.REDIR;
 
-    public static final String MENTAWAI_VERSION = "2.2.0";
-    public static final String MENTAWAI_BUILD = "20111012";
+    public static final String MENTAWAI_VERSION = "2.2.2";
+    public static final String MENTAWAI_BUILD = "20111018";
     public static String EXTENSION = "mtw";
     public static String CONTEXT_PATH = null;
     public static int PORT = 80;
