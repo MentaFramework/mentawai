@@ -135,4 +135,13 @@ public class Props {
     	}
     }
     
+    public Class<? extends Object> getClass(String key) {
+    	String className = getString(key);
+    	try {
+    		return Class.forName(className);
+    	} catch(Exception e) {
+    		throw new RuntimeException(e);
+    	}
+    }
+    
 }
