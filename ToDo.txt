@@ -1,0 +1,2 @@
+- melhor mensagem de erro quando o mentacontainer não consegue instanciar um action
+- populateObject(user) ao invés de user = getObject(user);
