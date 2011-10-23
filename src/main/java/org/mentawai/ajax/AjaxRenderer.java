@@ -45,6 +45,8 @@ public interface AjaxRenderer {
     
     public static final String APP_JS = "application/javascript";
     
+    public static final String TEXT_PLAIN = "text/plain";
+    
     public static final String APP_URLENCODED = "application/x-www-form-urlencoded";
     
 	public String encode(Object object, Locale loc, boolean pretty) throws Exception;

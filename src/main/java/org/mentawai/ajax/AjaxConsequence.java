@@ -24,6 +24,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.mentawai.ajax.renderer.ResultRenderer;
 import org.mentawai.core.Action;
 import org.mentawai.core.Consequence;
 import org.mentawai.core.ConsequenceException;
@@ -74,12 +75,23 @@ public class AjaxConsequence implements Consequence {
 		Object obj = null;
 		
 		if (keyForObject == null || !output.has(keyForObject)) {
-
-			// remove debug. For ajax it does not make sense anyways...
-
-			output.removeValue(DebugServletFilter.DEBUG_KEY);
 			
-			obj = output;
+			if (ajaxRenderer.getClass().equals(ResultRenderer.class)) {
+				
+				// render the result...
+				
+				obj = result;
+				
+			} else {
+
+				// remove debug... For ajax it does not make sense anyways to have debug mode...
+
+				output.removeValue(DebugServletFilter.DEBUG_KEY);
+				
+				// render the whole output !!!
+			
+				obj = output;
+			}
 
 		} else {
 
