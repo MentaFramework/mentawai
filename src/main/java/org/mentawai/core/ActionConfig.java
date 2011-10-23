@@ -294,6 +294,10 @@ public class ActionConfig {
     	return this;
     }
     
+    public ActionConfig all(Consequence c) {
+    	return catchAll(c);
+    }
+    
     /**
      * Adds a filter for this inner action.
      *
