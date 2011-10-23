@@ -262,14 +262,14 @@ public class InputWrapper implements Input, Map {
     	return getInput().getObject(klass, prefix);
     }
     
-    public <E> E getObject(E bean) {
+    public void inject(Object bean) {
     	
-    	return getInput().getObject(bean);
+    	getInput().inject(bean);
     }
     
-    public <E> E getObject(E bean, String prefix) {
+    public void inject(Object bean, String prefix) {
     	
-    	return getInput().getObject(bean, prefix);
+    	getInput().inject(bean, prefix);
     }
     
 	// MAP METHODS:

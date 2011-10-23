@@ -391,7 +391,7 @@ public abstract class AbstractInput implements Input {
 	
 	public <E> E getObject(Class<? extends E> klass) {
 
-		return getObject(getInstance(klass), null);
+		return getObject(getInstance(klass), null, false);
 
 	}
 	
@@ -425,9 +425,9 @@ public abstract class AbstractInput implements Input {
 		}
 	}
 	
-	public <E> E getObject(E bean) {
+	public void inject(Object bean) {
 		
-		return getObject(bean, null);
+		inject(bean, null);
 		
 	}
 	
@@ -437,9 +437,9 @@ public abstract class AbstractInput implements Input {
 		
 	}
 	
-	public <E> E getObject(E bean, String prefix) {
+	public void inject(Object bean, String prefix) {
 		
-		return getObject(bean, prefix, false);
+		getObject(bean, prefix, false);
 	}
 	
 	

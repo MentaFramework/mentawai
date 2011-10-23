@@ -295,13 +295,14 @@ public interface Input {
     public <E> E getObject(Class<? extends E> klass);
     
     /**
-     * Gets a populated object with the values from the action input.
+     * Populates (inject properties) the bean with the values from the input.
+     * Any property already set in the bean is overwritten.
+     * If you have a property in the bean but not in the input, this property is not changed.
      * 
      * @param bean
-     * @return The populated object
-     * @since 1.11
+     * @since 2.2.3
      */    
-    public <E> E getObject(E bean);
+    public void inject(Object bean);
     
     /**
      * Gets a populated object with the values from the action input.
@@ -318,16 +319,17 @@ public interface Input {
     public <E> E getObject(Class<? extends E> klass, String prefix);
     
     /**
-     * Gets a populated object with the values from the action input.
-     * 
-     * Use the prefix in front of every value name.
+     * Populates (inject properties) the bean with the values from the input.
+     * Any property already set in the bean is overwritten.
+     * If you have a property in the bean but not in the input, this property is not changed.
+	 *
+     * Use the prefix in front of every key when getting the values from the input.
      *
      * @param bean
      * @param prefix
-     * @return The populated object
-     * @since 1.11
+     * @since 2.2.3
      */
-    public <E> E getObject(E bean, String prefix);
+    public void inject(Object bean, String prefix);
     
 	/**
 	 * Parse a parameter value from this input as a Date.
