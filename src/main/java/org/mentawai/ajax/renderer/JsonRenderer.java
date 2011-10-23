@@ -18,17 +18,14 @@
  */
 package org.mentawai.ajax.renderer;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.mentawai.ajax.AjaxConsequence;
 import org.mentawai.ajax.AjaxRenderer;
-import org.mentawai.core.ConsequenceException;
 
 public class JsonRenderer implements AjaxRenderer {
 
@@ -42,43 +39,41 @@ public class JsonRenderer implements AjaxRenderer {
 		
 		JSONArray jsonArray = null;
 		
-		if (obj instanceof Map) {
+		if (obj instanceof JSONObject) {
 			
-			json = JSONObject.fromObject(obj);
+			json = (JSONObject) obj; // ready to go...
 			
 		} else if (obj instanceof List) {
 			
+			// convert to JSON array by default...
+			
 			jsonArray = JSONArray.fromObject(obj);
-			
-		} else if (obj instanceof JSONObject) {
-			
-			json = (JSONObject)obj;
 			
 		} else {
 			
-			throw new ConsequenceException("Value is not a Collection or JSONObject: " + obj);
+			json = JSONObject.fromObject(obj); // convert anything to JSON !!! OBS: Be careful with Hibernate lazy loading...
 		}
 		
 		if (pretty) {
 			
-			if (json != null) {
+			if (jsonArray != null) {
 		
-				return json.toString(3);
+				return jsonArray.toString(3);
 				
 			} else {
 				
-				return jsonArray.toString(3);
+				return json.toString(3);
 			}
 			
 		} else {
 			
-			if (json != null) {
+			if (jsonArray != null) {
 			
-				return json.toString();
+				return jsonArray.toString();
 				
 			} else {
 				
-				return jsonArray.toString();
+				return json.toString();
 			}
 		}
 	}
@@ -91,30 +86,85 @@ public class JsonRenderer implements AjaxRenderer {
        return AjaxConsequence.DEFAULT_CHARSET;
     }
     
-    public static void main(String[] args) throws Exception {
-        
-        Map<String, Object> map = new HashMap<String, Object>();
-        
-        map.put("success", true);
-        
-        Map<String, Object> data = new HashMap<String, Object>();
-        
-        data.put("key1", "data1");
-        data.put("key2", "data2");
-        data.put("key3", "data3");
-        
-        Map<String, Object> data2 = new HashMap<String, Object>();
-        
-        data2.put("pela1", "xxxx");
-        data2.put("pela2", "yyyy");
-        
-        data.put("key4", data2);
-        
-        map.put("data", data);
-        
-        AjaxRenderer renderer = new JSONMapAjaxRenderer();
-        
-        System.out.println(renderer.encode(map, null, true));
-    }
+//    private static class Obj1 {
+//    	
+//    	private int id;
+//    	private String username;
+//    	private Obj2 obj2;
+//    	
+//		public int getId() {
+//        	return id;
+//        }
+//		public void setId(int id) {
+//        	this.id = id;
+//        }
+//		public String getUsername() {
+//        	return username;
+//        }
+//		public void setUsername(String username) {
+//        	this.username = username;
+//        }
+//		public Obj2 getObj2() {
+//        	return obj2;
+//        }
+//		public void setObj2(Obj2 obj2) {
+//        	this.obj2 = obj2;
+//        }
+//    }
+//    
+//    private static class Obj2 {
+//    	
+//    	private int age;
+//    	private String name;
+//		public int getAge() {
+//        	return age;
+//        }
+//		public void setAge(int age) {
+//        	this.age = age;
+//        }
+//		public String getName() {
+//        	return name;
+//        }
+//		public void setName(String name) {
+//        	this.name = name;
+//        }
+//    }
+//    
+//    public static void main(String[] args) throws Exception {
+//        
+//        Map<String, Object> map = new HashMap<String, Object>();
+//        
+//        map.put("success", true);
+//        
+//        Map<String, Object> data = new HashMap<String, Object>();
+//        
+//        data.put("key1", "data1");
+//        data.put("key2", "data2");
+//        data.put("key3", "data3");
+//        
+//        Map<String, Object> data2 = new HashMap<String, Object>();
+//        
+//        data2.put("pela1", "xxxx");
+//        data2.put("pela2", "yyyy");
+//        
+//        data.put("key4", data2);
+//        
+//        map.put("data", data);
+//        
+//        AjaxRenderer renderer = new JSONMapAjaxRenderer();
+//        
+//        System.out.println(renderer.encode(map, null, true));
+//        
+//        Obj2 o2 = new Obj2();
+//        o2.age = 35;
+//        o2.name = "Sergio";
+//        
+//        Obj1 o1 = new Obj1();
+//        o1.id = 1;
+//        o1.username = "saoj";
+//        o1.obj2 = o2;
+//        
+//        System.out.println("======>\n" + JSONObject.fromObject(o1));
+//    }
     
 }
