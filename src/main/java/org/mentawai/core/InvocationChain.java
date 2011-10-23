@@ -296,12 +296,20 @@ public class InvocationChain {
 	                			
 	                			action.getInput().setValue(key, obj);
 	                			
-	                			found = true;
+	            			} else {
+	            				
+	            				// if not found pass NULL value...
+	            				
+	            				String key = params[j].getSimpleName().toLowerCase();
+	            				paramKeys.add(key);
+	            				if (params[j].isPrimitive()) {
+	            					paramValues[j] = getNullForPrimitive(params[j]);
+	            				} else {
+	            					paramValues[j] = null;
+	            				}
 	            			}
 	            			
 	            		}
-	            		
-	            		if (!found) throw new ActionException("Cannot find parameter value for method: " + methodToExec + " / " + params[j]);
 	            	}
 	            	
 	            	Object retval = theOne.invoke(pojo, paramValues);
@@ -462,6 +470,27 @@ public class InvocationChain {
         }
 		
         return result;
+	}
+	
+	private static Object getNullForPrimitive(Class<? extends Object> target) {
+
+		if (target.equals(int.class)) return Integer.valueOf(-1);
+
+		if (target.equals(boolean.class)) return Boolean.FALSE;
+
+		if (target.equals(byte.class)) return new Byte((byte) -1);
+
+		if (target.equals(short.class)) return Short.valueOf((short) -1);
+
+		if (target.equals(char.class)) return Character.valueOf((char) -1);
+
+		if (target.equals(long.class)) return Long.valueOf((long) -1);
+
+		if (target.equals(float.class)) return Float.valueOf((float) -1);
+
+		if (target.equals(double.class)) return Double.valueOf((double) -1);
+
+		throw new IllegalArgumentException("Bad target: " + target);
 	}
 	
 	/**
