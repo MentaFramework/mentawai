@@ -43,6 +43,8 @@ public class IsLocale extends ConditionalTag {
     	String[] s = value.split("\\s*,\\s*");
     	
     	for(int i=0;i<s.length;i++) {
+    		
+    		LocaleManager.decideLocale(req, res); // force the locale to be chosen from param or cookie...
     	
     		Locale loc = LocaleManager.getLocale(req, false);
         

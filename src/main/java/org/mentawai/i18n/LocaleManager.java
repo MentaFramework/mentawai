@@ -30,7 +30,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.mentawai.action.BaseLoginAction;
@@ -492,11 +494,27 @@ public class LocaleManager {
 		return -1;
     }
     
+    public static Locale getSupportedLocale(String loc, boolean returnDefaultIfNotFound) {
+    	return getSupportedLocale(getLocaleFromString(loc), returnDefaultIfNotFound);
+    }
+    
+    public static Locale getSupportedLocale(Locale loc, boolean returnDefaultIfNotFound) {
+    	return getSupportedLocale(loc, null, returnDefaultIfNotFound);
+    }
+    
     public static Locale getSupportedLocale(Locale loc) {
     	return getSupportedLocale(loc, null);
     }
     
+    public static Locale getSupportedLocale(String loc) {
+    	return getSupportedLocale(getLocaleFromString(loc));
+    }
+    
     public static Locale getSupportedLocale(Locale loc, Locale def) {
+    	return getSupportedLocale(loc, def, true);
+    }
+    
+    public static Locale getSupportedLocale(Locale loc, Locale def, boolean returnDefaultIfNotFound) {
         
     	if (isSupportedLocale(loc)) return loc;
 		
@@ -522,11 +540,89 @@ public class LocaleManager {
 			
 		}
 		
-        return def != null ? def : getDefaultLocale();
+        return def != null ? def : (returnDefaultIfNotFound ? getDefaultLocale() : null);
     }
     
 	public static Locale getLocale(HttpServletRequest req) {
         return getLocale(req, true);
+	}
+	
+    private static void addCookie(HttpServletResponse response, String key, String value) {
+        Cookie c = new Cookie(key, value);
+        c.setMaxAge(31104000);
+        c.setPath("/");
+        response.addCookie(c);
+    }
+
+    private static String getCookie(HttpServletRequest request, String key) {
+        Cookie[] cookies = request.getCookies();
+
+        if (cookies != null) {
+            for (int i = 0; i < cookies.length; i++) {
+                if (cookies[i].getName().equals(key)) {
+                    return cookies[i].getValue();
+                }
+            }
+        }
+        return null;
+    }
+    
+    public static String getLangCookieName(HttpServletRequest req) {
+    	
+    	StringBuilder sb = new StringBuilder(32);
+    	sb.append("mentawai-lang-");
+    	
+    	String s = req.getContextPath();
+    	
+    	if (s.equals("")) {
+    		sb.append("ROOT");
+    	} else {
+    		if (s.length() > 1) {
+    			sb.append(s.substring(1));
+    		} else {
+    			sb.append(s);
+    		}
+    	}
+    	return sb.toString();
+    }
+	
+	public static Locale decideLocale(HttpServletRequest req, HttpServletResponse res) {
+		
+		String cookieName = getLangCookieName(req);
+    	String param = req.getParameter("loc");
+    	HttpSession session = req.getSession(true);
+    	
+    	if (param != null) {
+    		Locale loc = LocaleManager.getSupportedLocale(param, false);
+    		if (loc != null) {
+    			addCookie(res, cookieName, loc.toString());
+    			session.setAttribute(org.mentawai.action.BaseLoginAction.LOCALE_KEY, loc);
+    			return loc;
+    		}
+    		
+    	} else {
+    		if (session.getAttribute(org.mentawai.action.BaseLoginAction.LOCALE_KEY) == null) {
+        		String cookie = getCookie(req, cookieName);
+        		if (cookie != null) {
+        			Locale loc = LocaleManager.getLocaleFromString(cookie);
+        	    	// be safe we support that:
+        	    	loc = LocaleManager.getSupportedLocale(loc);
+        	    	if (loc != null) {
+        	    		session.setAttribute(org.mentawai.action.BaseLoginAction.LOCALE_KEY, loc);
+        	    		return loc;
+        	    	}
+        		}
+    		}
+    	}
+    	
+    	// set default locale
+    	if (session.getAttribute(org.mentawai.action.BaseLoginAction.LOCALE_KEY) == null) {
+    		Locale loc = LocaleManager.getDefaultLocale();
+    		session.setAttribute(org.mentawai.action.BaseLoginAction.LOCALE_KEY, loc);
+    		return loc;
+    	} else {
+    		return (Locale) session.getAttribute(org.mentawai.action.BaseLoginAction.LOCALE_KEY);
+    	}
 	}
 	
 	public static Locale getLocale(HttpServletRequest req, boolean onlySupported) {

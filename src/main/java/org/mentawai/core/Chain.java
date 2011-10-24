@@ -94,7 +94,7 @@ public class Chain implements Consequence {
          * Because of the new InputWrapper filters, do not re-use the input but copy its values !
          */
         
-        Input input = new RequestInput(req);
+        Input input = new RequestInput(req, res);
         
         Input old = a.getInput();
         

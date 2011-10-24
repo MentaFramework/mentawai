@@ -627,12 +627,12 @@ public class Controller extends HttpServlet {
 
 	protected void prepareAction(Action action, HttpServletRequest req,
 			HttpServletResponse res) {
-		action.setInput(new RequestInput(req));
+		action.setInput(new RequestInput(req, res));
 		action.setOutput(new ResponseOutput(res));
 		action.setSession(new SessionContext(req, res));
 		action.setApplication(appContext);
 		action.setCookies(new CookieContext(req, res));
-		action.setLocale(LocaleManager.getLocale(req));
+		action.setLocale(LocaleManager.decideLocale(req, res));
 	}
 
     protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

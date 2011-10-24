@@ -31,7 +31,7 @@ import org.mentawai.tag.util.PrintTag;
 public class PrintI18NDir extends PrintTag {
     
     public String getStringToPrint() throws JspException {
-        Locale loc = LocaleManager.getLocale(req);
+        Locale loc = LocaleManager.decideLocale(req, res);
         return loc.toString();
     }
 }

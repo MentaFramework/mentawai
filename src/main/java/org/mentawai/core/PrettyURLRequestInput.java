@@ -19,14 +19,15 @@
 package org.mentawai.core;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class PrettyURLRequestInput extends RequestInput {
 	
-	public PrettyURLRequestInput(HttpServletRequest req) {
+	public PrettyURLRequestInput(HttpServletRequest req, HttpServletResponse res) {
 		
 		// super will process the parameters as usual...
 		
-		super(req);
+		super(req, res);
 		
 		// get the parameters from the request...
 		

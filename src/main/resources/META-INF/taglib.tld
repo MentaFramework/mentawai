@@ -65,6 +65,17 @@
 	</listener>
  
 	<!-- i18n -->
+	
+	
+	<tag>
+		<name>findLocale</name>
+		<tag-class>
+			org.mentawai.tag.i18n.LangCookie
+		</tag-class>
+		<body-content>empty</body-content>
+		<display-name></display-name>
+	</tag>
+	
 	<tag>
 		<name>useI18N</name>
 		<tag-class>org.mentawai.tag.i18n.UseI18N</tag-class>

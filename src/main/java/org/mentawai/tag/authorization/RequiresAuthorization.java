@@ -110,7 +110,7 @@ public class RequiresAuthorization extends TagSupport {
         this.req = (HttpServletRequest) pageContext.getRequest();
         this.res = (HttpServletResponse) pageContext.getResponse();
 		this.action = (Action) req.getAttribute(Forward.ACTION_REQUEST);
-		this.loc = LocaleManager.getLocale(req);
+		this.loc = LocaleManager.decideLocale(req, res);
 		this.appManager = ApplicationManager.getInstance();
         return super.doStartTag();
     }

@@ -186,11 +186,11 @@ public class PrettyURLController extends Controller {
 			return;
 		}
 
-		action.setInput(new PrettyURLRequestInput(req));
+		action.setInput(new PrettyURLRequestInput(req, res));
 		action.setOutput(new ResponseOutput(res));
 		action.setSession(new SessionContext(req, res));
 		action.setApplication(appContext);
 		action.setCookies(new CookieContext(req, res));
-		action.setLocale(LocaleManager.getLocale(req));
+		action.setLocale(LocaleManager.decideLocale(req, res));
 	}
 }

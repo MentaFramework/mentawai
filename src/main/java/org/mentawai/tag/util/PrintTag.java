@@ -269,7 +269,7 @@ public abstract class PrintTag extends BodyTagSupport {
         this.req = (HttpServletRequest) pageContext.getRequest();
         this.res = (HttpServletResponse) pageContext.getResponse();
 		this.action = (Action) req.getAttribute(Forward.ACTION_REQUEST);
-		this.loc = LocaleManager.getLocale(req);
+		this.loc = LocaleManager.decideLocale(req, res);
         return super.doStartTag();
     }
 

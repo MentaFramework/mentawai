@@ -83,7 +83,7 @@ public class RequiresAuthentication extends TagSupport {
         this.res = (HttpServletResponse) pageContext.getResponse();
         this.sc = pageContext.getServletContext();
 		this.action = (Action) req.getAttribute(Forward.ACTION_REQUEST);
-		this.loc = LocaleManager.getLocale(req);
+		this.loc = LocaleManager.decideLocale(req, res);
 		this.appManager = ApplicationManager.getInstance();
         return super.doStartTag();
     }
@@ -125,7 +125,7 @@ public class RequiresAuthentication extends TagSupport {
             
                 a = new SuccessAction();
                 
-                a.setInput(new RequestInput(req));
+                a.setInput(new RequestInput(req, res));
                 a.setOutput(new ResponseOutput(res));
                 a.setSession(new SessionContext(req, res));
                 a.setApplication(new ApplicationContext(sc));

@@ -30,6 +30,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.mentawai.i18n.LocaleManager;
 import org.mentawai.util.EnumerationToIterator;
@@ -47,6 +48,7 @@ public class RequestInput extends AbstractInput implements Map<String, Object> {
 	protected Map<String, Object> map;
 
 	protected HttpServletRequest req;
+	protected HttpServletResponse res;
 
 	protected static Map<String, Method> cache = null;
 
@@ -57,7 +59,7 @@ public class RequestInput extends AbstractInput implements Map<String, Object> {
 	 *
 	 * @param req The request
 	 */
-	public RequestInput(HttpServletRequest req) {
+	public RequestInput(HttpServletRequest req, HttpServletResponse res) {
 		Map<String, Object> map = req.getParameterMap();
 
 		// map is ready-only !!!
@@ -70,6 +72,7 @@ public class RequestInput extends AbstractInput implements Map<String, Object> {
 		 * pathInfo.equals("")) { map.put("pathInfo", pathInfo); }
 		 */
 		this.req = req;
+		this.res = res;
 	}
 
 	/*
@@ -356,6 +359,6 @@ public class RequestInput extends AbstractInput implements Map<String, Object> {
 
 	protected Locale getLocale() {
 
-		return LocaleManager.getLocale(req);
+		return LocaleManager.decideLocale(req, res);
 	}
 }

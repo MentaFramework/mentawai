@@ -23,6 +23,7 @@ import java.util.Locale;
 import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
@@ -83,6 +84,10 @@ public class UseI18N extends TagSupport {
 
         String[] files = parseFiles();
         HttpServletRequest req = (HttpServletRequest) pageContext.getRequest();
+        HttpServletResponse res = (HttpServletResponse) pageContext.getResponse();
+        
+        LocaleManager.decideLocale(req, res); // force the locale to be chosen from param or cookie...
+        
         Locale loc = LocaleManager.getLocale(req, false); // notice the
         // false...
         Locale supportedLoc = LocaleManager.getLocale(req, true);

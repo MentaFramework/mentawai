@@ -64,7 +64,7 @@ public abstract class AbstractContext extends BodyTagSupport implements Context 
         this.session = pageContext.getSession();
         this.req = (HttpServletRequest) pageContext.getRequest();
         this.res = (HttpServletResponse) pageContext.getResponse();
-		this.loc = LocaleManager.getLocale(req);
+		this.loc = LocaleManager.decideLocale(req, res);
 		this.action = (Action) req.getAttribute(Forward.ACTION_REQUEST);
         
         Object object = getObject();
