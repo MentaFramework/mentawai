@@ -109,6 +109,7 @@ public abstract class ApplicationManager {
     public static final String BACK = "back";
     public static final String AJAX = Action.AJAX;
     public static final String STREAM = Action.STREAM;
+    public static final String NOT_FOUND = Action.NOT_FOUND;
 
     public static final int ACTION = PushIoCFilter.ACTION;
     public static final int REQUEST = IoCFilter.REQUEST;

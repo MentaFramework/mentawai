@@ -89,6 +89,7 @@ public interface Action {
 
    public static final String EXCEPTION = ExceptionFilter.EXCEPTION;
    
+   public static final String NOT_FOUND = "not_found";
    
 	
 	/**
