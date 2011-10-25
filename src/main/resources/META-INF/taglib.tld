@@ -77,6 +77,21 @@
 	</tag>
 	
 	<tag>
+		<name>urlWithLoc</name>
+		<tag-class>
+			org.mentawai.tag.i18n.RewriteWithLoc
+		</tag-class>
+		<body-content>empty</body-content>
+		<display-name></display-name>
+		<attribute>
+			<name>loc</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+	
+	<tag>
 		<name>useI18N</name>
 		<tag-class>org.mentawai.tag.i18n.UseI18N</tag-class>
 		<body-content>empty</body-content>
