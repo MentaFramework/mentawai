@@ -21,6 +21,7 @@ package org.mentawai.i18n;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -689,6 +690,19 @@ public class LocaleManager {
 		return s;
 	}
 	
+	public static String formatDate(Locale loc, Date date) {
+		SimpleDateFormat sdf = getSimpleDateFormat(loc);
+		return sdf.format(date);
+	}
+
+	public static String formatTime(Locale loc, Date date) {
+		SimpleDateFormat sdf = getSimpleTimeFormat(loc);
+		return sdf.format(date);
+	}
+	
+	public static String formatDateTime(Locale loc, Date date) {
+		return formatDate(loc, date) + " " + formatTime(loc, date);
+	}
 	
 	public static SimpleDateFormat getSimpleDateFormat(String mask) {
 		
