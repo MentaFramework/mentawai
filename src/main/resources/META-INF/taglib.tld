@@ -68,7 +68,7 @@
 	
 	
 	<tag>
-		<name>findLocale</name>
+		<name>decideLocale</name>
 		<tag-class>
 			org.mentawai.tag.i18n.LangCookie
 		</tag-class>
