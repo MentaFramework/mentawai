@@ -3,7 +3,7 @@ OK - populateObject(user) ao invés de user = getObject(user);
 - trocar log pelo MentaLog
 OK - make BeanSession have getConnection()
 OK - mentabean UPDATED field logic (AUTO_UPDATABLE timestamp on update)
-- mentabean do not throw exception in any method (RuntimeException)
+ALREADY - mentabean do not throw exception in any method (RuntimeException)
 POR ENQUANTO NAO - SALVEI O PATCH - fazer o ajax retornar direto qualquer coisa que a action retornar !!! (via catchAll)
 OK - JsonRenderer precisa transformar qualquer objeto em Map !!!
 OK - Usa mais String myAction(int id, String blah) ao invés de input...
