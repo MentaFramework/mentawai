@@ -25,6 +25,7 @@ import java.util.StringTokenizer;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.mentawai.core.ApplicationManager;
@@ -69,20 +70,15 @@ public class UseI18N extends TagSupport {
         }
         return array;
     }
-
-    public int doEndTag() throws JspException {
+    
+    public static void loadI18N(PageContext pageContext, String[] files, String prefix) {
     	
-    	I18N[] props = (I18N[]) pageContext.getAttribute("_i18n");
-    	
-    	if (props != null && optional) return EVAL_PAGE;
-
         // if you are not using the Mentawai controller you need this...
         if (ApplicationManager.getRealPath() == null) {
             ApplicationManager.setRealPath(pageContext.getServletContext()
                     .getRealPath(""));
         }
 
-        String[] files = parseFiles();
         HttpServletRequest req = (HttpServletRequest) pageContext.getRequest();
         HttpServletResponse res = (HttpServletResponse) pageContext.getResponse();
         
@@ -94,7 +90,7 @@ public class UseI18N extends TagSupport {
 
         StringBuffer sb = new StringBuffer(128);
 
-        props = new I18N[files.length + 2];
+        I18N[] props = new I18N[files.length + 2];
 
         int index = 0;
 
@@ -244,6 +240,16 @@ public class UseI18N extends TagSupport {
         if (prefix != null) {
             pageContext.setAttribute("_prefix", prefix);
         }
+
+    }
+
+    public int doEndTag() throws JspException {
+    	
+    	I18N[] props = (I18N[]) pageContext.getAttribute("_i18n");
+    	
+    	if (props != null && optional) return EVAL_PAGE;
+    	
+    	loadI18N(pageContext, parseFiles(), prefix);
 
         return EVAL_PAGE;
     }

@@ -84,14 +84,22 @@ public class PrintI18N extends PrintTag {
         Locale loc = (Locale) pageContext.getAttribute("_locale");
         String prefix = (String) pageContext.getAttribute("_prefix");
         
+		if (props == null || loc == null) {
+			// lazy loading:
+			
+			UseI18N.loadI18N(pageContext, new String[0], null);
+			
+			props = (I18N []) pageContext.getAttribute("_i18n");
+	        loc = (Locale) pageContext.getAttribute("_locale");
+	        prefix = (String) pageContext.getAttribute("_prefix");
+			
+			// throw new JspException("i18n tag needs a useI18N tag in the same page!");
+		}
+        
         if (prefix != null && !noPrefix) {
             key = prefix + "." + key;
         }
 		
-		if (props == null || loc == null) {
-			throw new JspException("i18n tag needs a useI18N tag in the same page!");
-		}
-
         for(int i=props.length-1;i>=0;i--) {
         	
             if (props[i] == null) continue;
