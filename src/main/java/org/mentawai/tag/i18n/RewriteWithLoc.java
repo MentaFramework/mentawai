@@ -16,11 +16,15 @@ public class RewriteWithLoc extends PrintTag {
 	@Override
 	public String getStringToPrint() throws JspException {
 		
-		String pageUrl = req.getRequestURI();
-		String queryString = req.getQueryString();
+	    String requestUri =	(String) req.getAttribute("javax.servlet.forward.request_uri");
+	    requestUri = (requestUri == null) ? req.getRequestURI() : requestUri;
+		 
+	    String queryString = (String) req.getAttribute("javax.servlet.forward.query_string");
+		queryString = (queryString == null) ? req.getQueryString() : queryString;
+
 		
 		StringBuilder sb = new StringBuilder(128);
-		sb.append(pageUrl);
+		sb.append(requestUri);
 		
 		if (queryString == null || queryString.trim().length() == 0) {
 			sb.append("?loc=").append(loc);
