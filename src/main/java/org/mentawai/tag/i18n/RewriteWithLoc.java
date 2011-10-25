@@ -30,12 +30,15 @@ public class RewriteWithLoc extends PrintTag {
 			sb.append("?loc=").append(loc);
 		} else {
 			// remove the loc not to duplicate...
-			queryString = Regex.sub(queryString, "s/loc\\=[a-z_]+//i");
+			queryString = Regex.sub(queryString, "s/\\&?loc\\=[a-z_]+//i");
 			if (queryString.trim().length() == 0) {
 				sb.append("?loc=").append(loc);
 			} else {
 				sb.append("?").append(queryString);
-				sb.append("&loc=").append(loc);
+				if (!queryString.endsWith("&")) {
+					sb.append("&");
+				}
+				sb.append("loc=").append(loc);
 			}
 		}
 		
