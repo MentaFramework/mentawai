@@ -96,7 +96,7 @@
 	<dependency>
     	<groupId>me.soliveirajr</groupId>
     	<artifactId>menta-bean</artifactId>
-    	<version>0.9.4</version>
+    	<version>1.1.1</version>
 	</dependency>	
 	
 	<dependency>
