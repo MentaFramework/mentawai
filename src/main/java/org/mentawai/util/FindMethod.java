@@ -69,6 +69,9 @@ public class FindMethod {
         String name, 
         Class[] parameterTypes) 
         throws NoSuchMethodException { 
+    	
+    	if (parameterTypes == null) parameterTypes = new Class[0];
+    	
         int l = parameterTypes.length; 
 
         // First find the applicable methods 

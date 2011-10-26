@@ -34,7 +34,8 @@ public class MethodRule extends BasicRule {
 	private final Object target;
 	private final String methodName;
 	
-	private Method method = null;
+	private Method methodWithParam = null;
+	private Method methodWithoutParam = null;
 	
 	public MethodRule(Object target, String methodName) {
 		this.target = target;
@@ -58,18 +59,33 @@ public class MethodRule extends BasicRule {
 	
 	public boolean check(String value) {
 		
+		// first try method WITHOUT any parameter...
+		
 		try {
-		
-			if (method == null) {
 			
-				method = FindMethod.getMethod(target.getClass(), methodName, new Class[] { String.class });
+			if (methodWithoutParam == null) {
+			
+				methodWithoutParam = FindMethod.getMethod(target.getClass(), methodName, null);
+			
 			}
-		
-			return (Boolean) method.invoke(target, value);
-		
-		} catch(Exception e) {
 			
-			throw new RuntimeException(e);
-		}
+			return (Boolean) methodWithoutParam.invoke(target, (Object[]) null);
+			
+		} catch(Exception e) { }
+		
+		// now with parameter...
+		
+		try {
+			
+			if (methodWithParam == null) {
+				
+				methodWithParam = FindMethod.getMethod(target.getClass(), methodName, new Class[] { String.class });
+			}
+			
+			return (Boolean) methodWithParam.invoke(target, value);
+			
+		} catch(Exception e) { }
+
+		throw new RuntimeException("Cannot find method to invoke: " + methodName);
 	}
 }
