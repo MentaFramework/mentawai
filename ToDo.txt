@@ -7,5 +7,5 @@ ALREADY - mentabean do not throw exception in any method (RuntimeException)
 POR ENQUANTO NAO - SALVEI O PATCH - fazer o ajax retornar direto qualquer coisa que a action retornar !!! (via catchAll)
 OK - JsonRenderer precisa transformar qualquer objeto em Map !!!
 OK - Usa mais String myAction(int id, String blah) ao invés de input...
-- afterValidation needs to be formalized in an internface
-- MethodRule tem que chamar método sem parâmetro !!! (o cara pega o parâmetro que ele quiser do input ora bolas)
+OK - afterValidation needs to be formalized in an internface
+OK - MethodRule tem que chamar método sem parâmetro !!! (o cara pega o parâmetro que ele quiser do input ora bolas)
