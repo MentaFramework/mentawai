@@ -36,20 +36,30 @@ import org.mentawai.validation.Validator;
 /**
  * @author Sergio Oliveira
  */
-public abstract class ValidationFilter implements Filter {
+public class ValidationFilter implements Filter {
 	
 	public static final String DEFAULT_DIR = "/validation";
 	
 	private String resultForError = BaseAction.ERROR;
 	private MessageContext msgContext;
 	
+	private ValidatorFilter validatorFilter = null;
+	
 	public ValidationFilter() {
-        
-        if (LocaleManager.isUseMasterForEverything()) {
-            msgContext = new FileMessageContext(LocaleManager.getMaster(), "");
-        } else {
-            msgContext = new ClassMessageContext(this.getClass(), DEFAULT_DIR.replace('\\', '/'));
-        }
+		
+		if (this.getClass().equals(ValidationFilter.class)) { // make sure this is not a subclass of ValidationFilter...
+			
+			// hack to use ValidationFilter as a ValidatorFilter (ValidationFilter is a better name for the API!)
+			
+			this.validatorFilter = new ValidatorFilter();
+			
+		} else {
+            if (LocaleManager.isUseMasterForEverything()) {
+                msgContext = new FileMessageContext(LocaleManager.getMaster(), "");
+            } else {
+                msgContext = new ClassMessageContext(this.getClass(), DEFAULT_DIR.replace('\\', '/'));
+            }
+		}
 	}
 
 	
@@ -69,7 +79,9 @@ public abstract class ValidationFilter implements Filter {
     /**
      * Implement this abstract method to add rules to the fields you want to validate.
      */
-	public abstract void prepareValidator(Validator validator, Action action, String innerAction);
+	public void prepareValidator(Validator validator, Action action, String innerAction) {
+		throw new IllegalStateException("You must override prepareValidation when extending ValidationFilter!");
+	}
 	
     /**
      * By default, the filter returns the <i>BaseAction.ERROR</i> when a validation failure happens.
@@ -120,6 +132,10 @@ public abstract class ValidationFilter implements Filter {
 	}
 	
 	public String filter(InvocationChain chain) throws Exception {
+		
+		if (validatorFilter != null) {
+			return validatorFilter.filter(chain);
+		}
 		
 		Action action = chain.getAction();
 		
