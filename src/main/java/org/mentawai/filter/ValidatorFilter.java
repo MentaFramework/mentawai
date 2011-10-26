@@ -36,6 +36,7 @@ import org.mentawai.message.FileMessageContext;
 import org.mentawai.message.MessageContext;
 import org.mentawai.util.FindMethod;
 import org.mentawai.validation.Validatable;
+import org.mentawai.validation.ValidationInterceptor;
 import org.mentawai.validation.Validator;
 
 /**
@@ -140,6 +141,17 @@ public class ValidatorFilter implements Filter {
       
       ActionUniqueId actionId = null;
       
+      if (actionImpl instanceof ValidationInterceptor) {
+    	  
+    	  ValidationInterceptor vi = (ValidationInterceptor) actionImpl;
+    	  
+    	  boolean goAhead = vi.beforeValidation(chain.getInnerAction());
+    	  
+    	  if (!goAhead) {
+    		  return chain.invoke();
+    	  }
+      }
+      
       if (actionImpl instanceof Validatable) {
 
          actionId = new ActionUniqueId(actionImpl.getClass().getName(), chain.getInnerAction());
@@ -186,22 +198,11 @@ public class ValidatorFilter implements Filter {
 
      boolean isOk = validator.validate(action, msgContext);
      
-     // ruby-style hack for validation interceptor...
-     
-     if (actionImpl instanceof Validatable) {
+     if (actionImpl instanceof ValidationInterceptor) {
     	 
-    	 Method m = null;
+    	 ValidationInterceptor vi = (ValidationInterceptor) actionImpl;
     	 
-    	 try {
-     
-    		 m = FindMethod.getDeclaredMethod(actionImpl.getClass(), "afterValidation", new Class[] { boolean.class, String.class });
-    	 
-    	 } catch(Exception e) { /* not found */ }
-    	 
-    	 if (m != null) {
-    		 
-			 m.invoke(actionImpl, isOk, chain.getInnerAction());
-    	 }
+    	 vi.afterValidation(chain.getInnerAction(), isOk);
      }
 
      if (!isOk) {
