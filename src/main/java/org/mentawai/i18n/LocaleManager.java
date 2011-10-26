@@ -47,6 +47,8 @@ import org.mentawai.list.ListManager;
  */
 public class LocaleManager {
 	
+	public static String LANG_PARAM = "lang";
+	
 	private static String DEFAULT_DIR = "i18n";
 	private static String dir = DEFAULT_DIR;	
 	private static List<Locale> locales = new ArrayList<Locale>(20);
@@ -590,7 +592,7 @@ public class LocaleManager {
 	public static Locale decideLocale(HttpServletRequest req, HttpServletResponse res) {
 		
 		String cookieName = getLangCookieName(req);
-    	String param = req.getParameter("loc");
+    	String param = req.getParameter(LANG_PARAM);
     	HttpSession session = req.getSession(true);
     	
     	if (param != null) {

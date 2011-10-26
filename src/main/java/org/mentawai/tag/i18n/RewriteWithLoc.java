@@ -3,9 +3,12 @@ package org.mentawai.tag.i18n;
 import javax.servlet.jsp.JspException;
 
 import org.mentaregex.Regex;
+import org.mentawai.i18n.LocaleManager;
 import org.mentawai.tag.util.PrintTag;
 
 public class RewriteWithLoc extends PrintTag {
+	
+	private static String PARAM = LocaleManager.LANG_PARAM;
 	
 	private String loc = null;
 	
@@ -27,18 +30,18 @@ public class RewriteWithLoc extends PrintTag {
 		sb.append(requestUri);
 		
 		if (queryString == null || queryString.trim().length() == 0) {
-			sb.append("?loc=").append(loc);
+			sb.append("?").append(PARAM).append("=").append(loc);
 		} else {
 			// remove the loc not to duplicate...
-			queryString = Regex.sub(queryString, "s/\\&?loc\\=[a-z_]+//i");
+			queryString = Regex.sub(queryString, "s/\\&?" + PARAM + "\\=[a-z_]+//i");
 			if (queryString.trim().length() == 0) {
-				sb.append("?loc=").append(loc);
+				sb.append("?").append(PARAM).append("=").append(loc);
 			} else {
 				sb.append("?").append(queryString);
 				if (!queryString.endsWith("&")) {
 					sb.append("&");
 				}
-				sb.append("loc=").append(loc);
+				sb.append(PARAM).append("=").append(loc);
 			}
 		}
 		
