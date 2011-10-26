@@ -8,8 +8,4 @@ POR ENQUANTO NAO - SALVEI O PATCH - fazer o ajax retornar direto qualquer coisa 
 OK - JsonRenderer precisa transformar qualquer objeto em Map !!!
 OK - Usa mais String myAction(int id, String blah) ao inv√©s de input...
 - afterValidation needs to be formalized in an internface
-- MethodRule tem que chamar mÈtodo sem par‚metro !!! (o cara pega o par‚metro que ele quiser do input ora bolas)
-
-
-
-
+- MethodRule tem que chamar m√©todo sem par√¢metro !!! (o cara pega o par√¢metro que ele quiser do input ora bolas)
