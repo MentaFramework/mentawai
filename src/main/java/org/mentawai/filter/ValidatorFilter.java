@@ -18,7 +18,6 @@
  */
 package org.mentawai.filter;
 
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.LinkedHashMap;
@@ -34,7 +33,6 @@ import org.mentawai.jruby.RubyAction;
 import org.mentawai.message.ClassMessageContext;
 import org.mentawai.message.FileMessageContext;
 import org.mentawai.message.MessageContext;
-import org.mentawai.util.FindMethod;
 import org.mentawai.validation.Validatable;
 import org.mentawai.validation.ValidationInterceptor;
 import org.mentawai.validation.Validator;

@@ -1872,7 +1872,11 @@ public abstract class ApplicationManager {
 	   
 	   for(String list: lists) {
 		   
-		   addList(new DBListData(list, "id", "value", "locale", list, "id"), connHandler);
+		   // assume the list table in the database will begin with a capital letter...
+		   
+		   String tableName = list.substring(0, 1).toUpperCase() + list.substring(1);
+		   
+		   addList(new DBListData(list, "id", "value", "locale",tableName, "id"), connHandler);
 		   
 	   }
    }

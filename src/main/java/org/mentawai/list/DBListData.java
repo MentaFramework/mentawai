@@ -135,7 +135,13 @@ public class DBListData implements ListData, Runnable {
 	}
 	
 	public DBListData(String name, String orderBy) {
-		this(name, "ID", "VALUE", name, orderBy);
+		this(name, "ID", "VALUE", getTableName(name), orderBy);
+	}
+	
+	private final static String getTableName(String s) {
+		
+		// assume the list table will begin with a capital letter...
+		return s.substring(0, 1).toUpperCase() + s.substring(1);
 	}
 	
 	public boolean isLocalized() {
