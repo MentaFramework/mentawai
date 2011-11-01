@@ -11,9 +11,14 @@ public class RewriteWithLoc extends PrintTag {
 	private static String PARAM = LocaleManager.LANG_PARAM;
 	
 	private String loc = null;
+	private String tagsToExclude = null;
 	
 	public void setLoc(String loc) {
 		this.loc = loc;
+	}
+	
+	public void setTagsToExclude(String s) {
+		this.tagsToExclude = s;
 	}
 
 	@Override
@@ -34,6 +39,13 @@ public class RewriteWithLoc extends PrintTag {
 		} else {
 			// remove the loc not to duplicate...
 			queryString = Regex.sub(queryString, "s/\\&?" + PARAM + "\\=[a-z_]+//i");
+			// remove extra tags if present...
+			if (tagsToExclude != null) {
+				String[] tags = tagsToExclude.split("\\s*,\\s*");
+				for(String tag : tags) {
+					queryString = Regex.sub(queryString, "s/\\&?" + tag + "\\=[^\\&]+//i");
+				}
+			}
 			if (queryString.trim().length() == 0) {
 				sb.append("?").append(PARAM).append("=").append(loc);
 			} else {
