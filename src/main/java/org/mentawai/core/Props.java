@@ -121,7 +121,7 @@ public class Props {
     	
     	if (v == null) throw new NullPointerException("Cannot find value for key: " + key);
     	
-    	String[] temp = key.split("\\s*,\\s*");
+    	String[] temp = v.split("\\s*,\\s*");
     	
     	return new ArrayList<String>(Arrays.asList(temp));
     }
