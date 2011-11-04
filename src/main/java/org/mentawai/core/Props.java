@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 
 public class Props {
@@ -110,6 +113,17 @@ public class Props {
     	if (v == null) throw new NullPointerException("Cannot find value for key: " + key);
     	
         return Boolean.parseBoolean(v);
+    }
+    
+    public List<String> getList(String key) {
+    	
+    	String v = get(key);
+    	
+    	if (v == null) throw new NullPointerException("Cannot find value for key: " + key);
+    	
+    	String[] temp = key.split("\\s*,\\s*");
+    	
+    	return new ArrayList<String>(Arrays.asList(temp));
     }
     
     public boolean has(String key) {
