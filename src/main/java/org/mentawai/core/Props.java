@@ -9,6 +9,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
+import org.mentaregex.Regex;
+
 public class Props {
 	
 	public static String CHARSET = "UTF-8";
@@ -156,6 +158,50 @@ public class Props {
     	} catch(Exception e) {
     		throw new RuntimeException(e);
     	}
+    }
+    
+    private String[] makeArray(String v) {
+
+    	if (v.length() == 0) return new String[0];
+    	
+    	String[] array = v.split("\\s*,\\s*");
+    	
+    	for(int i = 0; i < array.length; i++) {
+    		String s = array[i];
+    		if ((s.startsWith("\"") && s.endsWith("\"")) || (s.startsWith("'") && s.endsWith("'"))) {
+    			array[i] = s.substring(1, s.length() - 1);
+    		}
+    	}
+    	return array;
+    }
+    
+    public String[] getArray(String key) {
+    	String v = get(key).trim();
+    	
+    	if (!v.startsWith("[") || !v.endsWith("]")) throw new IllegalArgumentException("Not an array: " + v);
+    	
+    	v = v.substring(1, v.length() - 1).trim();
+    	
+    	return makeArray(v);
+    }
+    
+    public List<String[]> getArrays(String key) {
+    	
+    	String v = get(key).trim();
+    	
+    	if (!v.startsWith("[") || !v.endsWith("]")) throw new IllegalArgumentException("Not an array: " + v);
+    	
+    	v = v.substring(1, v.length() - 1).trim();
+    	
+    	String[] s = Regex.match(v, "/\\[(.*?)\\]/g");
+    	
+    	List<String[]> list = new ArrayList<String[]>(s.length);
+    	
+    	for(String array : s) {
+    		list.add(makeArray(array));
+    	}
+    	
+    	return list;
     }
     
 }
