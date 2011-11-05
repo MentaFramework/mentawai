@@ -65,7 +65,7 @@ public class MethodRule extends BasicRule {
 			
 			if (methodWithoutParam == null) {
 			
-				methodWithoutParam = FindMethod.getMethod(target.getClass(), methodName, null);
+				methodWithoutParam = FindMethod.getDeclaredMethod(target.getClass(), methodName, null);
 			
 			}
 			
@@ -79,7 +79,7 @@ public class MethodRule extends BasicRule {
 			
 			if (methodWithParam == null) {
 				
-				methodWithParam = FindMethod.getMethod(target.getClass(), methodName, new Class[] { String.class });
+				methodWithParam = FindMethod.getDeclaredMethod(target.getClass(), methodName, new Class[] { String.class });
 			}
 			
 			return (Boolean) methodWithParam.invoke(target, value);
