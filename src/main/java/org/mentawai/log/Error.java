@@ -17,7 +17,14 @@ public class Error {
         
         try {
             
-            boolean isConsole = Boolean.getBoolean("logConsole");
+        	 boolean isConsole = Boolean.getBoolean("logConsole");
+             boolean isFile = Boolean.getBoolean("logFile");
+             
+             if (!isFile && !isConsole) {
+             	isConsole = true; // default is console!
+             } else if (isFile && isConsole) {
+             	isConsole = false; // give priority to logFile!
+             }
             
             if (isConsole) {
                 logger = new SimpleLogger(System.out);
