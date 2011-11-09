@@ -6,7 +6,7 @@
 		<groupId>org.sonatype.oss</groupId>
 		<version>3</version>
 	</parent>
-	<groupId>org.mentaframework</groupId>
+	<groupId>me.soliveirajr</groupId>
 	<artifactId>mentawai</artifactId>
 	<version>2.2.3-SNAPSHOT</version>
 	<name>Mentawai2 Web Framework</name>
