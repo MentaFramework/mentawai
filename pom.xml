@@ -49,7 +49,7 @@
 			<version>2.0</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
@@ -106,7 +106,6 @@
 			<version>0.9.5</version>
 		</dependency>
 
-
 		<dependency>
 			<groupId>org.beanshell</groupId>
 			<artifactId>bsh</artifactId>
@@ -145,7 +144,7 @@
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.2.2</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
@@ -206,12 +205,17 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>3.0.6.RELEASE</version>
+		</dependency>
+
+		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
 			<version>1.4</version>
 			<scope>provided</scope>
 		</dependency>
-
 
 		<!-- DisplayTag -->
 		<dependency>
@@ -237,6 +241,7 @@
 			<version>1.8.5</version>
 			<scope>test</scope>
 		</dependency>
+
 
 	</dependencies>
 	<repositories>
