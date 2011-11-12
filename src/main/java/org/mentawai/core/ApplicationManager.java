@@ -138,7 +138,7 @@ public abstract class ApplicationManager {
 	private Map<String, Consequence> globalConsequences = new HashMap<String, Consequence>();
     private Map<String, Bean> components = new HashMap<String, Bean>();
     private Set<Dependency> dependencies = new HashSet<Dependency>();
-    
+
 	private Map<Class<? extends Object>, List<Filter>> klassGlobalFilters = new HashMap<Class<? extends Object>, List<Filter>>();
     private Map<Class<? extends Object>, List<Filter>> klassGlobalFiltersLast = new HashMap<Class<? extends Object>, List<Filter>>();
 
@@ -153,31 +153,31 @@ public abstract class ApplicationManager {
     private static ActionConfig defaultAction = null;
 
     private static Context appContext = null;
-    
+
     protected static Container container = null;
 
     static boolean removeActionFromName = false;
-    
+
     private boolean autowireEverything = true;
-    
+
     private ApplicationManager parent;
-    
+
     public enum Environment { TEST, DEV, INT, QA, PROD };
-    
+
     private volatile Environment environment = null;
-    
+
     public void setEnvironment(Environment env) {
     	this.environment = env;
     }
-    
+
     public Environment getEnvironment() {
-    	
+
     	if (environment == null) {
-    		
+
     		String envString = SystemUtils.getString("env");
-    		
+
     		if (envString == null) envString = SystemUtils.getString("ENV");
-    		
+
     		if (envString == null) {
     			this.environment = Environment.DEV;
     		} else {
@@ -186,7 +186,7 @@ public abstract class ApplicationManager {
     	}
     	return environment;
     }
-    
+
     public static void setRemoveActionFromName(boolean flag) {
     	ApplicationManager.removeActionFromName = flag;
     }
@@ -213,9 +213,9 @@ public abstract class ApplicationManager {
         REALPATH = realpath;
 
     }
-    
+
     public void setAutowireEverything(boolean flag) {
-    	this.autowireEverything = flag; 
+    	this.autowireEverything = flag;
     }
 
     public void setReqCharEncoding(String encoding) {
@@ -241,7 +241,7 @@ public abstract class ApplicationManager {
         return null;
 
     }
-    
+
     public static String getContextPath() {
     	return CONTEXT_PATH;
     }
@@ -308,23 +308,23 @@ public abstract class ApplicationManager {
     	}
 
     }
-    
+
     public Props getProps() {
     	return getProps(getEnvironment().toString().toLowerCase());
     }
-    
+
     public Props getProps(String env) {
 
     	if (REALPATH == null) throw new IllegalStateException("Realpath is not set for this application!");
-    	
+
     	File def = new File(REALPATH + File.separator + "WEB-INF" + File.separator + "conf" + File.separator + "default" + File.separator + "appManager.properties");
-    	
+
     	File file = null;
-    		
+
     	if (env != null) file = new File(REALPATH + File.separator + "WEB-INF" + File.separator + "conf" + File.separator + env + File.separator + "appManager.properties");
-    		
+
     	if (!def.exists() && (file == null || !file.exists())) {
-    		
+
     		throw new RuntimeException("Cannot find appManager.properties inside WEB-INF/conf!");
     	}
 
@@ -345,7 +345,7 @@ public abstract class ApplicationManager {
     			throw new RuntimeException(e);
     		}
     	}
-    	
+
     	if (file != null && file.exists()) {
 
     		try {
@@ -359,7 +359,7 @@ public abstract class ApplicationManager {
     	}
 
     	if (local != null && local.exists()) {
-    		
+
     		try {
 
     			props.loadLocal(new FileInputStream(local));
@@ -368,13 +368,13 @@ public abstract class ApplicationManager {
 
     			throw new RuntimeException(e);
     	}
-    	
+
     }
 
     	return props;
     }
 
-    
+
     public StreamConsequence stream(String contentType) {
 
     	return new StreamConsequence(contentType);
@@ -426,11 +426,11 @@ public abstract class ApplicationManager {
     	instance = this;
     	container = new MentaContainer();
     }
-    
+
     public void setWebappPath(String s) {
     	REALPATH = s;
     }
-    
+
     public static Container getContainer() {
 
     	return container;
@@ -473,7 +473,7 @@ public abstract class ApplicationManager {
             }
             map.put(innerAction, ac);
         }
-        
+
         return ac;
 	}
 
@@ -489,7 +489,7 @@ public abstract class ApplicationManager {
 
 		return beanManager.getBeanConfig(beanClass);
 	}
-	
+
 	public BeanManager getBeanManager() {
 		return beanManager;
 	}
@@ -546,9 +546,9 @@ public abstract class ApplicationManager {
      * Override this method to do any initialization for your web application.
      */
     public void init() {
-    	
+
     	init(ApplicationManager.getApplication());
-    	
+
     }
 
     /**
@@ -575,12 +575,12 @@ public abstract class ApplicationManager {
     }
 
     public void setupDB() { }
-   
+
     /**
      * Override this method to register your Filters.
      */
     public void loadFilters() { }
-    
+
     /**
      * Override this method to register your IoC Components.
      */
@@ -614,15 +614,15 @@ public abstract class ApplicationManager {
     public void loadFormatters() {
 
     }
-    
+
     public void onStarted(Context context) {
-    	
+
     }
 
     public void addLocale(String loc) {
     	LocaleManager.add(loc);
     }
-    
+
     public void addLocale(Locale loc) {
     	LocaleManager.add(loc);
     }
@@ -658,7 +658,7 @@ public abstract class ApplicationManager {
 	 * @return The Inner ActionConfig associated with the given name and inner action.
 	 */
 	public ActionConfig getActionConfig(String name, String innerAction) {
-		
+
 		if(innerAction == null)
 			return getActionConfig(name);
 
@@ -770,7 +770,7 @@ public abstract class ApplicationManager {
         if (last) {
 
             globalFiltersLast.add(filter);
-            
+
         } else if (filter.getClass().equals(InjectionFilter.class)
                 || filter.getClass().equals(OutputFilter.class)
                 || filter.getClass().equals(OutjectionFilter.class)) {
@@ -1052,36 +1052,36 @@ public abstract class ApplicationManager {
         return new Redirect(page);
 
     }
-    
+
     public static Consequence exception(String msg) {
-    	
+
     	return new ExceptionConsequence(msg);
     }
-    
+
  public static Consequence result() {
-    	
+
     	return new ResultConsequence();
     }
-    
+
     /**
      * Redir to an action.
-     * 
+     *
      * @param ac
      * @return Consequence
      * @since 1.16
      */
     public static Consequence redir(ActionConfig ac) {
-    	
+
     	return new Redirect(ac);
     }
-    
- 
+
+
     /**
      * Convenient method that provides a less verbose way to create a redirect to a Action.
-     * 
+     *
      * This is shorter than <code>new Redirect("FoobarAction.mtw"); </code> <br/>
-     * 
-     * <b>Notice</b> that the action is generated when the pattern above, if you are using a PrettyURLController will not work 
+     *
+     * <b>Notice</b> that the action is generated when the pattern above, if you are using a PrettyURLController will not work
      * and is indicated use normal redirect: {@link #redir(String, boolean)}
      *
      * @param klass
@@ -1091,13 +1091,13 @@ public abstract class ApplicationManager {
     public static Consequence redir(Class<?> klass) {
         return redir(klass, null, false);
     }
-    
+
     /**
      * Convenient method that provides a less verbose way to create a redirect to a Action.
-     * 
+     *
      * This is shorter than <code>new Redirect("FoobarAction.mtw"); </code> <br/>
-     * 
-     * <b>Notice</b> that the action is generated when the pattern above, if you are using a PrettyURLController will not work 
+     *
+     * <b>Notice</b> that the action is generated when the pattern above, if you are using a PrettyURLController will not work
      * and is indicated use normal redirect: {@link #redir(String, boolean)}
      *
      * @param klass
@@ -1108,13 +1108,13 @@ public abstract class ApplicationManager {
     public static Consequence redir(Class<?> klass, boolean appendOutput) {
         return redir(klass, null, appendOutput);
     }
-    
+
     /**
      * Convenient method that provides a less verbose way to create a redirect to a Action.
-     * 
+     *
      * This is shorter than <code>new Redirect("FoobarAction.saveFoo.mtw"); </code> <br/>
-     * 
-     * <b>Notice</b> that the action is generated when the pattern above, if you are using a PrettyURLController will not work 
+     *
+     * <b>Notice</b> that the action is generated when the pattern above, if you are using a PrettyURLController will not work
      * and is indicated use normal redirect: {@link #redir(String, boolean)}
      *
      * @param klass
@@ -1125,34 +1125,34 @@ public abstract class ApplicationManager {
     public static Consequence redir(Class<?> klass, String innerAction) {
     	return redir(klass, innerAction, false);
     }
-    
-   
+
+
     /**
      * Convenient method that provides a less verbose way to create a redirect to a Action.
-     * 
+     *
      * This is shorter than <code>new Redirect("FoobarAction.saveFoo.mtw"); </code> <br/>
-     * 
-     * <b>Notice</b> that the action is generated when the pattern above, if you are using a PrettyURLController will not work 
+     *
+     * <b>Notice</b> that the action is generated when the pattern above, if you are using a PrettyURLController will not work
      * and is indicated use normal redirect: {@link #redir(String, boolean)}
      *
-     * @param klass 
-     * @param innerAction 
-     * @param appendOutput 
+     * @param klass
+     * @param innerAction
+     * @param appendOutput
      * @return a new redirect consequence
      * @since 1.15.1
      */
     public static Consequence redir(Class<?> klass, String innerAction, boolean appendOutput) {
     	StringBuilder page = new StringBuilder(klass.getSimpleName().length() + 4);
-    	
+
     	page.append(klass.getSimpleName());
-    	
+
     	if(innerAction != null) page.append(".").append(innerAction);
-    	
+
     	page.append(".").append(EXTENSION);
-    	
+
         return new Redirect(page.toString(), appendOutput);
     }
-    
+
 
     /**
      * Convenient method that provides a less verbose way to create a redirect.
@@ -1169,17 +1169,17 @@ public abstract class ApplicationManager {
         return new Redirect(page, flag);
 
     }
-    
+
     /**
      * Redir to an action.
-     * 
+     *
      * @param ac
      * @param flag
      * @return Consequence
      * @since 1.16
      */
     public static Consequence redir(ActionConfig ac, boolean flag) {
-    	
+
     	return new Redirect(ac, flag);
     }
 
@@ -1315,13 +1315,13 @@ public abstract class ApplicationManager {
         return addActionConfig(new SpringActionConfig(path, action));
     }
 
-    
+
     /**
 	 * Convenient method that provides a less verbose way to create a
 	 * SpringActionConfig. <br/>
 	 * <b>Note:</b> This will also add the action to this ApplicationManager, in
 	 * other words, no need to call add or addActionConfig !!!
-	 * 
+	 *
 	 * @param path
 	 * @param action
 	 * @param innerAction
@@ -1348,13 +1348,13 @@ public abstract class ApplicationManager {
         return addActionConfig(new ActionConfig(name, klass));
 
     }
-    
+
     public ActionConfig internal(Class<? extends Object> klass, String innerAction) {
-    	
+
     	ActionConfig ac = action(klass, innerAction);
-    	
+
     	ac.catchAll(result()).internalOnly();
-    	
+
     	return ac;
     }
 
@@ -1395,8 +1395,8 @@ public abstract class ApplicationManager {
 
     /**
      * Turn on/off application manager auto-reload feature.
-     * In order for this to work you must me using JavaRebel
-     * to force a class reload. More info here: http://www.javarebel.com
+     * In order for this to work you must me using JRebel
+     * to force a class reload. More info here: http://www.jrebel.com
      *
      * @param reloadable
      */
@@ -1455,21 +1455,21 @@ public abstract class ApplicationManager {
     }
 
     public Dependency autowire(String target, Class<? extends Object> klass, String source) {
-    	
+
     	return addDependency(klass, target, source);
     }
-    
+
     public Dependency autowire(String target, Class<? extends Object> klass) {
-    	
+
     	return addDependency(klass, target, target);
     }
-    
+
     public Dependency autowire(String sourceFromContainer) {
-    	
+
     	Dependency d;
 
     	container.autowire(sourceFromContainer);
-    	
+
     	Class<? extends Object> klass = container.getType(sourceFromContainer);
 
     	dependencies.add(d = new Dependency(klass, sourceFromContainer, sourceFromContainer));
@@ -1532,11 +1532,11 @@ public abstract class ApplicationManager {
 
     	return dependencies.iterator();
     }
-    
+
     public Map<String, Bean> getComponents() {
 		return components;
 	}
- 
+
     public Set<String> getComponentNames() {
 		return components.keySet();
 	}
@@ -1566,26 +1566,26 @@ public abstract class ApplicationManager {
      * @return The component just added
      */
     public Bean addComponent(String name, Bean comp) {
-    	
+
     	if (comp == null) return null;
-    	
+
     	/*
     	 * MentaContainerFilter will clean the thread scope.
-    	 * 
+    	 *
     	 * Since this are actions, it does not hurt to use a THREAD scope
     	 * instead of NONE.
     	 */
     	Scope scope = Scope.THREAD;
-    	
+
     	if (comp instanceof ScopeComponent) {
-    		
+
     		ScopeComponent sc = (ScopeComponent) comp;
-    		
+
     		if (sc.getScope() == APPLICATION) scope = Scope.SINGLETON;
     	}
-    	
+
     	container.ioc(name, comp.getType(), scope);
-    	
+
     	if (autowireEverything) {
     		container.autowire(name);
     	}
@@ -1636,28 +1636,28 @@ public abstract class ApplicationManager {
     }
 
     public void ioc(String name, Factory c) {
-    	
+
     	ioc(name, c, Scope.THREAD);
     }
-    
+
     public void ioc(String name, Object singleInstance) {
     	WrapperFactory f = new WrapperFactory(singleInstance);
     	ioc(name, f);
     }
-    
+
     public void ioc(String name, Factory c, Scope s) {
-    	
+
     	if (c != null) {
-    	
+
     		container.ioc(name, c, s);
-    		
+
     		if (autowireEverything) {
     			container.autowire(name);
     		}
     	}
-    	
+
     }
-    
+
     /**
      * Add an IOC component to this application manager.
      * @param name
@@ -1827,7 +1827,7 @@ public abstract class ApplicationManager {
 
     	return this; // FIXME: Na Documentação DIZ: The parent ApplicationManager, mas ele retorna this. Está certo ??? (by Ricardo Rufino)
 	}
-	
+
 	/**
 	 * Retorna o ApplicationManager que registou esse ApplicationManager. <br/>
 	 * @return Uma instância de {@link MultiApplicationManager} ou NULL se este for o ApplicationManager de mais auto nível.
@@ -1846,12 +1846,12 @@ public abstract class ApplicationManager {
 
       Controller.setConsequenceProvider(consequenceProvider);
    }
-   
+
    /**
     * Get the consequence provider that will be used by the controller.
     *
     * @since 2.1.2
-    */  
+    */
 	public ConsequenceProvider getConsequenceProvider() {
 		return Controller.getConsequenceProvider();
 	}
@@ -1867,26 +1867,26 @@ public abstract class ApplicationManager {
 
       ListManager.addList(list, connHandler);
    }
-   
+
    public void addLocalizedLists(ConnectionHandler connHandler, String ...lists) {
-	   
+
 	   for(String list: lists) {
-		   
+
 		   // assume the list table in the database will begin with a capital letter...
-		   
+
 		   String tableName = list.substring(0, 1).toUpperCase() + list.substring(1);
-		   
+
 		   addList(new DBListData(list, "id", "value", "locale",tableName, "id"), connHandler);
-		   
+
 	   }
    }
-   
+
    public void addLists(ConnectionHandler connHandler, String ... lists) {
 	   for(String list : lists) {
 		   addList(new DBListData(list), connHandler);
 	   }
    }
-   
+
    /**
     * Adds the list to this ListManager, so there is no need to use ListManager.addList
     *
