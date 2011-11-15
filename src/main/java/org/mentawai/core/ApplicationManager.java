@@ -122,6 +122,8 @@ public abstract class ApplicationManager {
     public static final String EXCEPTION = ExceptionFilter.EXCEPTION;
 
     public static final String REDIR = RedirectAfterLoginFilter.REDIR;
+    
+    public static Environment DEFAULT_ENVIRONMENT = Environment.DEV;
 
     public static final String MENTAWAI_VERSION = "2.2.2";
     public static final String MENTAWAI_BUILD = "20111018";
@@ -179,7 +181,7 @@ public abstract class ApplicationManager {
     		if (envString == null) envString = SystemUtils.getString("ENV");
 
     		if (envString == null) {
-    			this.environment = Environment.DEV;
+    			this.environment = DEFAULT_ENVIRONMENT;
     		} else {
     			this.environment = Environment.valueOf(envString.toUpperCase());
     		}
