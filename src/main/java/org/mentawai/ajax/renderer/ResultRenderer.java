@@ -18,7 +18,9 @@
  */
 package org.mentawai.ajax.renderer;
 
-
+/**
+ * Render that will get the return of action (eg, return "text"), and will return it as response ajax call
+ */
 public class ResultRenderer extends StringRenderer {
 
 	public ResultRenderer() {
