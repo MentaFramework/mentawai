@@ -22,6 +22,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+
 /**
  * Esta classe representa uma pagina. Seguindo o paradigma de blocos do
  * mentatemplates, uma pagina pode ser composta por varios blocos, os quais
@@ -190,7 +193,7 @@ public class Page {
 	public void setBlock(String id, Page page) {
 		blocks.put(id, page);
 	}
-	
+
 	/**
 	 * Definir um bloco de template para a página especificada.
 	 * @param id
@@ -258,6 +261,9 @@ public class Page {
         return (pattern == null) ? false : this.pattern.matcher(path).matches();
     }
 
-
+    @Override
+    public String toString() {
+    	return ToStringBuilder.reflectionToString(this);
+    }
 
 }

@@ -40,26 +40,26 @@ public class ConventionController implements PageController {
 
 	public void processPage(Page page, HttpServletRequest request,
 			HttpServletResponse response, ServletContext application) {
-		
-		
+
+
 		String view = getRoot() + page.getPath() + getExtension();
-		
+
 		String viewDir = ApplicationManager.getViewDir();
-		
+
 		if (viewDir != null && viewDir.length() > 0 && !view.startsWith(viewDir)) {
-			
+
 			if (viewDir.endsWith("/") && view.startsWith("/")) {
-				
+
 				viewDir = viewDir.substring(0, viewDir.length() - 1);
-				
+
 			} else if (!viewDir.endsWith("/") && !view.startsWith("/")) {
-				
+
 				viewDir = viewDir + "/";
 			}
-			
+
 			view = viewDir + view;
-		} 
-		
+		}
+
 		File file = new File(application.getRealPath("/") + view);
 		if (!file.exists()) {
 			try {
@@ -69,6 +69,9 @@ public class ConventionController implements PageController {
 				throw new TemplateException(e);
 			}
 		}
+
+		if(view.startsWith("/")) view = view.substring(1);
+
 		page.setBlock(getPrincipalBlock(), new Page(view));
 	}
 
