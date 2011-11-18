@@ -125,8 +125,8 @@ public abstract class ApplicationManager {
     
     public static Environment DEFAULT_ENVIRONMENT = Environment.DEV;
 
-    public static final String MENTAWAI_VERSION = "2.2.2";
-    public static final String MENTAWAI_BUILD = "20111018";
+    public static final String MENTAWAI_VERSION = "2.3.1";
+    public static final String MENTAWAI_BUILD = "20111117";
     public static String EXTENSION = "mtw";
     public static String CONTEXT_PATH = null;
     public static int PORT = 80;
