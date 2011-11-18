@@ -34,48 +34,80 @@ import org.mentawai.tag.util.ListContext;
  * @author Sergio Oliveira
  */
 public class OutFieldErrors extends ConditionalTag implements ListContext {
-    
+
     private String var = "errors";
-    
+
+    /**
+     * Identifies the validation errors should be exported to the page context as variables.
+     * Ex: If there is a validation error in the 'username' will be created the following variables:
+     * username_hasError and username_error
+     */
+    private boolean export;
+
     public void setVar(String var) {
-        
+
         this.var = var;
     }
-    
+
    public List<Object> getList() throws JspException {
-        
+
         return (List<Object>) pageContext.getAttribute(var);
    }
-    
+
    public boolean testCondition() throws JspException {
-        
+
         Map<String, Message> map = MessageManager.getFieldErrors(action, false);
-        
+
         if (map == null || map.size() == 0) return false;
-        
+
         List<String> list = new ArrayList<String>(map.size());
-        
+
         Iterator<Message> iter = map.values().iterator();
-        
+
         while(iter.hasNext()) {
-            
+
             Message msg = iter.next();
-            
+
             list.add(msg.getText(loc));
-            
+
         }
-        
+
         pageContext.setAttribute(var, list);
-        
+
+        if(export)
+        	exportVars();
+
         return true;
     }
-   
-    public int doEndTag() throws JspException {
-       
+
+    private void exportVars() {
+    	 Map<String, Message> map = MessageManager.getFieldErrors(action, false);
+    	 if(map!=null){
+	    	 for (String key : map.keySet()) {
+
+	             Message msg = map.get(key);
+
+	             if (msg != null){
+		             String text = msg.getText(loc);
+
+		             if (text != null) {
+		            	 pageContext.setAttribute(key + "_hasError", true);
+		                 pageContext.setAttribute(key + "_error", text);
+		             }
+	             }
+	    	 }
+    	 }
+    }
+
+	public int doEndTag() throws JspException {
+
        pageContext.removeAttribute(var);
-       
+
        return super.doEndTag();
-       
-   }         
+
+   }
+
+	public void setExport(boolean export) {
+		this.export = export;
+	}
 }
-	

@@ -49,7 +49,7 @@
 			org.mentawai.tag.html.dyntag.stats.listener.StatsListener
 		</listener-class>
 	</listener>
-	
+
 	<!-- Tag menu  -->
 	<listener>
 		<listener-class>
@@ -63,10 +63,10 @@
 			org.mentawai.tag.html.ajax.listener.AjaxListener
 		</listener-class>
 	</listener>
- 
+
 	<!-- i18n -->
-	
-	
+
+
 	<tag>
 		<name>decideLocale</name>
 		<tag-class>
@@ -75,7 +75,7 @@
 		<body-content>empty</body-content>
 		<display-name></display-name>
 	</tag>
-	
+
 	<tag>
 		<name>urlWithLoc</name>
 		<tag-class>
@@ -96,7 +96,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<tag>
 		<name>useI18N</name>
 		<tag-class>org.mentawai.tag.i18n.UseI18N</tag-class>
@@ -242,7 +242,7 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
-		</attribute>		
+		</attribute>
 		<attribute>
 			<name>permission</name>
 			<required>false</required>
@@ -281,7 +281,7 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
-		</attribute>		
+		</attribute>
 		<attribute>
 			<name>permission</name>
 			<required>false</required>
@@ -342,7 +342,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<tag>
 		<name>set</name>
 		<tag-class>org.mentawai.tag.SetTag</tag-class>
@@ -360,7 +360,7 @@
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
-	</tag>	
+	</tag>
 
 	<tag>
 		<name>isNull</name>
@@ -474,7 +474,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<tag>
 		<name>empty</name>
 		<tag-class>org.mentawai.tag.EmptyTag</tag-class>
@@ -492,7 +492,7 @@
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
-	</tag>			
+	</tag>
 
 	<tag>
 		<name>bean</name>
@@ -552,14 +552,14 @@
 		</attribute>
 
 	</tag>
-	
+
 	<tag>
 		<name>jsEscape</name>
 		<tag-class>org.mentawai.tag.html.StringEscapeJS</tag-class>
 		<body-content>JSP</body-content>
 		<display-name></display-name>
 	</tag>
-	
+
 	<tag>
 		<name>loop</name>
 		<tag-class>org.mentawai.tag.Loop</tag-class>
@@ -644,7 +644,7 @@
 			<rtexprvalue>true</rtexprvalue>
 			<type>boolean</type>
 		</attribute>
-		
+
 		<attribute>
 			<name>includeTimeWithBR</name>
 			<required>false</required>
@@ -698,6 +698,16 @@
 		<tag-class>org.mentawai.tag.message.OutFieldErrors</tag-class>
 		<body-content>JSP</body-content>
 		<display-name></display-name>
+		<attribute>
+			<name>export</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+			<description> Identifies the validation errors should be exported to the page context as variables.
+            Ex: If there is a validation error in the 'username' will be created the following variables:
+            username_hasError and username_error
+            </description>
+		</attribute>
 	</tag>
 
 	<tag>
@@ -916,7 +926,7 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>boolean</type>
-		</attribute>		
+		</attribute>
 	</tag>
 
 	<tag>
@@ -2729,13 +2739,13 @@
 			<description>A valid charset to uso with default MentaAjax requests EX: UTF-8</description>
 		</attribute>
 	</tag>
-	
+
 	<tag>
 		<name>reCaptcha</name>
 		<tag-class>org.mentawai.tag.util.ReCaptchaTag</tag-class>
 		<body-content>empty</body-content>
 		<display-name></display-name>
-	</tag>	
+	</tag>
 
 	<tag>
 	    <name>inplace</name>
