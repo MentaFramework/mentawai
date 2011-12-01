@@ -207,7 +207,9 @@ public class JpaFilter extends InputWrapper implements AfterConsequenceFilter {
 		if (entityManager != null) {
 			jpaEntityManagerThreadLocal.set(null);
 			removeValue(jpaEntityManagerKey);
-			entityManager.close();
+			if (entityManager.isOpen()) {
+			    entityManager.close();
+			}
 		}
 	}
 
