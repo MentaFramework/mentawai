@@ -117,13 +117,17 @@ public abstract class HTMLTag extends PrintTag {
 		Input input = action.getInput();
 		
 		value = output.getValue(name);
-		if (value == null) {
-			value = input.getValue(name);
+		
+		if (value == null)  // Find using expression like 'bean.id'
+			value = Out.getValue(name, pageContext, tryBoolean);
+		
+		if (value == null)  // Try input
+			value = input.getValue(name);	
+		
+		if (value == null) // Try session
+			value = session.getAttribute(name);
 			
-			if(value == null)
-				value = session.getAttribute(name);
-			
-		}
+		
 		
         return value;
     }    
