@@ -2850,5 +2850,21 @@
 			<type>java.lang.String</type>
 		</attribute>
  	</tag>
+ 	
+ 	<!-- user in role -->
+	<tag>
+		<name>isUserInRole</name>
+		<tag-class>
+			org.mentawai.tag.authorization.IsUserInRole
+		</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>roles</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>Set roles separated by comma like: ADMIN, GUEST, OTHER</description>
+		</attribute>
+	</tag>
+	<!-- formSkin -->
 
 </taglib>
