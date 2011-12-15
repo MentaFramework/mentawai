@@ -52,6 +52,32 @@ public class StreamConsequence implements Consequence {
     /** The default key ("<i>contentType</i>") to look for in the action output. */
     public static final String CONTENT_TYPE = "contentType";
     
+    /** Ogg, a multimedia bitstream container format. Defined in RFC 5334. */
+    public static final String APPLICATION_OGG = "application/ogg";
+    
+    /** Portable Document Format. Defined in RFC 3778 5334. */
+    public static final String APPLICATION_PDF = "application/pdf";
+    
+    /** SOAP. Defined by RFC 3902. */
+    public static final String APPLICATION_SOAP = "application/soap+xml";
+    
+    /** MP3 or other MPEG audio. Defined in RFC 3003. */
+    public static final String AUDIO_MPEG = "audio/mpeg";
+    
+    /** Ogg Vorbis, Speex, Flac and other audio. Defined in RFC 5334. */
+    public static final String AUDIO_OGG = "audio/ogg";
+    
+    /** GIF image. Defined in RFC 2045 and RFC 2046. */
+    public static final String IMAGE_GIF = "image/gif";
+    
+    /** JPEG JFIF image. Defined in RFC 2045 and RFC 2046. */
+    public static final String IMAGE_JPEG = "image/jpeg";
+    
+    /** Portable Network Graphics. Defined in RFC 2083. */
+    public static final String IMAGE_PNG = "image/png";
+    
+    
+    
     public static final String FILENAME = "filename";
 
 	// The content-type of the message
