@@ -127,20 +127,34 @@ public class Input extends HTMLTag {
                 sb.append("\"");
             }
             
-            if (obj != null && value != null && obj.toString().equals(value.toString())) {
+            if(type.equalsIgnoreCase("checkbox")) {
             	
-            	sb.append(" checked=\"true\"");
+            	 String[] values = findValues(name, false, true);
+            	 
+            	 if (contains(values, this.value)) {
+                     sb.append(" checked=\"true\"");
+                 }
             	
-            } else if (this.value != null && value != null && this.value.toString().equals(value.toString())) {
+            } else {
+            	
+            	if (obj != null && value != null && obj.toString().equals(value.toString())) {
+                	
+                	sb.append(" checked=\"true\"");
+                	
+                } else if (this.value != null && value != null && this.value.toString().equals(value.toString())) {
 
-            	sb.append(" checked=\"true\"");
+                	sb.append(" checked=\"true\"");
+                	
+                } else if (value instanceof Boolean) {
+                	
+                	Boolean b = (Boolean) value;
+                	
+                	if (b) sb.append(" checked=\"true\"");
+                }
             	
-            } else if (value instanceof Boolean) {
-            	
-            	Boolean b = (Boolean) value;
-            	
-            	if (b) sb.append(" checked=\"true\"");
             }
+            
+            
             
         } else {
         	
