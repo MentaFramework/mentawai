@@ -28,6 +28,9 @@ public class I18nDisplaytagAdapter implements I18nResourceProvider,	LocaleResolv
 
 	@Override
 	public String getResource(String resourceKey, String defaultValue, Tag tag, PageContext pageContext) {
+		
+		if(resourceKey == null) return defaultValue;
+		
 		I18N[] props = findI18NInPageContext(pageContext);
 
 		for (int i = props.length - 1; i >= 0; i--) {

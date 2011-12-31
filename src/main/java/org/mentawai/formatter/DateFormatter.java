@@ -41,6 +41,8 @@ public class DateFormatter implements Formatter {
 	
 	public String format(Object value, Locale loc) {
 		
+		if(value == null) return null;
+		
 		if (!(value instanceof Date)) return value.toString();
 		
 		Date d = (Date) value;
