@@ -214,9 +214,10 @@ public class TransactionFilter implements Filter {
         	
         	if (Debug.isEnabled()) Debug.log(NAME, "An exception was thrown while executing action! Will try to rollback...", "msg =", e.getMessage());
         	
-            transaction.rollback();
-            
-            if (Debug.isEnabled()) Debug.log(NAME, "Transaction was rolled back!");
+        	if (transaction.isActive()) {
+        		transaction.rollback();
+        		if (Debug.isEnabled()) Debug.log(NAME, "Transaction was rolled back!");
+        	}
             
             throw e;
         }
