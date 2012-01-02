@@ -8,7 +8,6 @@ import javax.servlet.jsp.tagext.Tag;
 
 import org.displaytag.localization.I18nResourceProvider;
 import org.displaytag.localization.LocaleResolver;
-import org.mentawai.action.BaseLoginAction;
 import org.mentawai.tag.i18n.UseI18N;
 
 /**
@@ -20,10 +19,7 @@ public class I18nDisplaytagAdapter implements I18nResourceProvider,	LocaleResolv
 
 	@Override
 	public Locale resolveLocale(HttpServletRequest request) {
-		
-		Locale locale = (Locale) request.getSession().getAttribute( BaseLoginAction.LOCALE_KEY );
-		
-		return locale != null ? locale : LocaleManager.getDefaultLocale();
+		return LocaleManager.getLocale(request);
 	}
 
 	@Override

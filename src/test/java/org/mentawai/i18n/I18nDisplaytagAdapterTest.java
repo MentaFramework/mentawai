@@ -23,9 +23,12 @@ public class I18nDisplaytagAdapterTest {
 		
 		I18nDisplaytagAdapter displaytagAdapter = new I18nDisplaytagAdapter();
 		
-		assertEquals(Locale.ENGLISH, displaytagAdapter.resolveLocale(createMockHttpServletRequest(Locale.ENGLISH)));
+		// dont have En locale in LocaleManager supported yet
+		assertEquals(LocaleManager.DEFAULT_LOCALE, displaytagAdapter.resolveLocale(createMockHttpServletRequest(Locale.ENGLISH)));
 		
-		assertEquals(new Locale("pt","BR"), displaytagAdapter.resolveLocale(createMockHttpServletRequest(null)));
+		// now has en locale supported
+		LocaleManager.add(Locale.ENGLISH);
+		assertEquals(Locale.ENGLISH, displaytagAdapter.resolveLocale(createMockHttpServletRequest(Locale.ENGLISH)));
 	}
 
 	@Test
@@ -49,7 +52,7 @@ public class I18nDisplaytagAdapterTest {
 		HttpSession httpSession = mock(HttpSession.class);
 
 		//Adiciona na http a session.
-		when(httpServletRequest.getSession()).thenReturn(httpSession);
+		when(httpServletRequest.getSession(true)).thenReturn(httpSession);
 
 		//Adiciona na sessao o locale.
 		when(httpSession.getAttribute(BaseLoginAction.LOCALE_KEY)).thenReturn(locale);
