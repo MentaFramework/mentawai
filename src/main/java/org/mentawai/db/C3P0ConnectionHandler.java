@@ -18,11 +18,9 @@
  */
 package org.mentawai.db;
 
-import java.lang.reflect.Method;
+import java.beans.PropertyVetoException;
 import java.sql.Connection;
 import java.sql.SQLException;
-
-import javax.sql.DataSource;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.mchange.v2.c3p0.DataSources;
@@ -37,8 +35,9 @@ import com.mchange.v2.c3p0.DataSources;
 public class C3P0ConnectionHandler extends AbstractConnectionHandler {
 	
 	public static boolean DEBUG = false;
+	public static String TEST_QUERY = "select 1";
 	
-    private DataSource cpds;
+    private ComboPooledDataSource cpds;
     
     /**
      * Constructs a C3P0ConnectionHandler with C3P0's ComboPooledDataSource.
@@ -50,60 +49,53 @@ public class C3P0ConnectionHandler extends AbstractConnectionHandler {
      * @throws IllegalStateException If the C3P0 jar is not in the /WEB-INF/lib directory or if the JDBC driver cannot be loaded.
      */    
     public C3P0ConnectionHandler(String driver, String url, String user, String pass) {
-        Class<? extends Object> klass = null;
-        try {
-            klass = Class.forName("com.mchange.v2.c3p0.ComboPooledDataSource");
-        } catch(ClassNotFoundException e) {
-            e.printStackTrace();
-            throw new IllegalStateException("C3P0 cannot be found! You probably did not put the C3P0 jars in your /WEB-INF/lib directory!");
-        }
-        
+    	
+    	
+    	ComboPooledDataSource cpds = new ComboPooledDataSource();
+    	
         try {
             Class.forName(driver);
+            cpds.setDriverClass(driver);
         } catch(ClassNotFoundException e) {
             e.printStackTrace();
             throw new IllegalStateException("Cannot find jdbc driver " + driver + "! You probably did not put your JDBC driver in your /WEB-INF/lib directory!");
+        } catch(PropertyVetoException e) {
+        	e.printStackTrace();
+        	throw new IllegalStateException("Cannot set jdbc driver " + driver + "!");
         }
         
-        try {
-            Object cpds = klass.newInstance();
-            setValue(cpds, "driverClass", driver);
-            setValue(cpds, "user", user);
-            setValue(cpds, "password", pass);
-            setValue(cpds, "jdbcUrl", url);
-            setValue(cpds, "maxIdleTime", 5); // make this the default, as to run without this is trouble...
-            this.cpds = (DataSource) cpds;            
+        
+        cpds.setUser(user);
+        cpds.setPassword(pass);
+        cpds.setJdbcUrl(url);
+        
+        // now take care of broken pipe
+        // Source: http://netbeando.blogspot.com/2009/03/broken-pipe-solucao-correta.html
+        
+        cpds.setMinPoolSize(3);
+        cpds.setAcquireIncrement(3);
+        cpds.setMaxPoolSize(20);
+        cpds.setInitialPoolSize(3);
+        
+        cpds.setIdleConnectionTestPeriod(60 * 5);
+        cpds.setMaxStatements(0); // disabled prepared statement cache
+        cpds.setPreferredTestQuery(TEST_QUERY);
+        cpds.setCheckoutTimeout(1000 * 2); // timeout after 2 seconds if getConnection blocks....
             
-        } catch(Exception e) {
-            throw new RuntimeException("Error trying to setup a C3P0 pooled data source:" + e.getMessage(), e);
-        }
-    }
-    
-    public void setValue(String param, Object value) {
-    	
-    	try {
-    	
-    		setValue(cpds, param, value);
-    		
-    	} catch(Exception e) {
-    		
-    		throw new RuntimeException("Error trying to setup a C3P0 pooled data source:" + e.getMessage(), e);
-    	}
+        this.cpds = cpds;            
     }
     
     public String getStatus() {
-    	
-    	ComboPooledDataSource dataSource = (ComboPooledDataSource) cpds;
     	
     	try {
     		
     		StringBuilder sb = new StringBuilder(256);
     		
-    		sb.append("Busy: ").append(dataSource.getNumBusyConnectionsDefaultUser());
+    		sb.append("Busy: ").append(cpds.getNumBusyConnectionsDefaultUser());
     		
-    		sb.append(" / Idle: ").append(dataSource.getNumIdleConnectionsDefaultUser());
+    		sb.append(" / Idle: ").append(cpds.getNumIdleConnectionsDefaultUser());
     		
-    		sb.append(" / Total: ").append(dataSource.getNumConnectionsDefaultUser());
+    		sb.append(" / Total: ").append(cpds.getNumConnectionsDefaultUser());
     		
     		return sb.toString();
     		
@@ -113,32 +105,12 @@ public class C3P0ConnectionHandler extends AbstractConnectionHandler {
     	}
     }
     
-	/*
-	 * Use reflection to set a property in the bean
-	 */
-	private void setValue(Object bean, String name, Object value) throws Exception {
-        StringBuffer sb = new StringBuffer(30);
-        sb.append("set");
-        sb.append(name.substring(0,1).toUpperCase());
-        if (name.length() > 1) sb.append(name.substring(1));
-        
-        Class<? extends Object> klass = value.getClass();
-        
-        if (klass.equals(Integer.class)) klass = int.class; // little hack...
-        
-        Method m = bean.getClass().getMethod(sb.toString(), new Class[] { klass });
-        if (m != null) {
-            m.setAccessible(true);
-            m.invoke(bean, new Object[] { value });
-        }
-	}        
-    
     /**
      * Gets the underlying C3P0's ComboPooledDataSource.
      *
      * @return The ComboPooledDataSource
      */    
-    public DataSource getComboPooledDataSource() {
+    public ComboPooledDataSource getComboPooledDataSource() {
         return cpds;
     }
     
@@ -208,12 +180,10 @@ public class C3P0ConnectionHandler extends AbstractConnectionHandler {
     
     public void destroy() {
     	
-    	ComboPooledDataSource dataSource = (ComboPooledDataSource) cpds;
-    	
     	try {
     	
     		//dataSource.close();
-    		DataSources.destroy( dataSource );
+    		DataSources.destroy( cpds );
     		
     	} catch(Exception e) {
     		
