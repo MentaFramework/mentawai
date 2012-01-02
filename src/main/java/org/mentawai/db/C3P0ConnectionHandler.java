@@ -81,6 +81,9 @@ public class C3P0ConnectionHandler extends AbstractConnectionHandler {
         cpds.setMaxStatements(0); // disabled prepared statement cache
         cpds.setPreferredTestQuery(TEST_QUERY);
         cpds.setCheckoutTimeout(1000 * 2); // timeout after 2 seconds if getConnection blocks....
+        
+        cpds.setMaxIdleTime(60 * 5);
+        cpds.setMaxIdleTimeExcessConnections(60 * 1);
             
         this.cpds = cpds;            
     }
