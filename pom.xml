@@ -42,6 +42,12 @@
 		<svn.url>svn://soliveirajr.com/mentawai/trunk</svn.url>
 	</properties>
 	<dependencies>
+	
+		<dependency>
+			<groupId>com.jolbox</groupId>
+			<artifactId>bonecp</artifactId>
+			<version>0.7.1.RELEASE</version>
+		</dependency>
 
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
