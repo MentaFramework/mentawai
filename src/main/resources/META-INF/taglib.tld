@@ -15,53 +15,35 @@
 
 	<!-- dyntag tags by Alex Fortuna -->
 	<listener>
-		<listener-class>
-			org.mentawai.tag.html.dyntag.inputDate.listener.InputDateListener
-		</listener-class>
+		<listener-class>org.mentawai.tag.html.dyntag.inputDate.listener.InputDateListener</listener-class>
 	</listener>
 	<listener>
-		<listener-class>
-			org.mentawai.tag.html.dyntag.inputMask.listener.InputMaskListener
-		</listener-class>
+		<listener-class>org.mentawai.tag.html.dyntag.inputMask.listener.InputMaskListener</listener-class>
 	</listener>
 	<listener>
-		<listener-class>
-			org.mentawai.tag.html.dyntag.inputMoney.listener.InputMoneyListener
-		</listener-class>
+		<listener-class>org.mentawai.tag.html.dyntag.inputMoney.listener.InputMoneyListener</listener-class>
 	</listener>
 	<listener>
-		<listener-class>
-			org.mentawai.tag.html.dyntag.tabPanel.listener.TabPanelListener
-		</listener-class>
+		<listener-class>org.mentawai.tag.html.dyntag.tabPanel.listener.TabPanelListener</listener-class>
 	</listener>
 	<listener>
-		<listener-class>
-			org.mentawai.tag.html.dyntag.formSkin.listener.FormSkinListener
-		</listener-class>
+		<listener-class>org.mentawai.tag.html.dyntag.formSkin.listener.FormSkinListener</listener-class>
 	</listener>
 	<listener>
-		<listener-class>
-			org.mentawai.tag.html.dyntag.selectBox.listener.SelectBoxListener
-		</listener-class>
+		<listener-class>org.mentawai.tag.html.dyntag.selectBox.listener.SelectBoxListener</listener-class>
 	</listener>
 	<listener>
-		<listener-class>
-			org.mentawai.tag.html.dyntag.stats.listener.StatsListener
-		</listener-class>
+		<listener-class>org.mentawai.tag.html.dyntag.stats.listener.StatsListener</listener-class>
 	</listener>
 
 	<!-- Tag menu  -->
 	<listener>
-		<listener-class>
-			org.mentawai.tag.html.dyntag.menu.listener.MenuListener
-		</listener-class>
+		<listener-class>org.mentawai.tag.html.dyntag.menu.listener.MenuListener</listener-class>
 	</listener>
 
 	<!-- Tag AjaxConfig  -->
 	<listener>
-		<listener-class>
-			org.mentawai.tag.html.ajax.listener.AjaxListener
-		</listener-class>
+		<listener-class>org.mentawai.tag.html.ajax.listener.AjaxListener</listener-class>
 	</listener>
 
 	<!-- i18n -->
@@ -455,7 +437,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<tag>
 		<name>exists</name>
 		<tag-class>org.mentawai.tag.ExistsTag</tag-class>
@@ -2850,7 +2832,7 @@
 			<type>java.lang.String</type>
 		</attribute>
  	</tag>
- 	
+
  	<!-- user in role -->
 	<tag>
 		<name>isUserInRole</name>
