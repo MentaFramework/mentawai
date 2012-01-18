@@ -65,32 +65,6 @@ public class DataSourceConnectionHandler extends AbstractConnectionHandler {
     	}
     }
     
-    public <T> T getInstance() {
-    	
-    	try {
-    		
-    		return (T) getConnection();
-    		
-    	} catch(Exception e) {
-    		
-    		throw new RuntimeException(e);
-    	}
-    }
-    
-    public void onCleared(Connection conn) {
-    	
-    	release(conn);
-    }
-    
-    public void onCreated(Connection conn) {
-    	
-    }
-    
-    public Class<? extends Object> getType() {
-    	
-    	return Connection.class;
-    }
-    
     public void release(Connection conn) {
         try {
             if (conn != null) conn.close();

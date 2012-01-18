@@ -50,29 +50,4 @@ public class JdbcConnectionHandler extends AbstractConnectionHandler {
 	
 	public void destroy() { }
 	
-	public <T> T getInstance() {
-		
-		try {
-		
-			return (T) getConnection();
-			
-		} catch(Exception e) {
-			
-			throw new RuntimeException(e);
-		}
-	}
-	
-	public Class<? extends Object> getType() {
-		
-		return Connection.class;
-	}
-	
-	public void onCleared(Connection conn) {
-		
-		release(conn);
-	}
-	
-	public void onCreated(Connection conn) {
-		
-	}
 }

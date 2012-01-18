@@ -107,32 +107,4 @@ public class BoneCPConnectionHandler extends AbstractConnectionHandler {
 		
 		return sb.toString();
 	}
-
-	@Override
-    public <T> T getInstance() {
-		try {
-	    	
-    		return (T) getConnection();
-    		
-    	} catch(Exception e) {
-    		
-    		throw new RuntimeException(e);
-    	}
-    }
-
-	@Override
-    public Class<? extends Object> getType() {
-		return Connection.class;
-    }
-
-	@Override
-    public void onCreated(Connection createdObject) {
-		// nothing here
-    }
-
-	@Override
-    public void onCleared(Connection clearedObject) {
-	    release(clearedObject);
-    }
-
 }

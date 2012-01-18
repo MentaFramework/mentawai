@@ -44,7 +44,6 @@ public class JNDIConnectionHandler extends AbstractConnectionHandler {
     private JNDIConnectionHandler(String poolname) {
 		try {
             Context ctx = new InitialContext();
-            if(ctx == null) throw new RuntimeException("Context == null !!!");
             this.ds = (DataSource) ctx.lookup("java:comp/env/" + poolname);
             this.poolname = poolname;
 		} catch(NamingException e) {
@@ -72,31 +71,6 @@ public class JNDIConnectionHandler extends AbstractConnectionHandler {
     	} catch(Exception e) {
     		throw new RuntimeException(e);
     	}
-    }
-    
-    public Class<? extends Object> getType() {
-    	return Connection.class;
-    }
-    
-    public <T> T getInstance() {
-    	
-    	try {
-    		
-    		return (T) getConnection();
-    		
-    	} catch(Exception e) {
-    		
-    		throw new RuntimeException(e);
-    	}
-    }
-    
-    public void onCleared(Connection conn) {
-    	
-    	release(conn);
-    }
-    
-    public void onCreated(Connection conn) {
-    	
     }
     
     public void release(Connection conn) {

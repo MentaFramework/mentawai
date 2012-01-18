@@ -35,7 +35,6 @@ import com.mchange.v2.c3p0.DataSources;
 public class C3P0ConnectionHandler extends AbstractConnectionHandler {
 	
 	public static boolean DEBUG = false;
-	public static String TEST_QUERY = "select 1";
 	
     private ComboPooledDataSource cpds;
     
@@ -46,9 +45,10 @@ public class C3P0ConnectionHandler extends AbstractConnectionHandler {
      * @param url The JDBC url to connect to the database.
      * @param user The database username to use.
      * @param pass The database password to use.
+     * @param testQuery The test sql statement used to test  the db connection.
      * @throws IllegalStateException If the C3P0 jar is not in the /WEB-INF/lib directory or if the JDBC driver cannot be loaded.
      */    
-    public C3P0ConnectionHandler(String driver, String url, String user, String pass) {
+    public C3P0ConnectionHandler(String driver, String url, String user, String pass, String testQuery) {
     	
     	
     	ComboPooledDataSource cpds = new ComboPooledDataSource();
@@ -77,15 +77,22 @@ public class C3P0ConnectionHandler extends AbstractConnectionHandler {
         cpds.setMaxPoolSize(20);
         cpds.setInitialPoolSize(3);
         
-        cpds.setIdleConnectionTestPeriod(60);
         cpds.setMaxStatements(0); // disabled prepared statement cache
-        cpds.setPreferredTestQuery(TEST_QUERY);
         cpds.setCheckoutTimeout(1000 * 2); // timeout after 2 seconds if getConnection blocks....
+        
+        if (testQuery != null) {
+        	cpds.setIdleConnectionTestPeriod(60);
+        	cpds.setPreferredTestQuery(testQuery);
+        }
         
         cpds.setMaxIdleTime(60 * 5);
         cpds.setMaxIdleTimeExcessConnections(60 * 2);
             
         this.cpds = cpds;            
+    }
+    
+    public C3P0ConnectionHandler(String driver, String url, String user, String pass) {
+    	this(driver, url, user, pass, null);
     }
     
     public String getStatus() {
@@ -131,18 +138,6 @@ public class C3P0ConnectionHandler extends AbstractConnectionHandler {
         return conn;
     }
     
-    public void onCleared(Connection conn) {
-    	release(conn);
-    }
-    
-    public void onCreated(Connection conn) {
-    	
-    }
-    
-    public Class<? extends Object> getType() {
-    	return Connection.class;
-    }
-    
     public void release(Connection conn) {
     	
     	if (DEBUG) {
@@ -155,18 +150,6 @@ public class C3P0ConnectionHandler extends AbstractConnectionHandler {
         } catch(Exception e) {
             e.printStackTrace();
         }
-    }
-    
-    public <T> T getInstance() {
-    	
-    	try {
-    	
-    		return (T) getConnection();
-    		
-    	} catch(Exception e) {
-    		
-    		throw new RuntimeException(e);
-    	}
     }
     
     public Object getBean() throws InstantiationException {
