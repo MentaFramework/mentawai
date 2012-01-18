@@ -103,13 +103,9 @@ public class DebugServletFilter implements Filter {
             writer.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n\n");
             if (COMMENTED)
               writer.println("\n\n" +
-            		  htmlRedFont+"Mentawai Web Framework - Version:"+
-                      ApplicationManager.MENTAWAI_VERSION+" Build:"+
-                      ApplicationManager.MENTAWAI_BUILD);
+            		  htmlRedFont+"Mentawai Web Framework");
             else
-             writer.println(htmlRedFont+"<b>Mentawai Web Framework</b> - Version:<b>"+
-                     ApplicationManager.MENTAWAI_VERSION+" </b> Build:<b>"+
-                     ApplicationManager.MENTAWAI_BUILD +"</b>"+htmlCloseFont);
+             writer.println(htmlRedFont+"<b>Mentawai Web Framework</b>"+htmlCloseFont);
 
             if (COMMENTED) writer.println("\n\n MENTA DEBUG : End -->\n");
             else writer.println("</pre>\n");
