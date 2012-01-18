@@ -81,7 +81,6 @@ public class IsUserInRole extends ConditionalTag {
 
 	/**
 	 * Sets roles of IsUserInRole.
-	 * @return String
 	 */
 	public void setRoles(String roles) {
 		this.roles = roles;

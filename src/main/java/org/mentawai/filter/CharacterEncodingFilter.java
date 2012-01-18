@@ -81,17 +81,14 @@ public class CharacterEncodingFilter implements Filter {
 
     /**
      * Parametric constructor.
-     * @param charSet String
+     * @param charSet
+     * @param contentType
      */
     public CharacterEncodingFilter(String charSet, String contentType) {
         this.charSet = charSet;
         this.contentType = contentType;
     }
 
-    /**
-     * Default filter method.
-     * @param InvocationChain chain
-     */
     public String filter(InvocationChain chain) throws Exception {
 
         Action action = chain.getAction();
