@@ -384,6 +384,7 @@ public class Controller extends HttpServlet {
 	private static void printInfoHeader() {
 		System.out.println();
 		System.out.println("==== [ Mentawai :: MVC WEB Framework ] ==========================================================");
+		System.out.println("- Version : " + ApplicationManager.MENTAWAI_VERSION+ " (" + ApplicationManager.MENTAWAI_BUILD + ")");
 		System.out.println("- ReloadAppManager: " + reloadAppManager);
 		System.out.println("- DebugMode: " + debugMode);
 		System.out.println("- AutoView: " + autoView);
@@ -462,6 +463,7 @@ public class Controller extends HttpServlet {
             DebugServletFilter.addStaticInfo("ApplicationManager = " + appMgrClassname); // for debug mode
             DebugServletFilter.addStaticInfo("ReloadAppManager = " + reloadAppManager); // for debug mode
             DebugServletFilter.addStaticInfo("AutoView = " + autoView); // for debug mode
+            DebugServletFilter.addStaticInfo("Version = " + ApplicationManager.MENTAWAI_VERSION+ " (" + ApplicationManager.MENTAWAI_BUILD + ")");
             if (getContextPath() != null) DebugServletFilter.addStaticInfo("ContextPath = " + getContextPath());
             DebugServletFilter.addStaticInfo("Server = " + application.getServerInfo());
 
@@ -638,6 +640,9 @@ public class Controller extends HttpServlet {
 		if (appManager == null) {
 			throw new ServletException("The Application manager is not loaded");
 		}
+
+		// notify client that response had processed by mentawai.
+		res.setHeader("Mentawai-Version", ApplicationManager.MENTAWAI_VERSION);
 
 		/*
 		 * This is very useful during development time, however it should not be

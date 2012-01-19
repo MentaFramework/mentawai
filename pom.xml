@@ -40,6 +40,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<svn.tags>svn://soliveirajr.com/mentawai/tags</svn.tags>
 		<svn.url>svn://soliveirajr.com/mentawai/trunk</svn.url>
+	    <maven.build.timestamp.format>yyyyMMdd</maven.build.timestamp.format>
+    	<buildDate>${maven.build.timestamp}</buildDate>
 	</properties>
 	<dependencies>
 	
@@ -291,6 +293,14 @@
 	</pluginRepositories>
 	<build>
 		<finalName>mentawai</finalName>
+		
+		<resources>
+        	<resource>
+          		<directory>src/main/resources</directory>
+          		<filtering>true</filtering>
+        	</resource>
+     	</resources> 
+		
 		<pluginManagement>
 			<plugins>
 				<plugin>

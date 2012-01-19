@@ -51,7 +51,7 @@ public class ApplicationManagerViewer {
         out.println("	</script>");
         out.println("	</head>");
         out.println("	<body>");
-        out.println("	<h1 id=\"banner\">Mentawai Web Framework</h1>");
+        out.println("	<h1 id=\"banner\">Mentawai Web Framework " + ApplicationManager.MENTAWAI_VERSION + " Build:"+ApplicationManager.MENTAWAI_BUILD+"</h1>");
         out.println("	<div id=\"main\">");
         out.println("	<b>ApplicationManager Statistics "+STATS_VERSION+"</b>");
         out.println("	<ul id=\"browser\" class=\"filetree treeview-famfamfam\">");

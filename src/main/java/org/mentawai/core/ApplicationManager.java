@@ -20,6 +20,7 @@ package org.mentawai.core;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.net.InetAddress;
 import java.net.URL;
 import java.net.URLDecoder;
@@ -30,6 +31,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -124,6 +126,22 @@ public abstract class ApplicationManager {
     public static final String REDIR = RedirectAfterLoginFilter.REDIR;
     
     public static Environment DEFAULT_ENVIRONMENT = Environment.DEV;
+
+    public static String MENTAWAI_VERSION = "???";
+    public static String MENTAWAI_BUILD = "???";
+    
+    static {
+    	Properties props = new Properties();
+        try {
+        	InputStream inputStream = ApplicationManager.class.getResourceAsStream("/build.properties"); 
+        	props.load(inputStream);
+        	MENTAWAI_VERSION = props.getProperty("mentawai.version");
+        	MENTAWAI_BUILD = props.getProperty("mentawai.buildDate");
+        } catch(Exception e) {
+        	System.out.println("Cannot load build.properties!");
+        	e.printStackTrace();
+        }
+    }
 
     public static String EXTENSION = "mtw";
     public static String CONTEXT_PATH = null;
