@@ -380,6 +380,12 @@ public class Out extends PrintTag {
                 
                 return checkOnBlank(s);
                 
+            } else if (obj instanceof Enum) {
+            	
+                String s = getFromList(obj.toString(), loc, list);
+                    
+                return checkOnBlank(s);
+                    
             } else {
                 throw new JspException("Could not get list: " + value + " / " + obj);
             }
