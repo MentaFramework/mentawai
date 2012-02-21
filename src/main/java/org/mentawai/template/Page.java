@@ -22,7 +22,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
 
 /**
  * Esta classe representa uma pagina. Seguindo o paradigma de blocos do
@@ -76,7 +75,7 @@ public class Page {
 	 * as classes filhas. A heranca tem o fim de facilitar a configuracao, eliminando
 	 * a necessidade de codificacoes repetitivas.
      * Alterado por Leandro Santana Pereira
-     * M�todo modificado na ultima linha, para corre��o de bug de um ou mais templates utilizando expressao regular.
+     * Método modificado na ultima linha, para correção de bug de um ou mais templates utilizando expressao regular.
 	 *
 	 * @param pageSuper
 	 *        		Page pai
@@ -95,7 +94,7 @@ public class Page {
 	/**
 	 * Muito usado para pages que herdam de um page base.
      * Alterado por Leandro Santana Pereira
-     * M�todo modificado na ultima linha, para corre��o de bug de um ou mais templates utilizando expressao regular.
+     * Método modificado na ultima linha, para correção de bug de um ou mais templates utilizando expressao regular.
 	 *
 	 * @param path
 	 *            O path que devera ser usado para o acesso a esse page
@@ -151,7 +150,7 @@ public class Page {
 
 	/**
      * Alterado por Leandro Santana Pereira
-     * M�todo modificado na ultima linha, para corre��o de bug de um ou mais templates utilizando expressao regular.
+     * Método modificado na ultima linha, para correção de bug de um ou mais templates utilizando expressao regular.
 	 *
 	 * @param path
 	 *            O path que devera ser usado para o acesso a esse page
@@ -253,16 +252,11 @@ public class Page {
 
 	/**
 	  * Metodo adicionado por Leandro Santana Pereira
-	  * Verifica se o padr�o da p�gina (pattern) casa com o path passado como entrada.
-	  * Se o pattern for nulo, retorno � false
+	  * Verifica se o padrão da página (pattern) casa com o path passado como entrada.
+	  * Se o pattern for nulo, retorno é false
 	**/
     public boolean patternMatches(String path) {
         return (pattern == null) ? false : this.pattern.matcher(path).matches();
-    }
-
-    @Override
-    public String toString() {
-    	return ToStringBuilder.reflectionToString(this);
     }
 
 }
