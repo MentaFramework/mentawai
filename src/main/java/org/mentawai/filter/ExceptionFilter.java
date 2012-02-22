@@ -20,8 +20,9 @@ package org.mentawai.filter;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Deque;
+import java.util.LinkedList;
 
-import org.apache.commons.lang.exception.ExceptionUtils;
 import org.mentawai.core.Action;
 import org.mentawai.core.Filter;
 import org.mentawai.core.InvocationChain;
@@ -36,41 +37,54 @@ import org.mentawai.core.Output;
  * </p>
  *
  * <p>
- * "message" - The message of the Exception (e.getMessage()) <br/> 
- * "stacktrace" - The Exception's stacktrace (e.getStackTrace()) <br/> 
- * "stackheader" - The Exception's first stacktrace (e.getStackTrace()[0]) <br/> 
+ * "message" - The message of the Exception (e.getMessage()) <br/>
+ * "stacktrace" - The Exception's stacktrace (e.getStackTrace()) <br/>
+ * "stackheader" - The Exception's first stacktrace (e.getStackTrace()[0]) <br/>
  * </p>
  * <p>
  * Also, the method e.printStackTrace() is called if the attribute "trace"
  * is setted to true. </p>
  * <p>
- * After that, the filter return "exception" as the action's result. A 
+ * After that, the filter return "exception" as the action's result. A
  * Consequence must be mapped for this result.<p>
  * <p>
  * The behavior of this filter can be changed by extending it's class and
  * overriding the handleException method.
  * </p>
- * 
+ *
  * @author Rubem Azenha (rubem.azenha@gmail.com)
  */
 public class ExceptionFilter implements Filter {
 
+	/** Attribute MESSAGE_KEY of ExceptionFilter. */
 	public static String MESSAGE_KEY = "message";
-	
+
+	/** Attribute EXCEPTION_KEY of ExceptionFilter. */
 	public static String EXCEPTION_KEY = "exception";
 
+	/** Attribute STACK_TRACE_KEY of ExceptionFilter. */
 	public static String STACK_TRACE_KEY = "stacktrace";
 
+	/** Attribute STACK_HEADER_KEY of ExceptionFilter. */
 	public static String STACK_HEADER_KEY = "stackheader";
-	
+
+	/** Attribute EXCEPTION of ExceptionFilter. */
 	public static String EXCEPTION = "exception";
 
+	/** Attribute trace of ExceptionFilter. */
 	private boolean trace = true;
 
+	/**
+	 * Default constructor.
+	 */
 	public ExceptionFilter() {
 
 	}
 
+	/**
+	 * Parametric constructor.
+	 * @param trace boolean
+	 */
 	public ExceptionFilter(boolean trace) {
 		this.trace = trace;
 	}
@@ -79,7 +93,7 @@ public class ExceptionFilter implements Filter {
 	 * Execute the chain and cacth any exception that occours, delegating to the
 	 * handleException() method the resposability to handle the exception
 	 * throwed by the chain's execution.
-	 * 
+	 *
 	 * @return the result of the action's execution.
 	 */
 	public String filter(InvocationChain chain) throws Exception {
@@ -89,52 +103,78 @@ public class ExceptionFilter implements Filter {
 			return handleException(chain.getAction(), throwable);
 		}
 	}
-	
+
+	/**
+	 * Gets the root cause of exception.
+	 * @param throwable Throwable
+	 * @return Throwable
+	 */
+	protected static Throwable getRootCause(Throwable throwable) {
+		Deque < Throwable > list = new LinkedList < Throwable >();
+        while (throwable != null && list.contains(throwable) == false) {
+            list.add(throwable);
+            throwable = throwable.getCause();
+        }
+		return list.getLast();
+	}
+
 	/**
 	 * Handle the exception, putting in the action's output the message of the
 	 * exception, all the StackTrace elements and the first StackTrace element.
 	 * <br/> This method can be overrided to change the behavior of the
 	 * ExceptionFilter.
-	 * 
-	 * @param a
-	 *            the action that has throwed the exception.
-	 * @param throwable
-	 *            the exception throwed by the action's execution.
+	 *
+	 * @param a the action that has throwed the exception.
+	 * @param throwable the exception throwed by the action's execution.
 	 * @return the result of the action's execution.
 	 */
 	protected String handleException(Action a, Throwable throwable) {
-		
-		String message = ExceptionUtils.getRootCauseMessage(throwable);
-		
-		Throwable t = ExceptionUtils.getRootCause(throwable);
-		
+
+		Throwable t = getRootCause(throwable);
+
 		String exp = t != null ? t.getClass().getName() : throwable.getClass().getName();
-		
+
 		Output output = a.getOutput();
 		output.setValue(EXCEPTION_KEY, exp);
-		output.setValue(MESSAGE_KEY, message);
-		
+		output.setValue(MESSAGE_KEY, t.getMessage());
+
 		StringWriter sw = new StringWriter();
-	      
-	    PrintWriter pw = new PrintWriter(sw, true);
-	      
-	    ExceptionUtils.printRootCauseStackTrace(throwable, pw);
-	    
+
+		PrintWriter pw = new PrintWriter(sw, true);
+
+		t.printStackTrace(pw);
+
+	    if (t != null) {
+
+	    	pw.println(sw.getBuffer().toString());
+
+	    	pw.flush();
+
+	    }
+
 	    String full_trace = sw.getBuffer().toString();
-	      
+
 	    String[] lines = full_trace.split("\\n");
-	    
+
 	    output.setValue(STACK_HEADER_KEY, lines[0]);
-	    
+
 	    output.setValue(STACK_TRACE_KEY, prepareStackTrace(lines));
-	  
+
 		if (trace) {
-			ExceptionUtils.printRootCauseStackTrace(throwable);
+
+		    if (t != null) {
+
+		    	System.err.println(sw.getBuffer().toString());
+
+		    	System.err.flush();
+
+		    }
+
 		}
-			
+
 		return EXCEPTION;
 	}
-	
+
 	protected String prepareStackTrace(String[] stacktrace) {
 		StringBuffer sb = new StringBuffer(stacktrace.length * 75);
 		for (int i = 0; i < stacktrace.length; i++) {
@@ -145,7 +185,7 @@ public class ExceptionFilter implements Filter {
 		}
 		return sb.toString();
 	}
-	
+
 	protected String prepareStackTrace(StackTraceElement[] stacktrace) {
 		StringBuffer sb = new StringBuffer(stacktrace.length * 75);
 		for (int i = 0; i < stacktrace.length; i++) {
@@ -163,7 +203,11 @@ public class ExceptionFilter implements Filter {
 		return s;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void destroy() {
+
 	}
 
 }
