@@ -518,6 +518,10 @@ public class LocaleManager {
     }
     
     public static Locale getSupportedLocale(Locale loc, Locale def, boolean returnDefaultIfNotFound) {
+    	
+    	if (loc == null) {
+    		return def != null ? def : (returnDefaultIfNotFound ? getDefaultLocale() : null);
+    	}
         
     	if (isSupportedLocale(loc)) return loc;
 		
