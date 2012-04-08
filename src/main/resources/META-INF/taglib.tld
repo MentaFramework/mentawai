@@ -24,9 +24,6 @@
 		<listener-class>org.mentawai.tag.html.dyntag.inputMoney.listener.InputMoneyListener</listener-class>
 	</listener>
 	<listener>
-		<listener-class>org.mentawai.tag.html.dyntag.tabPanel.listener.TabPanelListener</listener-class>
-	</listener>
-	<listener>
 		<listener-class>org.mentawai.tag.html.dyntag.formSkin.listener.FormSkinListener</listener-class>
 	</listener>
 	<listener>
@@ -34,11 +31,6 @@
 	</listener>
 	<listener>
 		<listener-class>org.mentawai.tag.html.dyntag.stats.listener.StatsListener</listener-class>
-	</listener>
-
-	<!-- Tag menu  -->
-	<listener>
-		<listener-class>org.mentawai.tag.html.dyntag.menu.listener.MenuListener</listener-class>
 	</listener>
 
 	<!-- Tag AjaxConfig  -->
@@ -1823,50 +1815,6 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>String</type>
-		</attribute>
-	</tag>
-	<!-- tabPanelConfig -->
-	<tag>
-		<name>tabPanelConfig</name>
-		<tag-class>
-			org.mentawai.tag.html.dyntag.tabPanel.TabPanelConfig
-		</tag-class>
-		<body-content>empty</body-content>
-		<attribute>
-			<name>skin</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-	<!-- tabPanel -->
-	<tag>
-		<name>tabPanel</name>
-		<tag-class>
-			org.mentawai.tag.html.dyntag.tabPanel.TabPanel
-		</tag-class>
-		<body-content>scriptless</body-content>
-		<attribute>
-			<name>name</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-	<!-- tabPage -->
-	<tag>
-		<name>tabPage</name>
-		<tag-class>
-			org.mentawai.tag.html.dyntag.tabPanel.TabPage
-		</tag-class>
-		<body-content>scriptless</body-content>
-		<attribute>
-			<name>name</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<name>caption</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
 	<!-- selectBoxConfig -->
