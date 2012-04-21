@@ -48,6 +48,8 @@ public class ActionConfig {
     private String dirName = null;
     private Consequence catchAll = null;
     private boolean internal = false;
+    private boolean bypassAuthentication = false;
+    private boolean redirectAfterLogin = false;
     
 	/**
 	 * Creates an ActionConfig for the given action implementation.
@@ -194,6 +196,36 @@ public class ActionConfig {
 	
 	public boolean isInternalOnly() {
 		return internal;
+	}
+	
+	/**
+	 * Indicate that this action should NOT be authenticated. (For registration, login, etc.)
+	 * 
+	 * @return this action config
+	 * @since 2.4.0
+	 */
+	public ActionConfig bypassAuthentication() {
+		this.bypassAuthentication = true;
+		return this;
+	}
+	
+	public boolean shouldBypassAuthentication() {
+		return bypassAuthentication;
+	}
+	
+	/**
+	 * Indicate that this action redirects after login.
+	 * 
+	 * @return this action config
+	 * @since 2.4.0
+	 */
+	public ActionConfig redirectAfterLogin() {
+		this.redirectAfterLogin = true;
+		return this;
+	}
+	
+	public boolean shouldRedirectAfterLogin() {
+		return redirectAfterLogin;
 	}
     
     /**

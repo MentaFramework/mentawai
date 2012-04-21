@@ -76,6 +76,10 @@ public class AuthenticationFilter implements Filter {
          
          shouldBypass = af.bypassAuthentication(innerAction);
          
+      } else if (ac.shouldBypassAuthentication()) {
+    	  
+    	  shouldBypass = true;
+         
       } else if (action instanceof RubyAction) {
     	  
     	  RubyAction ra = (RubyAction) action;
@@ -107,12 +111,16 @@ public class AuthenticationFilter implements Filter {
             
             boolean shouldRedirect = false;
 			   
-				if (actionImpl instanceof RedirectAfterLogin) {
+            	if (actionImpl instanceof RedirectAfterLogin) {
 				   
 				   RedirectAfterLogin ral = (RedirectAfterLogin) actionImpl;
 				      
-			      shouldRedirect = ral.shouldRedirect(innerAction);
-			      
+				   shouldRedirect = ral.shouldRedirect(innerAction);
+				   
+            	} else if (ac.shouldRedirectAfterLogin()) {
+            		
+            		shouldRedirect = true;
+				   
 			   } else if (action instanceof RubyAction) {
 				   
 				   RubyAction ra = (RubyAction) action;
