@@ -95,13 +95,19 @@
 			<artifactId>menta-container</artifactId>
 			<version>0.9.8</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.13</version>
+		</dependency>
 
 		<dependency>
 			<groupId>me.soliveirajr</groupId>
 			<artifactId>menta-bean</artifactId>
 			<version>1.1.1</version>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>me.soliveirajr</groupId>
 			<artifactId>menta-regex</artifactId>
@@ -119,12 +125,11 @@
 			<artifactId>bonecp</artifactId>
 			<version>0.7.1.RELEASE</version>
 		</dependency>
-	
+		
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.5.10</version>
-			<scope>provided</scope>
 		</dependency>	
 
 		<dependency>
