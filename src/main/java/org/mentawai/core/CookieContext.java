@@ -119,7 +119,7 @@ public class CookieContext implements Context, Map<String, Object> {
         	Cookie c = (Cookie) value;
         	
         	if (!c.getName().equals(name)) {
-        		throw new IllegalStateException("Cookie name just not match the key in the context: " + name + " != " + c.getName());
+        		throw new IllegalStateException("Cookie name does not match the key in the context: " + name + " != " + c.getName());
         	}
             
             res.addCookie(c);
