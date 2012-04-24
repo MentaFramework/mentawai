@@ -46,13 +46,17 @@ public class DefaultApplicationManager extends ApplicationManager {
 		////////////////////////////////////////////
 		// TURN ON/OFF DEBUG MODE
 		////////////////////////////////////////////
-		setDebugMode(props.getBoolean("debug_mode"));
+		if (props.has("debug_mode")) {
+			setDebugMode(props.getBoolean("debug_mode"));
+		}
 		
 		///////////////////////////////////////////////////
 		// TURN ON/OFF APP MANAGER AUTO-REDEPLOY FEATURE
         // OBS: Requires http://www.javarebel.com to work
 		///////////////////////////////////////////////////
-		setReloadable(props.getBoolean("auto_reload"));
+		if (props.has("auto_reload")) {
+			setReloadable(props.getBoolean("auto_reload"));
+		}
 		
 		//////////////////////////////////////////
 		// FOR SENDING EMAIL
@@ -83,14 +87,16 @@ public class DefaultApplicationManager extends ApplicationManager {
 	@Override
 	public final void setupDB() {
 		
-		String driver = props.getString("jdbc.driver");
-		String url = props.getString("jdbc.url");
-		String user = props.getString("jdbc.user");
-		String pass = props.getString("jdbc.pass");
+		if (props.has("jdbc.url")) {
+			String driver = props.getString("jdbc.driver");
+			String url = props.getString("jdbc.url");
+			String user = props.getString("jdbc.user");
+			String pass = props.getString("jdbc.pass");
 		
-		this.connHandler = new MySQLBoneCPConnectionHandler(driver, url, user, pass);
+			this.connHandler = new MySQLBoneCPConnectionHandler(driver, url, user, pass);
 		
-		initDB(connHandler);
+			initDB(connHandler);
+		}
 	}
 	
 	public void initDB(ConnectionHandler connHandler) {
@@ -206,12 +212,14 @@ public class DefaultApplicationManager extends ApplicationManager {
 		// AVAILABLE THROUGH IOC (INVERSION OF CONTROL)
 		////////////////////////////////////////////////////////
 		
-		ioc("conn", connHandler);
-		ioc("beanManager", getBeanManager()); // always return the same instance...
-		if (props.has("mentabean.dialect")) {
-			ioc("beanSession", props.getClass("mentabean.dialect"));
+		if (connHandler != null) {
+			ioc("conn", connHandler);
+			ioc("beanManager", getBeanManager()); // always return the same instance...
+			if (props.has("mentabean.dialect")) {
+				ioc("beanSession", props.getClass("mentabean.dialect"));
+			}
+			ioc("transaction", JdbcTransaction.class);
 		}
-		ioc("transaction", JdbcTransaction.class);
 		
 		initIoC();
 	}
