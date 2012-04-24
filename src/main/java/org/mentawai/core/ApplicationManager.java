@@ -39,6 +39,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.mentabean.BeanConfig;
 import org.mentabean.BeanManager;
+import org.mentabean.BeanSession;
 import org.mentacontainer.Container;
 import org.mentacontainer.Factory;
 import org.mentacontainer.Scope;
@@ -1586,7 +1587,7 @@ public abstract class ApplicationManager {
     public Bean addComponent(String name, Bean comp) {
 
     	if (comp == null) return null;
-
+    	
     	/*
     	 * MentaContainerFilter will clean the thread scope.
     	 *
@@ -1685,6 +1686,10 @@ public abstract class ApplicationManager {
     public DefaultComponent ioc(String name, Class<? extends Object> klass) {
 
         DefaultComponent c;
+        
+        if (BeanSession.class.isAssignableFrom(klass)) {
+        	ioc("beanManager", getBeanManager());
+        }
 
         addComponent(name, c = new DefaultComponent(klass));
 
@@ -1702,6 +1707,10 @@ public abstract class ApplicationManager {
     public ScopeComponent ioc(String name, Class klass, int scope) {
 
         ScopeComponent c;
+        
+        if (BeanSession.class.isAssignableFrom(klass)) {
+        	ioc("beanManager", getBeanManager());
+        }
 
         addComponent(name, c = new ScopeComponent(klass, scope));
 
