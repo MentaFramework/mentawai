@@ -340,9 +340,14 @@ public abstract class ApplicationManager {
     	}
 
     }
+    
+    private Props props = null;
 
     public Props getProps() {
-    	return getProps(getEnvironment().toString().toLowerCase());
+    	if (props == null) {
+    		props = getProps(getEnvironment().toString().toLowerCase());
+    	}
+    	return props;
     }
 
     public Props getProps(String env) {
