@@ -180,6 +180,17 @@ public abstract class ApplicationManager {
     private boolean autowireEverything = true;
 
     private ApplicationManager parent;
+    
+    private ConnectionHandler connHandler;
+    
+    public void setConnectionHandler(ConnectionHandler connHandler) {
+    	this.connHandler = connHandler;
+    	ioc("conn", connHandler);
+    }
+    
+    public ConnectionHandler getConnectionHandler() {
+    	return instance.connHandler;
+    }
 
     public enum Environment { TEST, DEV, INT, QA, PROD };
 
@@ -591,6 +602,10 @@ public abstract class ApplicationManager {
     public void destroy(Context application) {
 
 
+    }
+    
+    public ConnectionHandler createConnectionHandler() {
+    	return null;
     }
 
     public void setupDB() { }
@@ -1894,6 +1909,13 @@ public abstract class ApplicationManager {
 
       ListManager.addList(list, connHandler);
    }
+   
+   public void addLocalizedLists(String ...lists) {
+	   if (connHandler == null) {
+		   throw new IllegalStateException("Connection handler was not setup!");
+	   }
+	   addLocalizedLists(connHandler, lists);
+   }
 
    public void addLocalizedLists(ConnectionHandler connHandler, String ...lists) {
 
@@ -1906,6 +1928,13 @@ public abstract class ApplicationManager {
 		   addList(new DBListData(list, "id", "value", "locale",tableName, "id"), connHandler);
 
 	   }
+   }
+   
+   public void addLists(String ... lists) {
+	   if (connHandler == null) {
+		   throw new IllegalStateException("Connection handler was not setup!");
+	   }
+	   addLists(connHandler, lists);
    }
 
    public void addLists(ConnectionHandler connHandler, String ... lists) {

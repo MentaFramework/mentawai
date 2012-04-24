@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.mentawai.db.ConnectionHandler;
 import org.mentawai.ioc.Bean;
 import org.mentawai.ioc.Dependency;
 
@@ -68,6 +69,15 @@ public abstract class MultiApplicationManager extends ApplicationManager {
 		for (ApplicationManager manager : this.managers) {
 			manager.init(application);
 		}
+	}
+	
+	@Override
+	public final ConnectionHandler createConnectionHandler() {
+		ConnectionHandler connHandler = super.createConnectionHandler();
+		for (ApplicationManager manager : this.managers) {
+			manager.createConnectionHandler();
+		}
+		return connHandler;
 	}
 
 	/*

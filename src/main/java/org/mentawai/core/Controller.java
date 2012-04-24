@@ -41,6 +41,7 @@ import javax.servlet.http.HttpSessionBindingListener;
 import org.mentaregex.Regex;
 import org.mentawai.coc.ConsequenceProvider;
 import org.mentawai.coc.DefaultConsequenceProvider;
+import org.mentawai.db.ConnectionHandler;
 import org.mentawai.filter.GlobalFilterFreeMarkerFilter;
 import org.mentawai.formatter.FormatterManager;
 import org.mentawai.i18n.LocaleManager;
@@ -430,6 +431,11 @@ public class Controller extends HttpServlet {
 			// set some values...
 			
 			DebugServletFilter.addStaticInfo("Environment = " + appManager.getEnvironment().toString()); // for debug mode
+			
+			ConnectionHandler connHandler = appManager.createConnectionHandler();
+			if (connHandler != null) {
+				appManager.setConnectionHandler(connHandler);
+			}
 			
 			appManager.setupDB();
 			
