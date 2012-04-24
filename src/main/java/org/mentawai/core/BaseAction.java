@@ -616,6 +616,11 @@ public abstract class BaseAction implements StickyAction {
     	stream(value);
     }
     
+    public void stream(Object value, String filename) {
+    	output.setValue(StreamConsequence.FILENAME, filename);
+    	stream(value);
+    }
+    
     /**
      * Shortcut for output.setValue(Redirect.REDIRURL_PARAM, "url"); <br/>
      * Use redir() consequence for ActionConfig<br/><br/>
