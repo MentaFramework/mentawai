@@ -59,6 +59,7 @@ import org.mentawai.filter.OutjectionFilter;
 import org.mentawai.filter.OutputFilter;
 import org.mentawai.filter.PushIoCFilter;
 import org.mentawai.filter.RedirectAfterLoginFilter;
+import org.mentawai.filter.TransactionFilter;
 import org.mentawai.formatter.DateFormatter;
 import org.mentawai.formatter.FormatterManager;
 import org.mentawai.i18n.LocaleManager;
@@ -71,6 +72,7 @@ import org.mentawai.list.DBListData;
 import org.mentawai.list.ListData;
 import org.mentawai.list.ListManager;
 import org.mentawai.spring.SpringActionConfig;
+import org.mentawai.transaction.JdbcTransaction;
 import org.mentawai.util.DebugServletFilter;
 import org.mentawai.util.SystemUtils;
 
@@ -801,6 +803,16 @@ public abstract class ApplicationManager {
      * @since 1.1.1
 	 */
 	public void addGlobalFilter(Filter filter, boolean last) {
+		
+		if (filter instanceof RedirectAfterLoginFilter) {
+			on(REDIR, redir());
+		} else if (filter instanceof TransactionFilter) {
+			if (connHandler != null) {
+				// you most likely will want that:
+				ioc("transaction", JdbcTransaction.class);
+			}
+		}
+		
         if (last) {
 
             globalFiltersLast.add(filter);
