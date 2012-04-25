@@ -29,6 +29,7 @@ import java.util.StringTokenizer;
 import org.mentacontainer.Container;
 import org.mentawai.ajax.AjaxConsequence;
 import org.mentawai.ajax.AjaxRenderer;
+import org.mentawai.filter.AuthorizationFilter;
 
 /**
  * An ActionConfig links together an action implementation, an action name or alias, action results and action consequences.
@@ -303,6 +304,16 @@ public class ActionConfig {
      */
     public ActionConfig addFilter(Filter filter) {
         return addFilter(filter, (String) null);
+    }
+    
+    public ActionConfig authorize(Enum<?> ... es) {
+    	filter(new AuthorizationFilter(es));
+    	return this;
+    }
+    
+    public ActionConfig authorize(String ... groups) {
+    	filter(new AuthorizationFilter(groups));
+    	return this;
     }
     
     /**
