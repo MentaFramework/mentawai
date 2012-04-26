@@ -23,7 +23,6 @@ import java.util.Map;
 
 import javax.servlet.jsp.JspException;
 
-import org.mentawai.filter.FlashScopeFilter;
 import org.mentawai.message.Message;
 import org.mentawai.message.MessageManager;
 import org.mentawai.tag.util.ConditionalTag;
