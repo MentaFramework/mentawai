@@ -52,7 +52,6 @@ public class OutError extends ConditionalTag implements Context {
         return pageContext.getAttribute(var);
     }
 
-    @SuppressWarnings("unchecked")
     public boolean testCondition() throws JspException {
 
         if (field != null) {
@@ -60,18 +59,9 @@ public class OutError extends ConditionalTag implements Context {
             Map<String, Message> map = MessageManager.getFieldErrors(action, false);
 
             if (map == null) {
-            	
-            	// before giving up try flash scope
-            	
-            	Object o = FlashScopeFilter.getFlashValue(session, MessageManager.FIELDERRORS);
-            	
-            	if (o instanceof Map) {
-            		map = (Map<String, Message>) o;
-            	} else {
-            		return false;
-            	}
-            	
+        		return false;
             }
+            
             Message msg = map.get(field);
 
             if (msg == null)

@@ -48,22 +48,12 @@ public class OutErrors extends ConditionalTag implements ListContext {
         return (List<Object>) pageContext.getAttribute(var);
     }
 
-    @SuppressWarnings("unchecked")
     public boolean testCondition() throws JspException {
 
         List<Message> errors = MessageManager.getErrors(action, false);
 
         if (errors == null || errors.size() == 0) {
-        	
-        	// before giving up check flash scope!
-        	
-        	Object o = FlashScopeFilter.getFlashValue(session, MessageManager.ERRORS);
-        	
-        	if (o instanceof List) {
-        		errors = (List<Message>) o;
-        	} else {
-        		return false;
-        	}
+    		return false;
         }
 
         List<String> list = new ArrayList<String>(errors.size());
