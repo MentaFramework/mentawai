@@ -47,15 +47,21 @@ public abstract class AbstractMessageContext implements MessageContext {
 	}
 	
 	protected abstract String getPath();
+	
+	@Override
+	public String getMessage(String id, Locale loc) {
+		return getMessage(id, loc, false);
+	}
     
-    public String getMessage(String id, Locale loc) {
+	@Override
+    public String getMessage(String id, Locale loc, boolean noPrefix) {
         I18N i18n = I18NMap.getI18N(getPath() + "_" + loc.toString());
 
         I18N i18nLang = I18NMap.getI18N(getPath() + "_" + loc.getLanguage());
         
         StringBuilder idWithPrefix = new StringBuilder(32);
         
-        if (prefix != null) {
+        if (prefix != null && !noPrefix) {
         	idWithPrefix.append(prefix).append('.');
         }
         

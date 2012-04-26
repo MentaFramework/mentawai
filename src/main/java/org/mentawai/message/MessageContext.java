@@ -27,4 +27,6 @@ public interface MessageContext {
     
     public String getMessage(String id, Locale loc);
     
+    public String getMessage(String id, Locale loc, boolean noPrefix);
+    
 } 

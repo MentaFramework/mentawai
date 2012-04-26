@@ -551,6 +551,14 @@ public abstract class BaseAction implements StickyAction {
     public Context getCookies() {
         return cookies;
     }
+    
+    public String getLocalizedText(String key) {
+    	return getLocalizedText(key, false);
+    }
+    
+    public String getLocalizedText(String key, boolean noPrefix) {
+    	return msgContext.getMessage(key, getLocale(), noPrefix);
+    }
 	
 	public Locale getLocale() {
 		return loc;

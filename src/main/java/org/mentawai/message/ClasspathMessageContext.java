@@ -34,7 +34,13 @@ public class ClasspathMessageContext implements MessageContext {
 		this.resource = resource;
 	}
 	
-    public String getMessage(String id, Locale loc) {
+	@Override
+	public String getMessage(String id, Locale loc) {
+		return getMessage(id, loc, false);
+	}
+	
+	@Override
+    public String getMessage(String id, Locale loc, boolean noPrefix) {
     	
         I18N i18n = I18NMap.getI18NFromClasspath(resource + "_" + loc.toString());
 
