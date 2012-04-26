@@ -23,6 +23,7 @@ import java.util.Map;
 
 import javax.servlet.jsp.JspException;
 
+import org.mentawai.filter.FlashScopeFilter;
 import org.mentawai.message.Message;
 import org.mentawai.message.MessageManager;
 import org.mentawai.tag.util.ConditionalTag;
@@ -51,15 +52,26 @@ public class OutError extends ConditionalTag implements Context {
         return pageContext.getAttribute(var);
     }
 
+    @SuppressWarnings("unchecked")
     public boolean testCondition() throws JspException {
 
         if (field != null) {
 
             Map<String, Message> map = MessageManager.getFieldErrors(action, false);
 
-            if (map == null)
-                return false;
-
+            if (map == null) {
+            	
+            	// before giving up try flash scope
+            	
+            	Object o = FlashScopeFilter.getFlashValue(session, MessageManager.FIELDERRORS);
+            	
+            	if (o instanceof Map) {
+            		map = (Map<String, Message>) o;
+            	} else {
+            		return false;
+            	}
+            	
+            }
             Message msg = map.get(field);
 
             if (msg == null)

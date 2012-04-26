@@ -2,6 +2,8 @@ package org.mentawai.filter;
 
 import java.util.Iterator;
 
+import javax.servlet.http.HttpSession;
+
 import org.mentawai.core.Action;
 import org.mentawai.core.Context;
 import org.mentawai.core.Filter;
@@ -75,7 +77,7 @@ public class FlashScopeFilter implements Filter {
 		return result;
 	}
 	
-	private boolean isValid(Context session) {
+	private static boolean isValid(Context session) {
 		
 		try {
 			
@@ -87,6 +89,38 @@ public class FlashScopeFilter implements Filter {
 			
 			return false;
 		}
+	}
+	
+	private static boolean isValid(HttpSession session) {
+		
+		try {
+			
+			session.getAttribute("dummy");
+			
+			return true;
+			
+		} catch(IllegalStateException e) {
+			
+			return false;
+		}
+	}
+	
+	public static Object getFlashValue(HttpSession session, String key) {
+		
+		if (!isValid(session)) {
+			return null;
+		}
+		
+		String keyToSearch = _KEY + key;
+		
+		Object value = session.getAttribute(keyToSearch);
+
+		if (value != null) {
+			session.removeAttribute(keyToSearch);
+			return value;
+		}
+		
+		return null;
 	}
 	
 	public void destroy() { }

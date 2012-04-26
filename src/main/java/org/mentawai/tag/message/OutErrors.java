@@ -24,6 +24,7 @@ import java.util.List;
 
 import javax.servlet.jsp.JspException;
 
+import org.mentawai.filter.FlashScopeFilter;
 import org.mentawai.message.Message;
 import org.mentawai.message.MessageManager;
 import org.mentawai.tag.util.ConditionalTag;
@@ -41,17 +42,29 @@ public class OutErrors extends ConditionalTag implements ListContext {
         this.var = var;
     }
 
+    @SuppressWarnings("unchecked")
     public List<Object> getList() throws JspException {
 
         return (List<Object>) pageContext.getAttribute(var);
     }
 
+    @SuppressWarnings("unchecked")
     public boolean testCondition() throws JspException {
 
         List<Message> errors = MessageManager.getErrors(action, false);
 
-        if (errors == null || errors.size() == 0)
-            return false;
+        if (errors == null || errors.size() == 0) {
+        	
+        	// before giving up check flash scope!
+        	
+        	Object o = FlashScopeFilter.getFlashValue(session, MessageManager.ERRORS);
+        	
+        	if (o instanceof List) {
+        		errors = (List<Message>) o;
+        	} else {
+        		return false;
+        	}
+        }
 
         List<String> list = new ArrayList<String>(errors.size());
         Iterator<Message> iter = errors.iterator();
