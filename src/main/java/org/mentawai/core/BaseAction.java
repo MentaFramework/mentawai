@@ -297,7 +297,7 @@ public abstract class BaseAction implements StickyAction {
      * @since 1.1.1
 	 */
 	public void addMessage(String msg_id) {
-		addMessage(msg_id, false);
+		addMessage(msg_id, true);
 	}
 	
 	public void addMessage(String msg_id, boolean flash) {
@@ -306,7 +306,7 @@ public abstract class BaseAction implements StickyAction {
 	}
 	
 	public void addMessage(String msg_id, Map<String, String> tokens) {
-        addMessage(msg_id, tokens, false);
+        addMessage(msg_id, tokens, true);
 	}
 	
 	public void addMessage(String msg_id, Map<String, String> tokens, boolean flash) {
@@ -320,7 +320,7 @@ public abstract class BaseAction implements StickyAction {
 	 * @param msg_id The id of the message to show.
 	 */    
     public void addMessage(int msg_id) {
-        addMessage(msg_id, false);
+        addMessage(msg_id, true);
     }
     
     public void addMessage(int msg_id, boolean flash) {
@@ -401,7 +401,7 @@ public abstract class BaseAction implements StickyAction {
      * @since 1.1.1
 	 */
 	public void addMessage(String msg_id, MessageContext msgContext) {
-		addMessage(msg_id, msgContext, false);
+		addMessage(msg_id, msgContext, true);
 	}
 	
 	public void addMessage(String msg_id, MessageContext msgContext, boolean flash) {
@@ -417,7 +417,7 @@ public abstract class BaseAction implements StickyAction {
 	 * @param msgContext The MessageContext where the message is.
 	 */
 	public void addMessage(int msg_id, MessageContext msgContext) {
-        addMessage(msg_id, msgContext, false);
+        addMessage(msg_id, msgContext, true);
 	}
 	
 	public void addMessage(int msg_id, MessageContext msgContext, boolean flash) {
@@ -477,7 +477,7 @@ public abstract class BaseAction implements StickyAction {
 	 * @param msg The message object.
 	 */
 	public void addMessage(Message msg) {
-		addMessage(msg, false);
+		addMessage(msg, true);
 	}
 
 	public void addMessage(Message msg, boolean flash) {
