@@ -810,7 +810,16 @@ public abstract class ApplicationManager {
 	public void addGlobalFilter(Filter filter, boolean last) {
 		
 		if (filter instanceof RedirectAfterLoginFilter) {
-			on(REDIR, redir());
+			
+			// check if it was already added by the authentication filter
+			if (checkForRedirectAfterLoginFilter()) {
+				
+				// ignore because it was already added...
+				return;
+				
+			} else {
+				on(REDIR, redir());
+			}
 		} else if (filter instanceof TransactionFilter) {
 			if (connHandler != null) {
 				// you most likely will want that:
@@ -850,6 +859,19 @@ public abstract class ApplicationManager {
 
 		    globalFilters.add(filter);
         }
+        
+        if (filter instanceof AuthenticationFilter) {
+        	filter(new RedirectAfterLoginFilter());
+        }
+	}
+	
+	private final boolean checkForRedirectAfterLoginFilter() {
+		for(Filter f : globalFilters) {
+			if (f instanceof RedirectAfterLoginFilter) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public void addGlobalFilter(Class<? extends Object> klass, Filter filter, boolean last) {
