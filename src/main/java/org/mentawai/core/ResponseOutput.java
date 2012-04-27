@@ -19,8 +19,8 @@
 package org.mentawai.core;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -38,7 +38,7 @@ import org.mentawai.util.InjectionUtils;
  */
 public class ResponseOutput implements Output, Map<String, Object> {
 	
-	private Map<String, Object> map = new HashMap<String, Object>();
+	private Map<String, Object> map = new LinkedHashMap<String, Object>();
     private HttpServletResponse res;
     
     private int counter = 0;
