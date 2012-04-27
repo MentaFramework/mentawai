@@ -47,18 +47,22 @@ public class OutMessage extends ConditionalTag implements Context {
 
     @SuppressWarnings("unchecked")
     public boolean testCondition() throws JspException {
+    	
+    	// first flash scope...
 
-        List<Message> messages = MessageManager.getMessages(action, false);
-
+    	List<Message> messages = null;
+    	
+    	Object o = FlashScopeFilter.getFlashValue(session, MessageManager.MESSAGES);
+    	
+    	if (o instanceof List) {
+    		messages = (List<Message>) o;
+    	}
+    	
         if (messages == null || messages.size() == 0) {
         	
-        	// before giving up check flash scope!
+        	messages = MessageManager.getMessages(action, false);
         	
-        	Object o = FlashScopeFilter.getFlashValue(session, MessageManager.MESSAGES);
-        	
-        	if (o instanceof List) {
-        		messages = (List<Message>) o;
-        	} else {
+        	if (messages == null || messages.size() == 0) {
         		return false;
         	}
         }
