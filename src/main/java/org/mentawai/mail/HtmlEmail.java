@@ -359,4 +359,40 @@ public class HtmlEmail extends MultiPartEmail {
             }
         }
     }
+    
+    ////
+    
+    public static void sendNow(String toName, String toEmail, String subject, String msg) throws Exception {
+    	HtmlEmail email = new HtmlEmail();
+        email.addTo(toEmail, toName);
+        email.setSubject(subject);
+        email.setMsg(msg);
+        email.send();
+    }
+    
+    public static void sendLater(String toName, String toEmail, String subject, String msg) throws Exception {
+    	HtmlEmail email = new HtmlEmail();
+        email.addTo(toEmail, toName);
+        email.setSubject(subject);
+        email.setMsg(msg);
+        email.sendLater();
+    }
+    
+    public static void sendNow(String fromName, String fromEmail, String toName, String toEmail, String subject, String msg) throws Exception {
+    	HtmlEmail email = new HtmlEmail();
+        email.addTo(toEmail, toName);
+        email.setFrom(fromEmail, fromName);
+        email.setSubject(subject);
+        email.setMsg(msg);
+        email.send();
+    }
+    
+    public static void sendLater(String fromName, String fromEmail, String toName, String toEmail, String subject, String msg) throws Exception {
+    	HtmlEmail email = new HtmlEmail();
+        email.addTo(toEmail, toName);
+        email.setFrom(fromEmail, fromName);
+        email.setSubject(subject);
+        email.setMsg(msg);
+        email.sendLater();
+    }
 }
