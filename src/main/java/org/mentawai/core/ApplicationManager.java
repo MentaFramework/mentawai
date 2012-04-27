@@ -667,6 +667,18 @@ public abstract class ApplicationManager {
     public void addLocale(Locale loc) {
     	LocaleManager.add(loc);
     }
+    
+    public void addLocales(Locale ... locs) {
+    	for(Locale loc : locs) {
+    		LocaleManager.add(loc);
+    	}
+    }
+    
+    public void addLocales(String ... strings) {
+    	for(String s : strings) {
+    		LocaleManager.add(s);
+    	}
+    }
 
 	/**
 	 * Gets the ActionConfig with the given name or alias.
