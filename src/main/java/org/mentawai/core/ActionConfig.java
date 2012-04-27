@@ -30,6 +30,7 @@ import org.mentacontainer.Container;
 import org.mentawai.ajax.AjaxConsequence;
 import org.mentawai.ajax.AjaxRenderer;
 import org.mentawai.filter.AuthorizationFilter;
+import org.mentawai.filter.PrettyURLParamFilter;
 
 /**
  * An ActionConfig links together an action implementation, an action name or alias, action results and action consequences.
@@ -212,6 +213,11 @@ public class ActionConfig {
 	
 	public boolean shouldBypassAuthentication() {
 		return bypassAuthentication;
+	}
+	
+	public ActionConfig prettyURLParams(String ... params) {
+		filter(new PrettyURLParamFilter(params));
+		return this;
 	}
 	
 	/**
