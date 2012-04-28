@@ -33,6 +33,8 @@ import org.mentawai.core.PrettyURLController;
  * @see PrettyURLController
  */
 public class PrettyURLParamFilter implements Filter {
+	
+	public static final String CHECK_PARAM = "isPrettyURL";
 
 	private String[] paramsOrder;
 
@@ -49,6 +51,8 @@ public class PrettyURLParamFilter implements Filter {
 		Action action = chain.getAction();
 		
 		Input input = action.getInput();
+		
+		boolean isPrettyURL = false;
 
 		for (int i = 0; i < paramsOrder.length; i++) {
 			
@@ -59,6 +63,12 @@ public class PrettyURLParamFilter implements Filter {
 			input.setValue(paramsOrder[i], input.getValue(key));
 			
 			input.removeValue(key);
+			
+			isPrettyURL = true;
+		}
+		
+		if (isPrettyURL) {
+			input.setValue(CHECK_PARAM, true); // let the action now we have received a pretty url
 		}
 		
 		return chain.invoke();
