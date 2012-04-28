@@ -24,6 +24,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.mentaregex.Regex;
+
 public class HttpUtils {
 
 	private static final String ENC = "UTF-8";
@@ -108,4 +110,27 @@ public class HttpUtils {
         return sb.toString();
         
     }
+    
+	public static String getPrettyURLFormatted(String question) {
+		
+		StringBuilder sb = new StringBuilder(512);
+		
+		// let' go...
+		
+		String formatted = Regex.sub(question, "s/\\'//g");
+		
+		formatted = Regex.sub(formatted, "s/\\// /g");
+		
+		formatted = Regex.sub(formatted, "s/\\+/ /g");
+		
+		sb.append(formatted);
+		
+		formatted = sb.toString().toLowerCase();
+		
+		formatted = Regex.sub(formatted, "s/[^a-z 0-9]//g");
+		
+		formatted = Regex.sub(formatted, "s/\\s+/\\-/g");
+		
+		return formatted;
+	}
 }
