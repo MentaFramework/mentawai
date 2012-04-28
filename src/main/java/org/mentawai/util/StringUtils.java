@@ -23,6 +23,8 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.mentawai.i18n.LocaleManager;
 
@@ -234,7 +236,35 @@ public class StringUtils {
 		Number number = NumberFormat.getCurrencyInstance(loc).parse(symbol + value);
 		return number;		
 	}
-    
+	
+	public static String[] REPLACES = { "a", "e", "i", "o", "u", "c", "A", "E", "I", "O", "U", "C" };
+
+	public static Pattern[] PATTERNS = null;
+
+	static {
+		PATTERNS = new Pattern[REPLACES.length];
+		PATTERNS[0] = Pattern.compile("[âãáàä]");
+		PATTERNS[1] = Pattern.compile("[éèêë]");
+		PATTERNS[2] = Pattern.compile("[íìîï]");
+		PATTERNS[3] = Pattern.compile("[óòôõö]");
+		PATTERNS[4] = Pattern.compile("[úùûü]");
+		PATTERNS[5] = Pattern.compile("[ç]");
+		PATTERNS[6] = Pattern.compile("[ÂÃÁÀÄ]");
+		PATTERNS[7] = Pattern.compile("[ÉÈÊË]");
+		PATTERNS[8] = Pattern.compile("[ÍÌÎÏ]");
+		PATTERNS[9] = Pattern.compile("[ÓÒÔÕÖ]");
+		PATTERNS[10] = Pattern.compile("[ÚÙÛÜ]");
+		PATTERNS[11] = Pattern.compile("[Ç]");
+	}
+
+	public static String removeAccents(String text) {
+		String result = text;
+		for (int i = 0; i < PATTERNS.length; i++) {
+			Matcher matcher = PATTERNS[i].matcher(result);
+			result = matcher.replaceAll(REPLACES[i]);
+		}
+		return result;
+	}
 }
 
 

@@ -128,6 +128,8 @@ public class HttpUtils {
 		
 		formatted = sb.toString().toLowerCase();
 		
+		formatted = StringUtils.removeAccents(formatted);
+		
 		formatted = Regex.sub(formatted, "s/[^a-z 0-9]//g");
 		
 		formatted = Regex.sub(formatted, "s/\\s+/\\-/g");
