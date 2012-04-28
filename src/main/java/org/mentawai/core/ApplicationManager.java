@@ -1122,6 +1122,11 @@ public abstract class ApplicationManager {
         return new Forward(page);
 
     }
+    
+    public static Consequence fwd(ActionConfig ac) {
+    	
+    	return new ForwardToActionConsequence(ac);
+    }
 
     /**
      * Convenient method that provides a less verbose way to create a redirect.

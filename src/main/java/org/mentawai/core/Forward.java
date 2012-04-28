@@ -135,7 +135,7 @@ public class Forward implements Consequence {
     
     public String toString() {
         StringBuffer sb = new StringBuffer(100);
-        sb.append("Forward to ").append(url);
+        sb.append("Forward to page: ").append(url);
         return sb.toString();
     }
 
