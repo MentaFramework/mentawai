@@ -1543,6 +1543,10 @@ public abstract class ApplicationManager {
         Controller.reloadAppManager = reloadMode;
 
     }
+    
+    public static String getExtension() {
+    	return EXTENSION;
+    }
 
     public Dependency autowire(String target, Class<? extends Object> klass, String source) {
 
