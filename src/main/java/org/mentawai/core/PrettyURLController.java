@@ -33,7 +33,7 @@ public class PrettyURLController extends Controller {
 
 	private static final char DEFAULT_INNER_ACTION_SEPARATOR = '-';
 
-	private char innerActionSeparator;
+	private static char innerActionSeparator;
 
 	@Override
 	public void init(ServletConfig conf) throws ServletException {
@@ -48,12 +48,20 @@ public class PrettyURLController extends Controller {
 
 			validateContent(innerActionSeparatorParam);
 
-			this.innerActionSeparator = innerActionSeparatorParam.charAt(0);
+			PrettyURLController.innerActionSeparator = innerActionSeparatorParam.charAt(0);
 
 		} else {
 
-			this.innerActionSeparator = DEFAULT_INNER_ACTION_SEPARATOR;
+			PrettyURLController.innerActionSeparator = DEFAULT_INNER_ACTION_SEPARATOR;
 		}
+	}
+	
+	public static char getMethodSeparatorChar() {
+		return innerActionSeparator;
+	}
+	
+	public static String getExtension() {
+		return ApplicationManager.EXTENSION;
 	}
 
 	private void validateContent(String innerActionSeparatorParam) throws ServletException {

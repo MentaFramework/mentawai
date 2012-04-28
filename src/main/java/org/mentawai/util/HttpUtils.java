@@ -25,6 +25,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 
 import org.mentaregex.Regex;
+import org.mentawai.core.PrettyURLController;
 
 public class HttpUtils {
 
@@ -133,4 +134,17 @@ public class HttpUtils {
 		
 		return formatted;
 	}
+	
+    public static String getPrettyURL(String action, String method, String ... params) {
+    	StringBuilder sb = new StringBuilder(128);
+    	sb.append("/").append(PrettyURLController.getExtension()).append("/");
+    	sb.append(action);
+    	if (method != null) {
+    		sb.append(PrettyURLController.getMethodSeparatorChar()).append(method);
+    	}
+    	for(String param : params) {
+    		sb.append("/").append(param);
+    	}
+    	return sb.toString();
+    }
 }
