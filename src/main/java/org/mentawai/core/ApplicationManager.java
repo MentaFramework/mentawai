@@ -1139,7 +1139,7 @@ public abstract class ApplicationManager {
      */
     public static Consequence redir(String page) {
 
-        return new Redirect(page);
+        return new Redirect(page, true);
 
     }
 
@@ -1162,7 +1162,7 @@ public abstract class ApplicationManager {
      */
     public static Consequence redir(ActionConfig ac) {
 
-    	return new Redirect(ac);
+    	return new Redirect(ac, true);
     }
 
 
