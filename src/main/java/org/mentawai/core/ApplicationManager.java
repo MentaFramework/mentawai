@@ -1174,7 +1174,7 @@ public abstract class ApplicationManager {
      * @since 1.15.1
      */
     public static Consequence redir(Class<?> klass) {
-        return redir(klass, null, false);
+        return redir(klass, null, true);
     }
 
     /**
@@ -1208,7 +1208,7 @@ public abstract class ApplicationManager {
      * @since 1.15.1
      */
     public static Consequence redir(Class<?> klass, String innerAction) {
-    	return redir(klass, innerAction, false);
+    	return redir(klass, innerAction, true);
     }
 
 
@@ -1278,7 +1278,7 @@ public abstract class ApplicationManager {
      */
     public static Consequence redir() {
 
-        return new Redirect();
+        return redir(true);
 
     }
 
