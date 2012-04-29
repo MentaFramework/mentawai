@@ -30,6 +30,7 @@ import org.mentacontainer.Container;
 import org.mentawai.ajax.AjaxConsequence;
 import org.mentawai.ajax.AjaxRenderer;
 import org.mentawai.filter.AuthorizationFilter;
+import org.mentawai.filter.FileUploadFilter;
 import org.mentawai.filter.PrettyURLParamFilter;
 
 /**
@@ -208,6 +209,31 @@ public class ActionConfig {
 	 */
 	public ActionConfig bypassAuthentication() {
 		this.bypassAuthentication = true;
+		return this;
+	}
+	
+	public ActionConfig fileUpload() {
+		filter(new FileUploadFilter());
+		return this;
+	}
+	
+	public ActionConfig fileUpload(int maxInMemorySize) {
+		filter(new FileUploadFilter(maxInMemorySize));
+		return this;
+	}
+	
+	public ActionConfig fileUpload(int maxInMemorySize, int maxSizeToThrowError) {
+		filter(new FileUploadFilter(maxInMemorySize, maxSizeToThrowError));
+		return this;
+	}
+	
+	public ActionConfig fileUpload(int maxInMemorySize, String tempDirInsideWebInf) {
+		filter(new FileUploadFilter(maxInMemorySize, tempDirInsideWebInf));
+		return this;
+	}
+	
+	public ActionConfig fileUpload(int maxInMemorySize, int maxSizeToThrowError, String tempDirInsideWebInf) {
+		filter(new FileUploadFilter(maxInMemorySize, maxSizeToThrowError, tempDirInsideWebInf));
 		return this;
 	}
 	

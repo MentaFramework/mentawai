@@ -62,6 +62,10 @@ public class FileUploadFilter implements Filter {
 	public FileUploadFilter(int maxInMemorySize, int maxSizeToThrowError) {
 		this(maxInMemorySize, maxSizeToThrowError, null);
 	}
+	
+	public FileUploadFilter(int maxInMemorySize, String tempDirInsideWebInf) {
+		this(maxInMemorySize, 0, tempDirInsideWebInf);
+	}
 
 	public FileUploadFilter(int maxInMemorySize, int maxSizeToThrowError, String tempDirInsideWebInf) {
 

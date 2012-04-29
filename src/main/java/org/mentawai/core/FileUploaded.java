@@ -52,7 +52,7 @@ public class FileUploaded {
 		return fileItem.getFieldName();
 	}
 	
-	public String getFilename() {
+	public String getOriginalFilename() {
 		return fileItem.getName();
 	}
 	
