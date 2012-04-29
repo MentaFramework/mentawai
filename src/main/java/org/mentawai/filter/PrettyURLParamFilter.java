@@ -22,7 +22,6 @@ import org.mentawai.core.Action;
 import org.mentawai.core.Filter;
 import org.mentawai.core.Input;
 import org.mentawai.core.InvocationChain;
-import org.mentawai.core.PrettyURLController;
 
 /**
  * A Filter for injecting in the action input the parameters supplied by the
