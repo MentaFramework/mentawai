@@ -26,6 +26,11 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 /**
+ * 
+ * **********************************************************************************************
+ * ATTENTION: THIS IS NOW BEING IMPLEMENTED BY THE MENTAWAI CONTROLLER SO IT IS NOT NECESSARY!  *
+ * **********************************************************************************************
+ * 
  * <p>Example filter that sets the character encoding to be used in parsing the
  * incoming request, either unconditionally or only if the client did not
  * specify a character encoding.  Configuration of this filter is based on

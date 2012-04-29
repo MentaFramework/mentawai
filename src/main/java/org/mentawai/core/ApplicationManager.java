@@ -165,7 +165,7 @@ public abstract class ApplicationManager {
 
     static ApplicationManager instance = null;
 
-    private String reqCharEncoding = null;
+    private String reqCharEncoding = "UTF-8"; // let's make it the default to avoid POST problems with accents on tomcat... it also works on Jetty
 
     private static String viewDir = null;
 
