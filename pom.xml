@@ -37,7 +37,6 @@
 	</distributionManagement>
 	<properties>
 		<build.final.name>mentawai</build.final.name>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<svn.tags>svn://soliveirajr.com/mentawai/tags</svn.tags>
 		<svn.url>svn://soliveirajr.com/mentawai/trunk</svn.url>
 	    <maven.build.timestamp.format>yyyyMMdd</maven.build.timestamp.format>
@@ -384,6 +383,7 @@
 						<configuration>
 							<source>1.6</source>
 							<target>1.6</target>
+							<encoding>UTF-8</encoding>
 						</configuration>
 					</execution>
 					<execution>
@@ -395,6 +395,7 @@
 						<configuration>
 							<source>1.6</source>
 							<target>1.6</target>
+							<encoding>UTF-8</encoding>
 						</configuration>
 					</execution>
 				</executions>
@@ -452,6 +453,9 @@
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>2.4.3</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
 				<executions>
 					<execution>
 						<id>default-resources</id>
@@ -459,6 +463,9 @@
 						<goals>
 							<goal>resources</goal>
 						</goals>
+						<configuration>
+							<encoding>UTF-8</encoding>
+						</configuration>
 					</execution>
 					<execution>
 						<id>default-testResources</id>
@@ -466,6 +473,9 @@
 						<goals>
 							<goal>testResources</goal>
 						</goals>
+						<configuration>
+							<encoding>UTF-8</encoding>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
