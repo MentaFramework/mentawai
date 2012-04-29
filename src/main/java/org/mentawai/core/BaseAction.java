@@ -133,12 +133,17 @@ public abstract class BaseAction implements StickyAction {
       return false;
    }
    
-   public String getPrettyText(String text) {
-	   return HttpUtils.getPrettyText(text);
-   }
-   
    public String getPrettyURL(String action, String method, String ... params) {
 	   return HttpUtils.getPrettyURL(action, method, params);
+   }
+   
+   public boolean isPrettyURL() {
+	   Input i = input;
+	   if (i instanceof InputWrapper) {
+		   InputWrapper iw = (InputWrapper) input;
+		   i = iw.getRoot();
+	   }
+	   return i instanceof PrettyURLRequestInput;
    }
    
    public void commit() throws Exception {

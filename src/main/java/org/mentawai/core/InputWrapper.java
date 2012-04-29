@@ -45,6 +45,15 @@ public class InputWrapper implements Input, Map {
 		this.input.set(input);
 	}
 	
+	public Input getRoot() {
+		Input i = getInput();
+		while(i instanceof InputWrapper) {
+			InputWrapper iw = (InputWrapper) i;
+			i = iw.getInput();
+		}
+		return i;
+	}
+	
 	public void removeInput() {
 	    input.remove();
 	}
