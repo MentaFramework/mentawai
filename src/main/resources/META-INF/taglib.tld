@@ -950,6 +950,12 @@
 			<rtexprvalue>true</rtexprvalue>
 			<type>String</type>
 		</attribute>
+		<attribute>
+			<name>enctype</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>String</type>
+		</attribute>		
 
 	</tag>
 

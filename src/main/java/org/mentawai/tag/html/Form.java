@@ -15,6 +15,7 @@ public class Form extends HTMLTag {
 	private String style = null;
 	private String act = null;
 	private String method = null;
+	private String enctype = null;
 	
 	public void setId(String id) { this.id = id; }
 	public void setName(String name) { this.name = name; }
@@ -22,6 +23,7 @@ public class Form extends HTMLTag {
 	public void setStyle(String style) { this.style = style; }
 	public void setAction(String act) { this.act = act; }
 	public void setMethod(String method) { this.method = method; }
+	public void setEnctype(String enctype) { this.enctype = enctype; }
 	
 	public String getId() {
 		
@@ -93,6 +95,10 @@ public class Form extends HTMLTag {
 			sb.append(" method=\"").append(DEFAULT_METHOD).append("\"");
 		}
 		
+		if (enctype != null) {
+			
+			sb.append(" enctype=\"").append(enctype).append("\"");
+		}
 		
 		// inserted by robert
 		sb.append( getExtraAttributes() );
