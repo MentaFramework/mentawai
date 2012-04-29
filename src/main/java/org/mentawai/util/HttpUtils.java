@@ -112,13 +112,13 @@ public class HttpUtils {
         
     }
     
-	public static String getPrettyURLFormatted(String question) {
+	public static String getPrettyText(String text) {
 		
 		StringBuilder sb = new StringBuilder(512);
 		
 		// let' go...
 		
-		String formatted = Regex.sub(question, "s/\\'//g");
+		String formatted = Regex.sub(text, "s/\\'//g");
 		
 		formatted = Regex.sub(formatted, "s/\\// /g");
 		
@@ -132,7 +132,7 @@ public class HttpUtils {
 		
 		formatted = Regex.sub(formatted, "s/[^a-z 0-9]//g");
 		
-		formatted = Regex.sub(formatted, "s/\\s+/\\-/g");
+		formatted = Regex.sub(formatted.trim(), "s/\\s+/\\-/g");
 		
 		return formatted;
 	}

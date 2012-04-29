@@ -35,6 +35,7 @@ import org.mentawai.message.Message;
 import org.mentawai.message.MessageContext;
 import org.mentawai.message.MessageManager;
 import org.mentawai.transaction.Transaction;
+import org.mentawai.util.HttpUtils;
 import org.mentawai.validation.Validator;
 
 /**
@@ -130,6 +131,14 @@ public abstract class BaseAction implements StickyAction {
       }
       
       return false;
+   }
+   
+   public String getPrettyText(String text) {
+	   return HttpUtils.getPrettyText(text);
+   }
+   
+   public String getPrettyURL(String action, String method, String ... params) {
+	   return HttpUtils.getPrettyURL(action, method, params);
    }
    
    public void commit() throws Exception {
