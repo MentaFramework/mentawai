@@ -31,6 +31,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.mentawai.core.Action;
 import org.mentawai.core.ApplicationManager;
 import org.mentawai.core.Context;
+import org.mentawai.core.FileUploaded;
 import org.mentawai.core.Filter;
 import org.mentawai.core.FilterException;
 import org.mentawai.core.Input;
@@ -185,7 +186,7 @@ public class FileUploadFilter implements Filter {
 
 						if (item.getSize() > 0) {
 
-							input.setValue(name, item);
+							input.setValue(name, new FileUploaded(item));
 
 						} else {
 
