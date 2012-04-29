@@ -28,11 +28,11 @@ import org.apache.commons.fileupload.FileItem;
  * 
  * @author Sergio Oliveira Jr.
  */
-public class FileUploaded {
+public class FileUpload {
 	
 	private final FileItem fileItem;
 	
-	public FileUploaded(FileItem fileItem) {
+	public FileUpload(FileItem fileItem) {
 		this.fileItem = fileItem;
 	}
 	
