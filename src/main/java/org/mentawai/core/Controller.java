@@ -96,6 +96,14 @@ public class Controller extends HttpServlet {
 	private static final String STICKY_KEY = "_stickyActions";
 
     private static final String[] APP_MGR_NAMES = { "ApplicationManager", "AppMgr", "AppManager" };
+    
+    // pretty
+    
+	private static final String INNER_ACTION_SEPARATOR_PARAM = "innerActionSeparator";
+
+	private static final char DEFAULT_INNER_ACTION_SEPARATOR = '-';
+
+	private static char innerActionSeparator;
 
 	/**
 	 * Initialize the Controller, creating and starting the ApplicationManager.
@@ -201,8 +209,109 @@ public class Controller extends HttpServlet {
 		Info.log("[Controller] Initializing ApplicationManager from class: "+ appMgrClassname);
 		
 		initApplicationManager();
+		
+		// pretty:
+		
+		String innerActionSeparatorParam = conf.getInitParameter(INNER_ACTION_SEPARATOR_PARAM);
+
+		if (innerActionSeparatorParam != null) {
+
+			validateLength(innerActionSeparatorParam);
+
+			validateContent(innerActionSeparatorParam);
+
+			Controller.innerActionSeparator = innerActionSeparatorParam.charAt(0);
+
+		} else {
+
+			Controller.innerActionSeparator = DEFAULT_INNER_ACTION_SEPARATOR;
+		}
 
 	}
+	
+	public static char getMethodSeparatorChar() {
+		return innerActionSeparator;
+	}
+	
+	public static String getExtension() {
+		return ApplicationManager.EXTENSION;
+	}
+
+	private void validateContent(String innerActionSeparatorParam) throws ServletException {
+
+		if (innerActionSeparatorParam.equals("/")) {
+
+			throw new ServletException("The "
+					+ INNER_ACTION_SEPARATOR_PARAM
+					+ " context parameter cannot be the \'/\' char");
+		}
+	}
+
+	private void validateLength(String innerActionSeparatorParam) throws ServletException {
+
+		if (innerActionSeparatorParam.length() != 1) {
+
+			throw new ServletException("The "
+					+ INNER_ACTION_SEPARATOR_PARAM
+					+ " context parameter must have only one char");
+		}
+	}
+
+	static final String EXTENSION = "." + ApplicationManager.EXTENSION;
+
+	private boolean isPrettyURL(HttpServletRequest req) {
+
+		String uri = req.getRequestURI().toString();
+
+		// cut the last '/'
+		if (uri.endsWith("/") && uri.length() > 1) {
+
+			uri = uri.substring(0, uri.length() - 1);
+		}
+
+		// ends with .mtw or have a "." is not pretty URL
+		if (uri.endsWith(EXTENSION) || uri.indexOf(".") > 0) return false;
+
+		return true;
+	}
+
+	private String getActionPlusInnerAction(HttpServletRequest req) {
+
+		String context = req.getContextPath();
+
+		String uri = req.getRequestURI().toString();
+
+		// remove the context from the uri, if present
+
+		if (context.length() > 0 && uri.indexOf(context) == 0) {
+
+			uri = uri.substring(context.length());
+
+		}
+
+		// cut the first '/'
+		if (uri.startsWith("/") && uri.length() > 1) {
+
+			uri = uri.substring(1);
+
+		}
+
+		// cut the last '/'
+		if (uri.endsWith("/") && uri.length() > 1) {
+
+			uri = uri.substring(0, uri.length() - 1);
+		}
+
+		String[] s = uri.split("/");
+
+		if (s.length >= 2) {
+
+			return s[1];
+		}
+
+		return null;
+	}
+	
 
     public static String getBasePathForMaven() {
     	
@@ -576,19 +685,37 @@ public class Controller extends HttpServlet {
 	 */
 	protected String getActionName(HttpServletRequest req) {
 
-		String uri = getURI(req);
+		if (isPrettyURL(req)) {
 
-		// If there is an Inner Action, cut it off from the action name
+			String s = getActionPlusInnerAction(req);
 
-		int index = uri.lastIndexOf(".");
+			// separate the inner action from action...
 
-		if (index > 0 && (uri.length() - index) >= 2) {
+			int index = s.indexOf(innerActionSeparator);
 
-			uri = uri.substring(0, index);
+			if (index > 0) {
 
+				return s.substring(0, index);
+			}
+
+			return s;
+			
+		} else {
+
+			String uri = getURI(req);
+
+			// If there is an Inner Action, cut it off from the action name
+
+			int index = uri.lastIndexOf(".");
+
+			if (index > 0 && (uri.length() - index) >= 2) {
+
+				uri = uri.substring(0, index);
+
+			}
+
+			return uri;
 		}
-
-		return uri;
 	}
 
 	/**
@@ -601,20 +728,38 @@ public class Controller extends HttpServlet {
 	 * @return The inner action name or null if there is no inneraction.
 	 */
 	protected String getInnerActionName(HttpServletRequest req) {
+		
+		if (isPrettyURL(req)) {
+			
+			String s = getActionPlusInnerAction(req);
 
-		String uri = getURI(req);
+			// separate the inner action from action...
 
-		String innerAction = null;
+			int index = s.indexOf(innerActionSeparator);
 
-		int index = uri.lastIndexOf(".");
+			if (index > 0 && index + 1 < s.length()) {
 
-		if (index > 0 && (uri.length() - index) >= 2) {
+				return s.substring(index + 1);
+			}
 
-			innerAction = uri.substring(index + 1, uri.length());
+			return null;
+			
+		} else {
 
+    		String uri = getURI(req);
+    
+    		String innerAction = null;
+    
+    		int index = uri.lastIndexOf(".");
+    
+    		if (index > 0 && (uri.length() - index) >= 2) {
+    
+    			innerAction = uri.substring(index + 1, uri.length());
+    
+    		}
+    
+    		return innerAction;
 		}
-
-		return innerAction;
 	}
 
 	/**
@@ -633,12 +778,26 @@ public class Controller extends HttpServlet {
 
 	protected void prepareAction(Action action, HttpServletRequest req,
 			HttpServletResponse res) {
-		action.setInput(new RequestInput(req, res));
-		action.setOutput(new ResponseOutput(res));
-		action.setSession(new SessionContext(req, res));
-		action.setApplication(appContext);
-		action.setCookies(new CookieContext(req, res));
-		action.setLocale(LocaleManager.decideLocale(req, res));
+		
+		if (isPrettyURL(req)) {
+			
+			action.setInput(new PrettyURLRequestInput(req, res));
+			action.setOutput(new ResponseOutput(res));
+			action.setSession(new SessionContext(req, res));
+			action.setApplication(appContext);
+			action.setCookies(new CookieContext(req, res));
+			action.setLocale(LocaleManager.decideLocale(req, res));
+			
+		} else {
+		
+    		action.setInput(new RequestInput(req, res));
+    		action.setOutput(new ResponseOutput(res));
+    		action.setSession(new SessionContext(req, res));
+    		action.setApplication(appContext);
+    		action.setCookies(new CookieContext(req, res));
+    		action.setLocale(LocaleManager.decideLocale(req, res));
+    		
+		}
 	}
 
     protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
