@@ -28,8 +28,6 @@ import org.mentawai.core.InvocationChain;
  * PrettyURLController in separated attributes.
  * 
  * @author Rubem Azenha (rubem.azenha@gmail.com)
- * 
- * @see PrettyURLController
  */
 public class PrettyURLParamFilter implements Filter {
 	
