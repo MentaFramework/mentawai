@@ -207,6 +207,18 @@ public abstract class BaseAction implements StickyAction {
 		boolean isGet = method != null && method.equalsIgnoreCase("get");
 		return isGet;
 	}
+	
+	public boolean isAjaxRequest() {
+		return isAjaxRequest(input);
+	}
+	
+	public static boolean isAjaxRequest(Input input) {
+		String reqWith = input.getHeader("X-Requested-With");
+		if (reqWith != null && reqWith.equals("XMLHttpRequest")) {
+			return true;
+		}
+		return false;
+	}
     
     /**
      * Sets a fixed message context for all actions derived from BaseAction.
