@@ -140,7 +140,7 @@ public class InjectionFilter implements Filter {
     			
     			Object value = input.getValue(m_without);
     			
-    			if (value != null) ruby.set(rubyObject, m, value);
+    			if (value != null) ruby.call(rubyObject, m, value);
     		}
     		
     		
