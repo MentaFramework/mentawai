@@ -13,7 +13,7 @@ module Mentawai
       end
       
       def add_action(id, ruby_class_name)
-        action = eval("#{ruby_class_name}.new")        
+        action = eval("#{ruby_class_name}.new")
         @lock.synchronize {
           @actions[id] = action        
         }

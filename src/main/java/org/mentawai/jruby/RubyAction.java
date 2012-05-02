@@ -83,8 +83,8 @@ public class RubyAction implements Action {
 		this.input = input;
 		
 		if (ruby.respondTo(rubyObject, "setInput")) {
-			
-			ruby.set(rubyObject, "setInput", input);
+
+			ruby.call(rubyObject, "setInput", input);
 		}
 	}
 	
@@ -94,7 +94,7 @@ public class RubyAction implements Action {
 		
 		if (ruby.respondTo(rubyObject, "setOutput")) {
 			
-			ruby.set(rubyObject, "setOutput", output);
+			ruby.call(rubyObject, "setOutput", output);
 		}
 	}
 	
@@ -104,7 +104,7 @@ public class RubyAction implements Action {
 		
 		if (ruby.respondTo(rubyObject, "setSession")) {
 			
-			ruby.set(rubyObject, "setSession", context);
+			ruby.call(rubyObject, "setSession", context);
 		}
 
 	}
@@ -115,7 +115,7 @@ public class RubyAction implements Action {
 		
 		if (ruby.respondTo(rubyObject, "setApplication")) {
 			
-			ruby.set(rubyObject, "setApplication", context);
+			ruby.call(rubyObject, "setApplication", context);
 		}
 	}
     
@@ -125,7 +125,7 @@ public class RubyAction implements Action {
     	
 		if (ruby.respondTo(rubyObject, "setCookies")) {
 			
-			ruby.set(rubyObject, "setCookies", context);
+			ruby.call(rubyObject, "setCookies", context);
 		}
     }
 	
@@ -135,7 +135,7 @@ public class RubyAction implements Action {
 		 
 		if (ruby.respondTo(rubyObject, "setLocale")) {
 		
-			ruby.set(rubyObject, "setLocale", loc);
+			ruby.call(rubyObject, "setLocale", loc);
 		}
 	 }
      
