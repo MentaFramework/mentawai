@@ -197,6 +197,10 @@ public abstract class ApplicationManager {
     public void setSessionHandler(SessionHandler sessionHandler) {
     	this.sessionHandler = sessionHandler;
     	ioc("session", sessionHandler);
+    	if (connHandler == null) {
+    		connHandler = sessionHandler.getConnHandler();
+    		ioc("conn", connHandler);
+    	}
     }
     
     public ConnectionHandler getConnectionHandler() {
