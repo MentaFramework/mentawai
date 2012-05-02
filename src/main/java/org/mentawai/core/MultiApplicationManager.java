@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.mentawai.db.ConnectionHandler;
+import org.mentawai.db.SessionHandler;
 import org.mentawai.ioc.Bean;
 import org.mentawai.ioc.Dependency;
 
@@ -78,6 +79,15 @@ public abstract class MultiApplicationManager extends ApplicationManager {
 			manager.createConnectionHandler();
 		}
 		return connHandler;
+	}
+	
+	@Override
+	public final SessionHandler createSessionHandler() {
+		SessionHandler sessionHandler = super.createSessionHandler();
+		for (ApplicationManager manager : this.managers) {
+			manager.createSessionHandler();
+		}
+		return sessionHandler;
 	}
 
 	/*

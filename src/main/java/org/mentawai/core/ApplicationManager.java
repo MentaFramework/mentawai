@@ -49,6 +49,7 @@ import org.mentawai.ajax.AjaxConsequence;
 import org.mentawai.ajax.AjaxRenderer;
 import org.mentawai.coc.ConsequenceProvider;
 import org.mentawai.db.ConnectionHandler;
+import org.mentawai.db.SessionHandler;
 import org.mentawai.filter.AuthenticationFilter;
 import org.mentawai.filter.AuthorizationFilter;
 import org.mentawai.filter.DependencyFilter;
@@ -72,6 +73,7 @@ import org.mentawai.list.DBListData;
 import org.mentawai.list.ListData;
 import org.mentawai.list.ListManager;
 import org.mentawai.spring.SpringActionConfig;
+import org.mentawai.transaction.HibernateTransaction;
 import org.mentawai.transaction.JdbcTransaction;
 import org.mentawai.util.DebugServletFilter;
 import org.mentawai.util.SystemUtils;
@@ -185,9 +187,16 @@ public abstract class ApplicationManager {
     
     private ConnectionHandler connHandler;
     
+    private SessionHandler sessionHandler;
+    
     public void setConnectionHandler(ConnectionHandler connHandler) {
     	this.connHandler = connHandler;
     	ioc("conn", connHandler);
+    }
+    
+    public void setSessionHandler(SessionHandler sessionHandler) {
+    	this.sessionHandler = sessionHandler;
+    	ioc("session", sessionHandler);
     }
     
     public ConnectionHandler getConnectionHandler() {
@@ -614,6 +623,10 @@ public abstract class ApplicationManager {
     public ConnectionHandler createConnectionHandler() {
     	return null;
     }
+    
+    public SessionHandler createSessionHandler() {
+    	return null;
+    }
 
     public void setupDB() { }
 
@@ -833,8 +846,11 @@ public abstract class ApplicationManager {
 				on(REDIR, redir());
 			}
 		} else if (filter instanceof TransactionFilter) {
-			if (connHandler != null) {
-				// you most likely will want that:
+			if (sessionHandler != null) {
+				// using hibernate so very likely you want this:
+				ioc("transaction", HibernateTransaction.class);
+			} else if (connHandler != null) {
+				// using connHandler so you very likely want this:
 				ioc("transaction", JdbcTransaction.class);
 			}
 		}

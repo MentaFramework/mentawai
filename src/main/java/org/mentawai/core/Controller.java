@@ -42,6 +42,7 @@ import org.mentaregex.Regex;
 import org.mentawai.coc.ConsequenceProvider;
 import org.mentawai.coc.DefaultConsequenceProvider;
 import org.mentawai.db.ConnectionHandler;
+import org.mentawai.db.SessionHandler;
 import org.mentawai.filter.GlobalFilterFreeMarkerFilter;
 import org.mentawai.formatter.FormatterManager;
 import org.mentawai.i18n.LocaleManager;
@@ -544,6 +545,11 @@ public class Controller extends HttpServlet {
 			ConnectionHandler connHandler = appManager.createConnectionHandler();
 			if (connHandler != null) {
 				appManager.setConnectionHandler(connHandler);
+			}
+			
+			SessionHandler sessionHandler = appManager.createSessionHandler();
+			if (sessionHandler != null) {
+				appManager.setSessionHandler(sessionHandler);
 			}
 			
 			appManager.setupDB();
