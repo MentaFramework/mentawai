@@ -31,6 +31,8 @@ import org.mentawai.ajax.AjaxConsequence;
 import org.mentawai.ajax.AjaxRenderer;
 import org.mentawai.filter.AuthorizationFilter;
 import org.mentawai.filter.FileUploadFilter;
+import org.mentawai.filter.MethodParamFilter;
+import org.mentawai.filter.OutjectionFilter;
 import org.mentawai.filter.PrettyURLParamFilter;
 
 /**
@@ -72,6 +74,14 @@ public class ActionConfig {
 		this.actionClass = klass;
         this.dirName = getDirFromClass(klass);
         this.name = getName(klass);
+        addOutjectionFilterIfPojo(klass);
+	}
+	
+	private void addOutjectionFilterIfPojo(Class<? extends Object> klass) {
+		if (!Action.class.isAssignableFrom(actionClass)) {
+			// not an action, so assume it is a pojo and include the OutjectionFilter
+			filter(new OutjectionFilter());
+		}
 	}
     
 
@@ -104,6 +114,7 @@ public class ActionConfig {
 		
 		this.actionClass = klass;
       this.dirName = getDirFromClass(klass);
+      addOutjectionFilterIfPojo(klass);
       
 	}
     
@@ -130,6 +141,7 @@ public class ActionConfig {
 		this.name = cutSlash(name);
         this.innerAction = innerAction;
         this.dirName = getDirFromClass(klass);
+        addOutjectionFilterIfPojo(klass);
 	}
 	
 	/**
@@ -145,6 +157,7 @@ public class ActionConfig {
 		this.name = getName(klass);
         this.innerAction = innerAction;
         this.dirName = getDirFromClass(klass);
+        addOutjectionFilterIfPojo(klass);
 	}
 	
     /**
@@ -243,6 +256,11 @@ public class ActionConfig {
 	
 	public ActionConfig prettyURLParams(String ... params) {
 		filter(new PrettyURLParamFilter(params));
+		return this;
+	}
+	
+	public ActionConfig pojoParams(String ... params) {
+		filter(new MethodParamFilter(params));
 		return this;
 	}
 	
