@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.hibernate.Session;
+import org.mentawai.util.HibernateUtils;
 
 public class SessionConnection implements Connection {
 	
@@ -30,23 +31,7 @@ public class SessionConnection implements Connection {
 	
 	public SessionConnection(Session session) {
 		this.session = session;
-		this.conn = getConnectionFrom(session);
-	}
-	
-	private Connection getConnectionFrom(Session session) {
-		if (method == null) {
-			try {
-				method = session.getClass().getMethod("connection");
-			} catch(Exception e) {
-				throw new org.mentawai.util.RuntimeException("Cannot find getConnection method!");
-			}
-		}
-		
-		try {
-			return (Connection) method.invoke(session, (Object[]) null);
-		} catch(Exception e) {
-			throw new org.mentawai.util.RuntimeException("Error getting connection from session!");
-		}
+		this.conn = HibernateUtils.getConnectionFrom(session);
 	}
 	
 	public Session getSession() {
