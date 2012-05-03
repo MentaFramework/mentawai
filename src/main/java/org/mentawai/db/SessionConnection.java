@@ -36,7 +36,7 @@ public class SessionConnection implements Connection {
 	private Connection getConnectionFrom(Session session) {
 		if (method == null) {
 			try {
-				method = session.getClass().getMethod("getConnection");
+				method = session.getClass().getMethod("connection");
 			} catch(Exception e) {
 				throw new org.mentawai.util.RuntimeException("Cannot find getConnection method!");
 			}
