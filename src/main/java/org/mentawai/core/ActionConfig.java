@@ -270,7 +270,7 @@ public class ActionConfig {
 	 * @return this action config
 	 * @since 2.4.0
 	 */
-	public ActionConfig redirectAfterLogin() {
+	public ActionConfig comeBackAfterLogin() {
 		this.redirectAfterLogin = true;
 		return this;
 	}
