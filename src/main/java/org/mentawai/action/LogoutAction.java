@@ -43,6 +43,7 @@ public class LogoutAction extends BaseAction implements AuthenticationFree {
         return SUCCESS;
     }
     
+    @Override
     public boolean bypassAuthentication(String innerAction) {
        
        return true;
