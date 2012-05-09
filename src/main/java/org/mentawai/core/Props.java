@@ -138,7 +138,7 @@ public class Props {
     	if (File.separatorChar == '/') {
     		return s;
     	}
-    	return s.replaceAll("\\/", File.separator);
+    	return s.replaceAll("\\/", "\\\\");
     }
     
     public String getAbsolutePath(String key) {
