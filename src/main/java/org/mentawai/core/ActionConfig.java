@@ -259,7 +259,7 @@ public class ActionConfig {
 		return this;
 	}
 	
-	public ActionConfig pojoParams(String ... params) {
+	public ActionConfig methodParams(String ... params) {
 		filter(new MethodParamFilter(params));
 		return this;
 	}
