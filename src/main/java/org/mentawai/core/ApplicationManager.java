@@ -1748,15 +1748,33 @@ public abstract class ApplicationManager {
 
         return comp;
     }
+    
+    public Bean ioc(Class<?> klass, Bean comp) {
+    	return ioc(getBeanName(klass), comp);
+    }
+    
+    private final String getBeanName(Class<?> klass) {
+    	String s = klass.getSimpleName();
+    	return s.substring(0, 1).toLowerCase() + s.substring(1);
+    }
 
     public void ioc(String name, Factory c) {
 
     	ioc(name, c, Scope.THREAD);
     }
+    
+    public void ioc(Class<?> klass, Factory c) {
+    	
+    	ioc(getBeanName(klass), c);
+    }
 
     public void ioc(String name, Object singleInstance) {
     	WrapperFactory f = new WrapperFactory(singleInstance);
     	ioc(name, f);
+    }
+    
+    public void ioc(Class<?> klass, Object singleInstance) {
+    	ioc(getBeanName(klass), singleInstance);
     }
 
     public void ioc(String name, Factory c, Scope s) {
@@ -1769,7 +1787,10 @@ public abstract class ApplicationManager {
     			container.autowire(name);
     		}
     	}
-
+    }
+    
+    public void ioc(Class<?> klass, Factory c, Scope s) {
+    	ioc(getBeanName(klass), c, s);
     }
 
     /**
@@ -1790,6 +1811,10 @@ public abstract class ApplicationManager {
 
         return c;
     }
+    
+    public DefaultComponent ioc(Class<?> klass, Class<? extends Object> k) {
+    	return ioc(getBeanName(klass), k);
+    }
 
     /**
      * Add an IOC component to this application manager.
@@ -1799,7 +1824,7 @@ public abstract class ApplicationManager {
      * @param scope
      * @return The component just added
      */
-    public ScopeComponent ioc(String name, Class klass, int scope) {
+    public ScopeComponent ioc(String name, Class<?> klass, int scope) {
 
         ScopeComponent c;
         
@@ -1810,6 +1835,10 @@ public abstract class ApplicationManager {
         addComponent(name, c = new ScopeComponent(klass, scope));
 
         return c;
+    }
+    
+    public ScopeComponent ioc(Class<?> klass, Class<?> k, int scope) {
+    	return ioc(getBeanName(klass), k, scope);
     }
 
     /**
