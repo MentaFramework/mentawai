@@ -3,6 +3,7 @@ package org.mentawai.util;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -80,7 +81,7 @@ public class IOUtils {
 			
 		}
 	}
-
+	
 	public static void createDir(String dirName) throws IOException {
 		File f = new File(dirName);
 		if (f.exists()) {
@@ -139,5 +140,26 @@ public class IOUtils {
 		}
 		
 		return sb.toString();
+	}
+	
+	public static byte[] readBytesFromURL(String url) throws Throwable {
+		
+		URL u = new URL(url);
+		
+		InputStream in;
+		
+		in = u.openStream();
+		
+		ByteArrayOutputStream baos = new ByteArrayOutputStream(1024 * 1024 * 5);
+		
+		byte[] b = new byte[1024];
+		
+		int read;
+		
+		while((read = in.read(b)) > 0) {
+			baos.write(b, 0, read);
+		}
+		
+		return baos.toByteArray();
 	}
 }
