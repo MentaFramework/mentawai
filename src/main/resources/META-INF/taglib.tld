@@ -955,7 +955,7 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>String</type>
-		</attribute>		
+		</attribute>
 
 	</tag>
 
@@ -2730,6 +2730,13 @@
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 			<description>Set roles separated by comma like: ADMIN, GUEST, OTHER</description>
+		</attribute>
+		<attribute>
+			<name>negate</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+			<description>To negate this sentence set true</description>
 		</attribute>
 	</tag>
 	<!-- formSkin -->
