@@ -30,62 +30,85 @@ import org.mentawai.util.StringUtils;
  */
 public class IsUserInRole extends ConditionalTag {
 
-	/**
-	 * Generated serialVersionUID.
-	 */
-	private static final long serialVersionUID = 3738775998405568039L;
-	
-	/**
-	 * Attribute roles of IsUserInRole tag.
-	 */
-	private String roles;
-	
-	/**
-	 * Default method testCondition of ConditionalTag.
-	 * @return boolean
-	 */
-	public boolean testCondition() throws JspException {
-		
-		boolean isUserInRole = false;
-		
-		if (!StringUtils.isEmpty(roles)) {
-			
-			roles = roles.trim();
-			
-			String[] roleArray = roles.split(",");
-			
-			for (String s : roleArray) {
-				
-				if (req.isUserInRole(s.trim())) {
-					
-					isUserInRole = true;
-					
-					break;
-					
-				}
-				
-			}
-			
-		}
-		
-		return isUserInRole;
-	}
+    /**
+     * Generated serialVersionUID.
+     */
+    private static final long serialVersionUID = 3738775998405568039L;
 
-	/**
-	 * Gets roles of IsUserInRole.
-	 * @return String
-	 */
-	public String getRoles() {
-		return roles;
-	}
+    /**
+     * Attribute roles of IsUserInRole tag.
+     */
+    private String roles;
 
-	/**
-	 * Sets roles of IsUserInRole.
-	 */
-	public void setRoles(String roles) {
-		this.roles = roles;
-	}
-	
-	
+    /**
+     * Attribute negate of IsUserInRole tag.
+     */
+    private boolean negate = false;
+
+    /**
+     * Default method testCondition of ConditionalTag.
+     * @return boolean
+     */
+    public boolean testCondition() throws JspException {
+
+        boolean isUserInRole = false;
+
+        if (!StringUtils.isEmpty(roles)) {
+
+            roles = roles.trim();
+
+            String[] roleArray = roles.split(",");
+
+            for (String s : roleArray) {
+
+                if (req.isUserInRole(s.trim())) {
+
+                    isUserInRole = true;
+
+                    break;
+
+                }
+
+            }
+
+        }
+
+        if (negate) {
+        	isUserInRole = false;
+        }
+
+        return isUserInRole;
+    }
+
+    /**
+     * Gets roles of IsUserInRole.
+     * @return String
+     */
+    public String getRoles() {
+        return roles;
+    }
+
+    /**
+     * Sets roles of IsUserInRole.
+     */
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
+
+    /**
+     * Checks if is negation of roles.
+     * @return boolean
+     */
+    public boolean isNegate() {
+        return negate;
+    }
+
+    /**
+     * Sets the negation state of roles.
+     * @param negate boolean
+     */
+    public void setNegate(boolean negate) {
+        this.negate = negate;
+    }
 
 }
