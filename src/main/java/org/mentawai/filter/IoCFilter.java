@@ -19,7 +19,9 @@
 package org.mentawai.filter;
 
 import org.mentawai.core.Action;
+import org.mentawai.core.AfterConsequenceFilter;
 import org.mentawai.core.ApplicationManager;
+import org.mentawai.core.Consequence;
 import org.mentawai.core.Context;
 import org.mentawai.core.Filter;
 import org.mentawai.core.FilterException;
@@ -38,13 +40,14 @@ import org.mentawai.ioc.ScopeComponent;
  * 
  * @author Davi Luan Carneiro
  */
-public class IoCFilter extends InputWrapper implements Filter {
+public class IoCFilter extends InputWrapper implements AfterConsequenceFilter {
     
     public static final int REQUEST = PushIoCFilter.REQUEST;
     public static final int SESSION = PushIoCFilter.SESSION;
     public static final int APPLICATION = PushIoCFilter.APPLICATION;
     
     private ThreadLocal<Action> action = new ThreadLocal<Action>();
+    private ThreadLocal<ActionComponent> actionComponent = new ThreadLocal<ActionComponent>();
     
     private Filter oldone = null;
     
@@ -151,6 +154,8 @@ public class IoCFilter extends InputWrapper implements Filter {
                
                ActionComponent ac = (ActionComponent) c;
                
+               actionComponent.set(ac);
+               
                ac.setAction(getAction());
                
                ac.setKey(key);
@@ -227,4 +232,14 @@ public class IoCFilter extends InputWrapper implements Filter {
             
         }
 	}
+
+	@Override
+    public void afterConsequence(Action action, Consequence c, boolean conseqExecuted, boolean actionExecuted, String result) {
+		this.action.remove();
+		ActionComponent ac = this.actionComponent.get();
+		if (ac != null) {
+			ac.removeAll();
+		}
+		this.actionComponent.remove();
+    }
 }

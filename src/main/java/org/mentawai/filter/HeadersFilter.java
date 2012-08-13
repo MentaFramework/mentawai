@@ -23,12 +23,13 @@ import java.util.Iterator;
 import java.util.Map;
 
 import org.mentawai.core.Action;
-import org.mentawai.core.Filter;
+import org.mentawai.core.AfterConsequenceFilter;
+import org.mentawai.core.Consequence;
 import org.mentawai.core.Input;
 import org.mentawai.core.InputWrapper;
 import org.mentawai.core.InvocationChain;
 
-public class HeadersFilter extends InputWrapper implements Filter {
+public class HeadersFilter extends InputWrapper implements AfterConsequenceFilter {
    
    private final String name;
    
@@ -92,5 +93,10 @@ public class HeadersFilter extends InputWrapper implements Filter {
    public void destroy() { 
       
    }
+
+   @Override
+   public void afterConsequence(Action action, Consequence c, boolean conseqExecuted, boolean actionExecuted, String result) {
+	   this.action.remove();
+   }	
    
 }

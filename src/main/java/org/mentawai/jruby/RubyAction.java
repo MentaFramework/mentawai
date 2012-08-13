@@ -54,6 +54,10 @@ public class RubyAction implements Action {
 		action.set(this);
 	}
 	
+	public void removeAction() {
+		this.action.remove();
+	}
+	
 	public Object getRubyObject() {
 		
 		return rubyObject;

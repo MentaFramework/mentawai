@@ -85,6 +85,10 @@ public class PojoAction implements Action {
 		action.set(this);
 	}
 	
+	public void removeAction() {
+		action.remove();
+	}
+	
 	public Object getPojo() {
 		
 		return pojo;

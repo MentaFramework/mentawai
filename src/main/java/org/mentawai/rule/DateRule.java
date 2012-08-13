@@ -31,8 +31,6 @@ import java.util.Map;
   */
  public class DateRule extends LocaleRule {
 	 
-	 private static DateRule cache = null;
-	 
      private static final int STYLE = DateFormat.SHORT;
      
      private int style = STYLE;
@@ -43,7 +41,7 @@ import java.util.Map;
      
      private Date max = null;
      
-     private ThreadLocal<Locale> loc = new ThreadLocal<Locale>();
+     private Locale loc = null;
      
     /**
       * Creates a rule using the default DateFormat style (SHORT).
@@ -51,14 +49,10 @@ import java.util.Map;
      public DateRule() {
      
      }
-     
+
+     // No cache for DateRule because of the locale!
      public static DateRule getInstance() {
-    	 
-    	 if (cache != null) return cache;
-    	 
-    	 cache = new DateRule();
-    	 
-    	 return cache;
+    	 return new DateRule();
      }
 
      /**
@@ -150,7 +144,7 @@ import java.util.Map;
     	 
     	 if (min != null || max != null) {
     	 
-    		 loc.set(locale);
+    		 loc = locale;
     		 
     	 }
     	 
@@ -188,7 +182,7 @@ import java.util.Map;
     	 
     	 if (min != null || max != null) {
     	 
-    		 DateFormat df = DateFormat.getDateInstance(style, loc.get());
+    		 DateFormat df = DateFormat.getDateInstance(style, loc);
     	 
     		 Map<String, String> map = new HashMap<String, String>();
     		 

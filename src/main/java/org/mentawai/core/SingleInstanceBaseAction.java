@@ -44,6 +44,14 @@ public abstract class SingleInstanceBaseAction extends BaseAction {
      */
 	public SingleInstanceBaseAction() { }
     
+	public void removeAll() {
+		input.remove();
+		output.remove();
+		session.remove();
+		application.remove();
+		loc.remove();
+	}
+	
 	public void setInput(Input input) {
 		this.input.set(input);
 	}

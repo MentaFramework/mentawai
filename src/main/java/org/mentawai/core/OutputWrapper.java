@@ -33,6 +33,10 @@ public class OutputWrapper implements Output, Map<String, Object> {
 		this.output.set(output);
 	}
 	
+	public void removeOutput() {
+		this.output.remove();
+	}
+	
 	private Output getOutput() {
 		
 		Output o = output.get();

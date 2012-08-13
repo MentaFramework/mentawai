@@ -47,6 +47,7 @@ import org.mentawai.filter.GlobalFilterFreeMarkerFilter;
 import org.mentawai.formatter.FormatterManager;
 import org.mentawai.i18n.LocaleManager;
 import org.mentawai.jruby.JRubyInterpreter;
+import org.mentawai.jruby.RubyAction;
 import org.mentawai.list.ListManager;
 import org.mentawai.log.Debug;
 import org.mentawai.log.Info;
@@ -1027,6 +1028,23 @@ public class Controller extends HttpServlet {
                     + actionName + ": " + e.getMessage() + " / " + e.getClass().getName() + " / " + cause.getMessage() + " / " + cause.getClass().getName(), cause);
 
 		} finally {
+			
+			// remember to clear thread local.
+			
+			if (action instanceof PojoAction) {
+				PojoAction pojoAction = (PojoAction) action;
+				pojoAction.removeAction();
+			}
+			
+			if (action instanceof SingleInstanceBaseAction) {
+				SingleInstanceBaseAction siba = (SingleInstanceBaseAction) action;
+				siba.removeAll();
+			}
+			
+			if (action instanceof RubyAction) {
+				RubyAction ra = (RubyAction) action;
+				ra.removeAction();
+			}
 
 			/*
 			 * Here we check all filters that were executed together with the

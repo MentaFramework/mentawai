@@ -21,13 +21,14 @@ package org.mentawai.filter;
 import java.lang.reflect.Method;
 
 import org.mentawai.core.Action;
-import org.mentawai.core.Filter;
+import org.mentawai.core.AfterConsequenceFilter;
+import org.mentawai.core.Consequence;
 import org.mentawai.core.InputWrapper;
 import org.mentawai.core.InvocationChain;
 import org.mentawai.core.Output;
 import org.mentawai.core.PojoAction;
 
-public class OutputFilter extends InputWrapper implements Filter {
+public class OutputFilter extends InputWrapper implements AfterConsequenceFilter {
 
 	private String name = null;
 	
@@ -189,4 +190,9 @@ public class OutputFilter extends InputWrapper implements Filter {
 
 	public void destroy() {
 	}
+
+	@Override
+    public void afterConsequence(Action action, Consequence c, boolean conseqExecuted, boolean actionExecuted, String result) {
+		this.action.remove();
+    }
 }

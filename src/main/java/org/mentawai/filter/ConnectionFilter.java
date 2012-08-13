@@ -86,10 +86,10 @@ public class ConnectionFilter extends InputWrapper implements
 
         Connection conn = this.conn.get();
         
+        this.conn.remove();
+        
         if (conn != null) {
         	
-            this.conn.set(null);
-            
             removeValue(connKey);
             
             connHandler.release(conn);

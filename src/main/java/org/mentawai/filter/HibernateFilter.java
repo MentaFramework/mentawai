@@ -192,9 +192,9 @@ public class HibernateFilter extends InputWrapper implements
     		
     		Transaction trans = hibernateTransactionThreadLocal.get();
     		
+    		hibernateTransactionThreadLocal.remove();
+    		
     		if (trans != null) {
-    			
-    			hibernateTransactionThreadLocal.set(null);
     			
     			removeValue(hibernateTransactionKey);
     			
@@ -243,9 +243,10 @@ public class HibernateFilter extends InputWrapper implements
             boolean conseqExecuted, boolean actionExecuted, String result) {
 
         Session session = hibernateSessionThreadLocal.get();
+        
+        hibernateSessionThreadLocal.remove();
 
         if (session != null) {
-            hibernateSessionThreadLocal.set(null);
             removeValue(hibernateSessionKey);
             session.close();
         }

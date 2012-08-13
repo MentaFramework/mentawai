@@ -36,6 +36,11 @@ public abstract class ActionComponent implements Bean {
       key.set(k);
    }
    
+   public void removeAll() {
+	   action.remove();
+	   key.remove();
+   }
+   
    protected Action getAction() {
       
       return action.get();

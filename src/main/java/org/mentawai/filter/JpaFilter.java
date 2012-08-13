@@ -155,10 +155,10 @@ public class JpaFilter extends InputWrapper implements AfterConsequenceFilter {
 		if (transactional) {
 
 			Transaction trans = jpaTransactionThreadLocal.get();
+			
+			jpaTransactionThreadLocal.remove();
 
 			if (trans != null) {
-
-				jpaTransactionThreadLocal.set(null);
 
 				removeValue(jpaTransactionKey);
 
@@ -203,9 +203,10 @@ public class JpaFilter extends InputWrapper implements AfterConsequenceFilter {
 			boolean conseqExecuted, boolean actionExecuted, String result) {
 
 		EntityManager entityManager = jpaEntityManagerThreadLocal.get();
+		
+		jpaEntityManagerThreadLocal.remove();
 
 		if (entityManager != null) {
-			jpaEntityManagerThreadLocal.set(null);
 			removeValue(jpaEntityManagerKey);
 			if (entityManager.isOpen()) {
 			    entityManager.close();

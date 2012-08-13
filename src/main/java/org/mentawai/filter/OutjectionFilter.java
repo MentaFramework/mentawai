@@ -21,7 +21,8 @@ package org.mentawai.filter;
 import java.lang.reflect.Method;
 
 import org.mentawai.core.Action;
-import org.mentawai.core.Filter;
+import org.mentawai.core.AfterConsequenceFilter;
+import org.mentawai.core.Consequence;
 import org.mentawai.core.InvocationChain;
 import org.mentawai.core.Output;
 import org.mentawai.core.OutputWrapper;
@@ -45,7 +46,7 @@ import org.mentawai.jruby.RubyAction;
  * 
  * @author Sergio Oliveira
  */
-public class OutjectionFilter extends OutputWrapper implements Filter {
+public class OutjectionFilter extends OutputWrapper implements AfterConsequenceFilter {
 	
 	private ThreadLocal<Action> action = new ThreadLocal<Action>();
 	
@@ -201,5 +202,14 @@ public class OutjectionFilter extends OutputWrapper implements Filter {
 	}
     
     public void destroy() { }
+
+
+	@Override
+    public void afterConsequence(Action action, Consequence c, boolean conseqExecuted, boolean actionExecuted, String result) {
+		if (action instanceof RubyAction) {
+			// remember to clear the thread local
+			super.removeOutput();
+		}
+    }
 }
 		
