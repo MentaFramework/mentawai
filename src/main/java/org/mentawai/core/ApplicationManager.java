@@ -34,6 +34,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -49,6 +50,7 @@ import org.mentawai.ajax.AjaxConsequence;
 import org.mentawai.ajax.AjaxRenderer;
 import org.mentawai.coc.ConsequenceProvider;
 import org.mentawai.db.ConnectionHandler;
+import org.mentawai.db.JPAHandler;
 import org.mentawai.db.SessionHandler;
 import org.mentawai.filter.AuthenticationFilter;
 import org.mentawai.filter.AuthorizationFilter;
@@ -201,6 +203,10 @@ public abstract class ApplicationManager {
     		connHandler = sessionHandler.getConnHandler();
     		ioc("conn", connHandler);
     	}
+    }
+    
+    public void setJPAHandler(JPAHandler jpaHandler) {
+    	ioc(EntityManager.class, jpaHandler);
     }
     
     public ConnectionHandler getConnectionHandler() {
@@ -632,6 +638,10 @@ public abstract class ApplicationManager {
     	return null;
     }
 
+    public JPAHandler createJPAHandler() {
+    	return null;
+    }
+    
     public void setupDB() { }
 
     /**

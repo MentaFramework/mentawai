@@ -42,6 +42,7 @@ import org.mentaregex.Regex;
 import org.mentawai.coc.ConsequenceProvider;
 import org.mentawai.coc.DefaultConsequenceProvider;
 import org.mentawai.db.ConnectionHandler;
+import org.mentawai.db.JPAHandler;
 import org.mentawai.db.SessionHandler;
 import org.mentawai.filter.GlobalFilterFreeMarkerFilter;
 import org.mentawai.formatter.FormatterManager;
@@ -551,6 +552,11 @@ public class Controller extends HttpServlet {
 			SessionHandler sessionHandler = appManager.createSessionHandler();
 			if (sessionHandler != null) {
 				appManager.setSessionHandler(sessionHandler);
+			}
+			
+			JPAHandler jpaHandler = appManager.createJPAHandler();
+			if(jpaHandler != null) {
+				appManager.setJPAHandler(jpaHandler);
 			}
 			
 			appManager.setupDB();
