@@ -175,7 +175,7 @@ public class TransactionFilter implements Filter {
 
 			if (shouldCommit || (!shouldCommit && !shouldRollback)) {
 
-				Debug.log(NAME, "Result was ok! Will commit the transaction...", "Result =", result);
+				Debug.log(NAME, "Result was ok! Will commit the transaction...", "Result=", result);
 
 				transaction.commit();
 
@@ -183,7 +183,7 @@ public class TransactionFilter implements Filter {
 
 			} else {
 
-				Debug.log(NAME, "Result was not ok! Will rollback the transaction...", "Result =", result);
+				Debug.log(NAME, "Result was not ok! Will rollback the transaction...", "Result=", result);
 
 				transaction.rollback();
 
@@ -198,7 +198,7 @@ public class TransactionFilter implements Filter {
 
 			// rollbacks the transcion if any error occours.
 
-			Debug.log(NAME, "An exception was thrown while executing action! Will try to rollback...", "msg =", e.getMessage());
+			Debug.log(NAME, "An exception was thrown while executing action! Will try to rollback...", "msg=", e.getMessage());
 
 			if (transaction.isActive()) {
 				transaction.rollback();
