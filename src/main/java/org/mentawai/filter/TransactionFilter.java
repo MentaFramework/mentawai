@@ -27,7 +27,8 @@ import org.mentawai.core.FilterException;
 import org.mentawai.core.Input;
 import org.mentawai.core.InvocationChain;
 import org.mentawai.transaction.Transaction;
-import org.mentawai.log.Debug;
+
+import static org.mentalog.Log.*;
 
 /**
  * <p>
@@ -153,18 +154,18 @@ public class TransactionFilter implements Filter {
 
 		if (transaction == null) {
 
-			if (Debug.isEnabled()) Debug.log(NAME, "Transaction was NULL inside TransactionFilter!!!");
+			Debug.log(NAME, "Transaction was NULL inside TransactionFilter!!!");
 
 			throw new FilterException("Cannot find transaction in action's " + "input with the given key: " + transactionKey);
 		}
 
 		try {
 
-			if (Debug.isEnabled()) Debug.log(NAME, "Beginning transaction...");
+			Debug.log(NAME, "Beginning transaction...");
 
 			transaction.begin();
 
-			if (Debug.isEnabled()) Debug.log(NAME, "Transaction was begun! Will invoke action...");
+			Debug.log(NAME, "Transaction was begun! Will invoke action...");
 
 			String result = chain.invoke();
 
@@ -174,19 +175,19 @@ public class TransactionFilter implements Filter {
 
 			if (shouldCommit || (!shouldCommit && !shouldRollback)) {
 
-				if (Debug.isEnabled()) Debug.log(NAME, "Result was ok! Will commit the transaction...", "Result =", result);
+				Debug.log(NAME, "Result was ok! Will commit the transaction...", "Result =", result);
 
 				transaction.commit();
 
-				if (Debug.isEnabled()) Debug.log(NAME, "Transaction was committed!");
+				Debug.log(NAME, "Transaction was committed!");
 
 			} else {
 
-				if (Debug.isEnabled()) Debug.log(NAME, "Result was not ok! Will rollback the transaction...", "Result =", result);
+				Debug.log(NAME, "Result was not ok! Will rollback the transaction...", "Result =", result);
 
 				transaction.rollback();
 
-				if (Debug.isEnabled()) Debug.log(NAME, "Transaction was rolled back!");
+				Debug.log(NAME, "Transaction was rolled back!");
 			}
 
 			return result;
@@ -197,11 +198,11 @@ public class TransactionFilter implements Filter {
 
 			// rollbacks the transcion if any error occours.
 
-			if (Debug.isEnabled()) Debug.log(NAME, "An exception was thrown while executing action! Will try to rollback...", "msg =", e.getMessage());
+			Debug.log(NAME, "An exception was thrown while executing action! Will try to rollback...", "msg =", e.getMessage());
 
 			if (transaction.isActive()) {
 				transaction.rollback();
-				if (Debug.isEnabled()) Debug.log(NAME, "Transaction was rolled back!");
+				Debug.log(NAME, "Transaction was rolled back!");
 			}
 
 			throw e;

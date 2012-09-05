@@ -25,9 +25,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.WeakHashMap;
 
-import org.mentawai.log.Debug;
 import org.mentawai.util.InjectionUtils;
 
+import static org.mentalog.Log.*;
 
 public class Dependency {
 	
@@ -128,7 +128,7 @@ public class Dependency {
 
         Method m = InjectionUtils.findMethodToInject(targetClass, target, klass);
         
-        if (Debug.isEnabled()) Debug.log(NAME, "Finding method:", "target=", targetClass.getName(), "attrName=", target, "sourceClass=", klass.getName(), "methodFound=", m == null ? "NULL" : m.getName());
+        Debug.log(NAME, "Finding method:", "target=", targetClass.getName(), "attrName=", target, "sourceClass=", klass.getName(), "methodFound=", m == null ? "NULL" : m.getName());
 
         if (m != null) {
         	
@@ -145,7 +145,7 @@ public class Dependency {
 
             Field f = InjectionUtils.findFieldToInject(targetClass, target, klass);
             
-            if (Debug.isEnabled()) Debug.log(NAME, "Finding field:", "target=", targetClass.getName(), "attrName=", target, "sourceClass=", klass.getName(), "fieldFound=", f == null ? "NULL" : f.getName());
+            Debug.log(NAME, "Finding field:", "target=", targetClass.getName(), "attrName=", target, "sourceClass=", klass.getName(), "fieldFound=", f == null ? "NULL" : f.getName());
     
             if (f != null) {
             	

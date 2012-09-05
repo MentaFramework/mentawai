@@ -30,8 +30,9 @@ import org.mentawai.ajaxtag.responses.ErrorResponse;
 import org.mentawai.core.Action;
 import org.mentawai.core.Consequence;
 import org.mentawai.core.ConsequenceException;
-import org.mentawai.log.Error;
 import org.mentawai.util.HttpUtils;
+
+import static org.mentalog.Log.*;
 
 /**
  * <p>

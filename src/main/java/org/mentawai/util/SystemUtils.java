@@ -1,6 +1,6 @@
 package org.mentawai.util;
 
-import org.mentawai.log.Warn;
+import static org.mentalog.Log.*;
 
 public class SystemUtils {
 	

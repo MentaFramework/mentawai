@@ -6,8 +6,8 @@ import javax.persistence.Persistence;
 
 import org.mentacontainer.Factory;
 import org.mentacontainer.Interceptor;
-import org.mentawai.log.Debug;
-import org.mentawai.log.Info;
+
+import static org.mentalog.Log.*;
 
 /**
  * Handler for JPA Stuff.
@@ -51,7 +51,7 @@ public class JPAHandler implements Factory, Interceptor<EntityManager> {
 	public void onCreated(EntityManager entityManager) {
 		if(transactional) { 
 			entityManager.getTransaction().begin();
-			if (Debug.isEnabled()) Debug.log("Entity manager transaction begun!");
+			Debug.log("Entity manager transaction begun!");
 		}
 	}
 
@@ -60,10 +60,10 @@ public class JPAHandler implements Factory, Interceptor<EntityManager> {
 		if(transactional && entityManager.getTransaction().isActive()) {
 			try {
 				entityManager.getTransaction().commit();
-				if (Debug.isEnabled()) Debug.log("EntityManager transaction commited successfully");
+				Debug.log("EntityManager transaction commited successfully");
 			} catch (Exception e) {
 				entityManager.getTransaction().rollback();
-				org.mentawai.log.Error.log("EntityManager transaction was rolled back");
+				Error.log("EntityManager transaction was rolled back");
 				e.printStackTrace();
 			}
 			

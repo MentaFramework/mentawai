@@ -32,8 +32,9 @@ import org.mentawai.core.Filter;
 import org.mentawai.core.InputWrapper;
 import org.mentawai.core.InvocationChain;
 import org.mentawai.ioc.Dependency;
-import org.mentawai.log.Debug;
 import org.mentawai.util.InjectionUtils;
+
+import static org.mentalog.Log.*;
 
 /**
  * A filter that will do AUTO-WIRING of dependencies in a totaly transparent way.
@@ -132,7 +133,7 @@ public class AutoWiringFilter extends InputWrapper implements Filter {
 
         Method m = InjectionUtils.findMethodToInject(target, attrName, sourceClass);
         
-        if (Debug.isEnabled()) Debug.log(NAME, "Finding method:", "target=", target.getName(), "attrName=", attrName, "sourceClass=", sourceClass.getName(), "methodFound=", m == null ? "NULL" : m.getName());
+        Debug.log(NAME, "Finding method:", "target=", target.getName(), "attrName=", attrName, "sourceClass=", sourceClass.getName(), "methodFound=", m == null ? "NULL" : m.getName());
 
         if (m != null) {
 
@@ -149,7 +150,7 @@ public class AutoWiringFilter extends InputWrapper implements Filter {
 
             Field f = InjectionUtils.findFieldToInject(target, attrName, sourceClass);
             
-            if (Debug.isEnabled()) Debug.log(NAME, "Finding field:", "target=", target.getName(), "attrName=", attrName, "sourceClass=", sourceClass.getName(), "methodFound=", f == null ? "NULL" : f.getName());
+            Debug.log(NAME, "Finding field:", "target=", target.getName(), "attrName=", attrName, "sourceClass=", sourceClass.getName(), "methodFound=", f == null ? "NULL" : f.getName());
     
             if (f != null) {
     
@@ -225,13 +226,13 @@ public class AutoWiringFilter extends InputWrapper implements Filter {
 	            // has dependency ?
 	            Object obj = d.getMethodOrField(target.getClass(), tryField);
 	            
-	            if (Debug.isEnabled()) Debug.log(NAME, "Has dependency?", "target =", target.getClass().getName(), "key =", key, "depFound =", obj); 
+	            Debug.log(NAME, "Has dependency?", "target =", target.getClass().getName(), "key =", key, "depFound =", obj); 
 	
 	            if (obj != null) {
 	            	
 	            	boolean hasAlreadyReceived = d.hasAlreadyReceived(target);
 	            	
-	            	if (Debug.isEnabled()) Debug.log(NAME, "HasAlreadyReceived?", "target =", target, "hasAlreadyReceived =", hasAlreadyReceived);
+	            	Debug.log(NAME, "HasAlreadyReceived?", "target =", target, "hasAlreadyReceived =", hasAlreadyReceived);
 	            	
 	                // has already received the dependency?
 	                if (!hasAlreadyReceived) {
@@ -254,7 +255,7 @@ public class AutoWiringFilter extends InputWrapper implements Filter {
                 		boolean isAssignable = source != null && d.getDependencyClass().isAssignableFrom(source.getClass());
 	                		
 	                	
-	                    if (Debug.isEnabled()) Debug.log(NAME, "isAssignable?", "source =", source == null ? "NULL" : source.getClass().getName(), "isAssignable =", isAssignable, "sourceKey =", sourceKey == null ? "NULL" : sourceKey);
+	                    Debug.log(NAME, "isAssignable?", "source =", source == null ? "NULL" : source.getClass().getName(), "isAssignable =", isAssignable, "sourceKey =", sourceKey == null ? "NULL" : sourceKey);
 	
 	                    // check if we can find the dependency and if it is assignable to the target dependency
 	                    if (isAssignable) {
@@ -265,7 +266,7 @@ public class AutoWiringFilter extends InputWrapper implements Filter {
 	
 	                            try {
 	                            	
-	                            	if (Debug.isEnabled()) Debug.log(NAME, "Injecting thru method!", "method =", m.getName(), "target =", target, "source =", source);
+	                            	Debug.log(NAME, "Injecting thru method!", "method =", m.getName(), "target =", target, "source =", source);
 	
 	                                // inject
 	                                m.invoke(target, source);
@@ -273,11 +274,11 @@ public class AutoWiringFilter extends InputWrapper implements Filter {
 	                                // flag it has received
 	                                d.setAlreadyReceived(target);
 	                                
-	                                if (Debug.isEnabled()) Debug.log(NAME, "Injecting thru method succeeded!");
+	                                Debug.log(NAME, "Injecting thru method succeeded!");
 	
 	                            } catch(Exception e) {
 	                            	
-	                            	if (Debug.isEnabled()) Debug.log(NAME, "Injecting thru method failed!", "exception =", e.getMessage());
+	                            	Debug.log(NAME, "Injecting thru method failed!", "exception =", e.getMessage());
 	                            	
 	                                throw new org.mentawai.util.RuntimeException("AutoWiringFilter cannot inject dependency: method = " + (m != null ? m.getName() : "NULL") + " / source = " + (source != null ? source : "NULL") + " / target = " + target, e, true);
 	                            	
@@ -289,7 +290,7 @@ public class AutoWiringFilter extends InputWrapper implements Filter {
 	
 	                            try {
 	                            	
-	                            	if (Debug.isEnabled()) Debug.log(NAME, "Injecting thru field!", "field =", f.getName(), "target =", target, "source =", source);
+	                            	Debug.log(NAME, "Injecting thru field!", "field =", f.getName(), "target =", target, "source =", source);
 	
 	                                // inject in the field !!!!
 	                                f.set(target, source);
@@ -297,11 +298,11 @@ public class AutoWiringFilter extends InputWrapper implements Filter {
 	                                // flag it has received
 	                                d.setAlreadyReceived(target);
 	                                
-	                                if (Debug.isEnabled()) Debug.log(NAME, "Injecting thru field succeeded!");
+	                                Debug.log(NAME, "Injecting thru field succeeded!");
 	
 	                            } catch(Exception e) {
 	                            	
-	                            	if (Debug.isEnabled()) Debug.log(NAME, "Injecting thru field failed!", "exception =", e.getMessage());
+	                            	Debug.log(NAME, "Injecting thru field failed!", "exception =", e.getMessage());
 	                            	
 	                            	throw new org.mentawai.util.RuntimeException("AutoWiringFilter cannot inject dependency: field = " + (f != null ? f.getName() : "NULL") + " / source = " + (source != null ? source : "NULL") + " / target = " + target, e, true);
 	
@@ -311,7 +312,7 @@ public class AutoWiringFilter extends InputWrapper implements Filter {
 	                }
 	            }
 	            
-	            if (Debug.isEnabled()) Debug.log(""); // jump line...
+	            Debug.log(""); // jump line...
     		}
         }
 
@@ -328,13 +329,13 @@ public class AutoWiringFilter extends InputWrapper implements Filter {
             // has dependency ?
             Object obj = getMethodOrField(target.getClass());
             
-            if (Debug.isEnabled()) Debug.log(NAME, "Has dependency?", "target =", target.getClass().getName(), "key =", key, "depFound =", obj); 
+            Debug.log(NAME, "Has dependency?", "target =", target.getClass().getName(), "key =", key, "depFound =", obj); 
 
             if (obj != null) {
             	
             	boolean hasAlreadyReceived = hasAlreadyReceived(target);
             	
-            	if (Debug.isEnabled()) Debug.log(NAME, "HasAlreadyReceived?", "target =", target.getClass().getName(), "hasAlreadyReceived =", hasAlreadyReceived);
+            	Debug.log(NAME, "HasAlreadyReceived?", "target =", target.getClass().getName(), "hasAlreadyReceived =", hasAlreadyReceived);
 
                 // has already received the dependency?
                 if (!hasAlreadyReceived) {
@@ -344,7 +345,7 @@ public class AutoWiringFilter extends InputWrapper implements Filter {
                     
                     boolean isAssignable = source != null && sourceClass.isAssignableFrom(source.getClass());
                     
-                    if (Debug.isEnabled()) Debug.log(NAME, "isAssignable?", "source =", source == null ? "NULL" : source.getClass().getName(), "isAssignable =", isAssignable, "sourceKey =", sourceKey);
+                    Debug.log(NAME, "isAssignable?", "source =", source == null ? "NULL" : source.getClass().getName(), "isAssignable =", isAssignable, "sourceKey =", sourceKey);
 
                     // check if we can find the dependency and if it is assignable to the target dependency
                     if (isAssignable) {
@@ -355,7 +356,7 @@ public class AutoWiringFilter extends InputWrapper implements Filter {
 
                             try {
                             	
-                            	if (Debug.isEnabled()) Debug.log(NAME, "Injecting thru method!", "method =", m.getName(), "target =", target.getClass().getName(), "source =", source);
+                            	Debug.log(NAME, "Injecting thru method!", "method =", m.getName(), "target =", target.getClass().getName(), "source =", source);
 
                                 // inject
                                 m.invoke(target, new Object[] { source });
@@ -363,11 +364,11 @@ public class AutoWiringFilter extends InputWrapper implements Filter {
                                 // flag it has received
                                 setAlreadyReceived(target);
                                 
-                                if (Debug.isEnabled()) Debug.log(NAME, "Injecting thru method succeeded!");
+                                Debug.log(NAME, "Injecting thru method succeeded!");
 
                             } catch(Exception e) {
                             	
-                            	if (Debug.isEnabled()) Debug.log(NAME, "Injecting thru method failed!", "exception =", e.getMessage());
+                            	Debug.log(NAME, "Injecting thru method failed!", "exception =", e.getMessage());
                             	
                                 throw new org.mentawai.util.RuntimeException("AutoWiringFilter cannot inject dependency: method = " + (m != null ? m.getName() : "NULL") + " / source = " + (source != null ? source : "NULL") + " / target = " + target, e, true);
                             	
@@ -379,7 +380,7 @@ public class AutoWiringFilter extends InputWrapper implements Filter {
 
                             try {
                             	
-                            	if (Debug.isEnabled()) Debug.log(NAME, "Injecting thru field!", "field =", f.getName(), "target =", target.getClass().getName(), "source =", source);
+                            	Debug.log(NAME, "Injecting thru field!", "field =", f.getName(), "target =", target.getClass().getName(), "source =", source);
 
                                 // inject in the field !!!!
                                 f.set(target, source);
@@ -387,11 +388,11 @@ public class AutoWiringFilter extends InputWrapper implements Filter {
                                 // flag it has received
                                 setAlreadyReceived(target);
                                 
-                                if (Debug.isEnabled()) Debug.log(NAME, "Injecting thru field succeeded!");
+                                Debug.log(NAME, "Injecting thru field succeeded!");
 
                             } catch(Exception e) {
                             	
-                            	if (Debug.isEnabled()) Debug.log(NAME, "Injecting thru field failed!", "exception =", e.getMessage());
+                            	Debug.log(NAME, "Injecting thru field failed!", "exception =", e.getMessage());
                             	
                             	throw new org.mentawai.util.RuntimeException("AutoWiringFilter cannot inject dependency: field = " + (f != null ? f.getName() : "NULL") + " / source = " + (source != null ? source : "NULL") + " / target = " + target, e, true);
 

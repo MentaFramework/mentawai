@@ -8,7 +8,8 @@ import org.mentawai.core.Action;
 import org.mentawai.core.ActionConfig;
 import org.mentawai.core.ApplicationManager;
 import org.mentawai.core.Consequence;
-import org.mentawai.log.Debug;
+
+import static org.mentalog.Log.*;
 
 /**
  * <p>

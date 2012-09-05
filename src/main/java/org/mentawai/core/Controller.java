@@ -50,9 +50,9 @@ import org.mentawai.i18n.LocaleManager;
 import org.mentawai.jruby.JRubyInterpreter;
 import org.mentawai.jruby.RubyAction;
 import org.mentawai.list.ListManager;
-import org.mentawai.log.Debug;
-import org.mentawai.log.Info;
 import org.mentawai.util.DebugServletFilter;
+
+import static org.mentalog.Log.*;
 
 /**
  * The Mentawai central controller. Mentawai actions are intercepted and
@@ -495,6 +495,7 @@ public class Controller extends HttpServlet {
 	 * loaded
 	 */
 	private static void printInfoHeader() {
+		
 		System.out.println();
 		System.out.println("==== [ Mentawai :: MVC WEB Framework ] ==========================================================");
 		System.out.println("- Version : " + ApplicationManager.MENTAWAI_VERSION+ " (" + ApplicationManager.MENTAWAI_BUILD + ")");
@@ -502,7 +503,7 @@ public class Controller extends HttpServlet {
 		System.out.println("- DebugMode: " + debugMode);
 		System.out.println("- AutoView: " + autoView);
 		System.out.println("- ApplicationManager: " + appMgrClassname);
-		System.out.println("------------------------------------------------------------------------------------");
+		System.out.println("-------------------------------------------------------------------------------------------------");
 		System.out.println("- Server: " + application.getServerInfo());
 		if (getContextPath() != null) System.out.println("- ApplicationContext: " + getContextPath());
 		System.out.println("- Environment: " + appManager.getEnvironment());
@@ -836,7 +837,7 @@ public class Controller extends HttpServlet {
 
 				if (isAppMgrModified()) {
 
-					if(Debug.isEnabled()) Debug.log("Controller", "Re-loading modified application manager!");
+					Debug.log("Controller", "Re-loading modified application manager!");
 					
 					// Destroy before reload....
 					if(appManager != null){
