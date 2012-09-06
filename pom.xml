@@ -332,7 +332,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
-				<version>1.4</version>
+				<version>1.7</version>
 				<executions>
 					<execution>
 						<phase>package</phase>
@@ -343,14 +343,6 @@
 							<finalName>mentawai-all</finalName>
 							<shadedArtifactAttached>true</shadedArtifactAttached>
 							<shadedClassifierName>all</shadedClassifierName>
-							<artifactSet>
-								<includes>
-									<include>me.soliveirajr:menta-container</include>
-									<include>me.soliveirajr:menta-regex</include>
-									<include>me.soliveirajr:menta-bean</include>
-									<include>me.soliveirajr:menta-log</include>
-								</includes>
-							</artifactSet>
 						</configuration>
 					</execution>
 				</executions>
