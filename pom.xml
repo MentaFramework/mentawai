@@ -348,6 +348,7 @@
 									<include>me.soliveirajr:menta-container</include>
 									<include>me.soliveirajr:menta-regex</include>
 									<include>me.soliveirajr:menta-bean</include>
+									<include>me.soliveirajr:menta-log</include>
 								</includes>
 							</artifactSet>
 						</configuration>
