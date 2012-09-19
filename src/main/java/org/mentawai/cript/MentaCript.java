@@ -4,8 +4,8 @@ package org.mentawai.cript;
 /**
  * Class that cript end decript values.
  * 
- *  EX: CriptMD5.cript("123") // returns DtdvnYls4L4=
- *      CriptMD5.decript("DtdvnYls4L4=") // returns 123
+ *  EX: MentaCript.cript("123") // returns DtdvnYls4L4=
+ *      MentaCript.decript("DtdvnYls4L4=") // returns 123
  * 
  * @author Robert Willian Gil
  *

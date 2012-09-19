@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CriptMD5Test {
+public class MentaCriptTest {
 	
 	@Before
 	public void setUp() throws Exception {
