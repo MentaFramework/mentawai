@@ -1,6 +1,5 @@
 package org.mentawai.tag.html;
 
-import org.junit.Before;
 import org.junit.Test;
 
 public class SelectTest {

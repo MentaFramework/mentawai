@@ -21,7 +21,6 @@ package org.mentawai.tag.html;
 import javax.servlet.jsp.JspException;
 
 import org.mentaregex.Regex;
-import org.mentawai.cript.MentaCript;
 
 /**
  * @author Sergio Oliveira

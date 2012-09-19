@@ -31,7 +31,6 @@ import javax.servlet.jsp.tagext.TagAdapter;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-import org.mentawai.cript.MentaCript;
 import org.mentawai.i18n.I18N;
 import org.mentawai.list.ListData;
 import org.mentawai.list.ListItem;

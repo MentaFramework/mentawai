@@ -1,5 +1,7 @@
 package org.mentawai.cript;
 
+import static org.mentalog.Log.*;
+
 import java.io.UnsupportedEncodingException;
 import java.security.spec.AlgorithmParameterSpec;
 import java.security.spec.KeySpec;
@@ -11,12 +13,8 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
 
-import org.apache.log4j.Logger;
-
 public class DesEncrypter {
 
-	private static Logger logger = Logger.getLogger(DesEncrypter.class);
-	
 	private Cipher ecipher;
 	private Cipher dcipher;
 
@@ -41,15 +39,15 @@ public class DesEncrypter {
 			ecipher.init(Cipher.ENCRYPT_MODE, key, paramSpec);
 			dcipher.init(Cipher.DECRYPT_MODE, key, paramSpec);
 		} catch (java.security.InvalidAlgorithmParameterException e) {
-			logger.debug("Error creating component DesEncrypter:", e);
+			Debug.log("Error creating component DesEncrypter:", e);
 		} catch (java.security.spec.InvalidKeySpecException e) {
-			logger.debug("Error creating component DesEncrypter:", e);
+			Debug.log("Error creating component DesEncrypter:", e);
 		} catch (javax.crypto.NoSuchPaddingException e) {
-			logger.debug("Error creating component DesEncrypter:", e);
+			Debug.log("Error creating component DesEncrypter:", e);
 		} catch (java.security.NoSuchAlgorithmException e) {
-			logger.debug("Error creating component DesEncrypter:", e);
+			Debug.log("Error creating component DesEncrypter:", e);
 		} catch (java.security.InvalidKeyException e) {
-			logger.debug("Error creating component DesEncrypter:", e);
+			Debug.log("Error creating component DesEncrypter:", e);
 		}
 	}
 
@@ -65,11 +63,11 @@ public class DesEncrypter {
 			// Encode bytes to base64 to get a string
 			return new sun.misc.BASE64Encoder().encode(enc);
 		} catch (javax.crypto.BadPaddingException e) {
-			logger.debug("Error encrypting string: " + str, e);
+			Debug.log("Error encrypting string: " + str, e);
 		} catch (IllegalBlockSizeException e) {
-			logger.debug("Error encrypting string: " + str, e);
+			Debug.log("Error encrypting string: " + str, e);
 		} catch (UnsupportedEncodingException e) {
-			logger.debug("Error encrypting string: " + str, e);
+			Debug.log("Error encrypting string: " + str, e);
 		}
 		return null;
 	}
@@ -88,13 +86,13 @@ public class DesEncrypter {
 			return new String(utf8, "UTF8");
 			
 		} catch (javax.crypto.BadPaddingException e) {
-			logger.debug("Error decrypting string: " + str, e);
+			Debug.log("Error decrypting string: " + str, e);
 		} catch (IllegalBlockSizeException e) {
-			logger.debug("Error decrypting string: " + str, e);
+			Debug.log("Error decrypting string: " + str, e);
 		} catch (UnsupportedEncodingException e) {
-			logger.debug("Error decrypting string: " + str, e);
+			Debug.log("Error decrypting string: " + str, e);
 		} catch (java.io.IOException e) {
-			logger.debug("Error decrypting string: " + str, e);
+			Debug.log("Error decrypting string: " + str, e);
 		}
 		
 		return null;
