@@ -24,6 +24,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.Tag;
 import javax.servlet.jsp.tagext.TagAdapter;
@@ -69,6 +70,17 @@ public class Select extends HTMLTag {
     public void setMultiple(boolean multiple) { this.multiple = multiple; }
     public void setDefValue(String defValue) { this.defValue = defValue; }
 
+    public Select() {
+	}
+    
+    /**
+     * Constructor for test
+     * @param session
+     */
+    public Select(HttpSession session) {
+    	super.session = session;
+	}
+    
 	protected StringBuffer buildTag() {
 		StringBuffer sb = new StringBuffer(150);
 		sb.append("<select name=\"");

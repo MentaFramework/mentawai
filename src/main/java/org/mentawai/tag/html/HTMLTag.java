@@ -57,11 +57,14 @@ public abstract class HTMLTag extends PrintTag {
     protected String processCriptValue(String s) {
 
 		if(cript) {
+			
+			MentaCript mc = MentaCript.getInstance( session );
+			
 			int indexOf = 0;
 			while ((indexOf = s.indexOf("value=\"", indexOf)) > 0) {
 				indexOf += 7;
 				String value = s.substring( indexOf , s.indexOf("\"", indexOf));
-				String cripted = MentaCript.cript(value);
+				String cripted = mc.cript(value);
 				s = s.replace("value=\"" + value, "value=\"" + cripted);
 			}
 			return processCriptedName(s);

@@ -2766,7 +2766,7 @@
 		<name>cript</name>
 		<function-class>org.mentawai.cript.MentaCript</function-class>
 		<function-signature>
-			String cript(java.lang.String)
+			String cript(java.lang.String,org.mentawai.core.SessionContext)
 		</function-signature>
 	</function>
 	
@@ -2774,7 +2774,7 @@
 		<name>decript</name>
 		<function-class>org.mentawai.cript.MentaCript</function-class>
 		<function-signature>
-			String decript(java.lang.String)
+			String decript(java.lang.String,org.mentawai.core.SessionContext)
 		</function-signature>
 	</function>
 	

@@ -6,59 +6,62 @@ import org.junit.Test;
 
 public class MentaCriptTest {
 	
+	MentaCript mentaCript;
+	
 	@Before
 	public void setUp() throws Exception {
+		mentaCript = MentaCript.getCommonInstance();
 	}
 
 	@Test
 	public void testCript() {
 		
-		Assert.assertEquals( "49kRw4I/LWs=", MentaCript.cript("") );
-		Assert.assertEquals( "8PlvDGLiXak=", MentaCript.cript("1") );
-		Assert.assertEquals( "8PlvDGLiXak=", MentaCript.cript(1) );
+		Assert.assertEquals( "49kRw4I/LWs=", mentaCript.cript("") );
+		Assert.assertEquals( "8PlvDGLiXak=", mentaCript.cript("1") );
+		Assert.assertEquals( "8PlvDGLiXak=", mentaCript.cript(1) );
 		
-		Assert.assertEquals( "DtdvnYls4L4=", MentaCript.cript("123") );
-		Assert.assertEquals( "DtdvnYls4L4=", MentaCript.cript(123) );
+		Assert.assertEquals( "DtdvnYls4L4=", mentaCript.cript("123") );
+		Assert.assertEquals( "DtdvnYls4L4=", mentaCript.cript(123) );
 		
-		Assert.assertEquals( "4E1vnZ0eKNc=", MentaCript.cript("Teste") );
-		Assert.assertEquals( "hnIsr8YIMxiWrXVGQbaMNg==", MentaCript.cript("Robert Gil") );
+		Assert.assertEquals( "4E1vnZ0eKNc=", mentaCript.cript("Teste") );
+		Assert.assertEquals( "hnIsr8YIMxiWrXVGQbaMNg==", mentaCript.cript("Robert Gil") );
 	}
 
 	@Test
 	public void testDecript() throws DecriptException {
-		Assert.assertEquals("1", MentaCript.decript("8PlvDGLiXak="));
-		Assert.assertEquals("123", MentaCript.decript("DtdvnYls4L4="));
-		Assert.assertEquals("Teste", MentaCript.decript("4E1vnZ0eKNc="));
-		Assert.assertEquals("Robert Gil", MentaCript.decript("hnIsr8YIMxiWrXVGQbaMNg=="));
-		Assert.assertEquals("", MentaCript.decript("") );
-		Assert.assertNull(MentaCript.decript(null) );
+		Assert.assertEquals("1", mentaCript.decript("8PlvDGLiXak="));
+		Assert.assertEquals("123", mentaCript.decript("DtdvnYls4L4="));
+		Assert.assertEquals("Teste", mentaCript.decript("4E1vnZ0eKNc="));
+		Assert.assertEquals("Robert Gil", mentaCript.decript("hnIsr8YIMxiWrXVGQbaMNg=="));
+		Assert.assertEquals("", mentaCript.decript("") );
+		Assert.assertNull(mentaCript.decript(null) );
 	}
 
 	@Test(expected=DecriptException.class)
 	public void testDecriptException() throws DecriptException {
 		// will throw exception
-		MentaCript.decript("8PlvDGLiXak_=");
+		mentaCript.decript("8PlvDGLiXak_=");
 	}
 	
 	@Test(expected=DecriptException.class)
 	public void testDecriptExceptionNumber() throws DecriptException {
 		// will throw exception
-		MentaCript.decript("1");
+		mentaCript.decript("1");
 	}
 	
 	@Test(expected=DecriptException.class)
 	public void testDecriptExceptionText() throws DecriptException {
 		// will throw exception
-		MentaCript.decript("error");
+		mentaCript.decript("error");
 	}
 	
 	@Test
 	public void testNull() throws DecriptException {
 		String s = null;
 		Integer i = null;
-		Assert.assertNull( MentaCript.cript( s ) );
-		Assert.assertNull( MentaCript.cript( i ) );
-		Assert.assertNull( MentaCript.decript(s) );
+		Assert.assertNull( mentaCript.cript( s ) );
+		Assert.assertNull( mentaCript.cript( i ) );
+		Assert.assertNull( mentaCript.decript(s) );
 	}
 	
 

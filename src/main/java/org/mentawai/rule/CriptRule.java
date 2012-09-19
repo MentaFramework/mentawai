@@ -4,8 +4,9 @@ import java.util.Map;
 
 import org.mentawai.core.Action;
 import org.mentawai.core.Input;
-import org.mentawai.cript.MentaCript;
+import org.mentawai.core.SessionContext;
 import org.mentawai.cript.DecriptException;
+import org.mentawai.cript.MentaCript;
 
 /**
  * 
@@ -41,7 +42,8 @@ public class CriptRule implements Rule {
 		}
 		
 		try {
-			input.setValue(field, MentaCript.decript(criptedValue));
+			MentaCript mc = MentaCript.getInstance((SessionContext) action.getSession());
+			input.setValue(field, mc.decript(criptedValue));
 			return true;
 		} catch (DecriptException e) {
 			return false;
