@@ -30,6 +30,7 @@ import org.mentawai.message.DefaultMessage;
 import org.mentawai.message.Message;
 import org.mentawai.message.MessageContext;
 import org.mentawai.message.MessageManager;
+import org.mentawai.rule.CriptRule;
 import org.mentawai.rule.IntegerRule;
 import org.mentawai.rule.RequiredRule;
 import org.mentawai.rule.Rule;
@@ -178,6 +179,15 @@ public class Validator {
          add(fields[i], RequiredRule.getInstance(), error_id);
       }
    }
+   
+   public void criptedFields(String error_id, String ... fields) {
+	      
+	      if (fields == null || fields.length == 0) return;
+	      
+	      for(int i=0;i<fields.length;i++) {
+	         add(fields[i], CriptRule.getInstance(), error_id);
+	      }
+	   }
    
    public void requiredLists(String error_id, String ... fields) {
       

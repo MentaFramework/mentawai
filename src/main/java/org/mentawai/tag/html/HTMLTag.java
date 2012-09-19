@@ -27,6 +27,7 @@ import javax.servlet.jsp.tagext.Tag;
 import org.mentawai.core.BaseAction;
 import org.mentawai.core.Input;
 import org.mentawai.core.Output;
+import org.mentawai.cript.MentaCript;
 import org.mentawai.tag.Out;
 import org.mentawai.tag.util.Context;
 import org.mentawai.tag.util.PrintTag;
@@ -42,18 +43,52 @@ public abstract class HTMLTag extends PrintTag {
     
     private String separator = SEPARATOR;
     
-    public void setExtra(String extra) {
-        
-        this.extra = extra;
-        
-    }
+    protected boolean cript = false;
     
-    public void setSeparator(String separator) {
-        
-        this.separator = separator;
-        
-    }
+    public void setCript(boolean cript) {this.cript = cript; }
+    public void setExtra(String extra) {this.extra = extra; }
+    public void setSeparator(String separator) { this.separator = separator; }
     
+    /**
+     * 
+     * @param html tag that its values will be cripted
+     * @return html with values cripteds
+     */
+    protected String processCriptValue(String s) {
+
+		if(cript) {
+			int indexOf = 0;
+			while ((indexOf = s.indexOf("value=\"", indexOf)) > 0) {
+				indexOf += 7;
+				String value = s.substring( indexOf , s.indexOf("\"", indexOf));
+				String cripted = MentaCript.cript(value);
+				s = s.replace("value=\"" + value, "value=\"" + cripted);
+			}
+			return processCriptedName(s);
+		}
+		
+		return s;
+	}
+    
+    /**
+     * 
+     * @param html tag that its name will be changed to cript pattern
+     * @return html with name cripted
+     */
+    protected String processCriptedName(String v) {
+    	
+    	int indexOfName = v.indexOf("name=\"") + 6;
+		String name = v.substring( indexOfName , v.indexOf("\"", indexOfName));
+		
+		StringBuilder fieldName = new StringBuilder();
+		fieldName.append("name=\"");
+		fieldName.append(MentaCript.PREFIX_CRIPT_TAG);
+		fieldName.append(name);
+		
+		return v.replace("name=\"" + name, fieldName.toString());
+		
+    }
+
     protected String getExtraAttributes() {
         
         if (extra == null) return "";

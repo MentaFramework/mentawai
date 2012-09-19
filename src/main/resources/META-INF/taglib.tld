@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!DOCTYPE taglib
-        PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
-        "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib version="2.0" xmlns="http://java.sun.com/xml/ns/j2ee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd">
 
-
-
-<taglib>
 	<tlib-version>1.0</tlib-version>
 	<jsp-version>1.2</jsp-version>
 	<short-name>mentawai</short-name>
@@ -828,6 +825,12 @@
 			<rtexprvalue>true</rtexprvalue>
 			<type>String</type>
 		</attribute>
+		<attribute>
+			<name>cript</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+		</attribute>
 	</tag>
 
 	<tag>
@@ -897,6 +900,12 @@
 		</attribute>
 		<attribute>
 			<name>loseValue</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<name>cript</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>boolean</type>
@@ -1148,7 +1157,12 @@
 			<rtexprvalue>true</rtexprvalue>
 			<type>String</type>
 		</attribute>
-
+		<attribute>
+			<name>cript</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+		</attribute>
 	</tag>
 
 	<tag>
@@ -1215,6 +1229,12 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>String</type>
+		</attribute>
+		<attribute>
+			<name>cript</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
 		</attribute>
 	</tag>
 
@@ -2741,4 +2761,21 @@
 	</tag>
 	<!-- formSkin -->
 
+
+	<function>
+		<name>cript</name>
+		<function-class>org.mentawai.cript.MentaCript</function-class>
+		<function-signature>
+			String cript(java.lang.String)
+		</function-signature>
+	</function>
+	
+	<function>
+		<name>decript</name>
+		<function-class>org.mentawai.cript.MentaCript</function-class>
+		<function-signature>
+			String decript(java.lang.String)
+		</function-signature>
+	</function>
+	
 </taglib>

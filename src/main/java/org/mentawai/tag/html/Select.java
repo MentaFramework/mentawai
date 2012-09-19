@@ -31,6 +31,7 @@ import javax.servlet.jsp.tagext.TagAdapter;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import org.mentawai.cript.MentaCript;
 import org.mentawai.i18n.I18N;
 import org.mentawai.list.ListData;
 import org.mentawai.list.ListItem;
@@ -213,7 +214,7 @@ public class Select extends HTMLTag {
 
         List<ListItem> findValuesOut = findValuesOut();
 
-        StringBuffer sb = new StringBuffer(findValuesOut.size() * 50);
+        StringBuilder sb = new StringBuilder(findValuesOut.size() * 50);
 
         Iterator<ListItem> iter = findValuesOut.iterator();
 
@@ -315,7 +316,7 @@ public class Select extends HTMLTag {
             sb.append("</select>\n");
         }
 
-        return sb.toString();
+        return  processCriptValue(sb.toString());
     }
-
+    
 }

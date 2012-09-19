@@ -21,6 +21,7 @@ package org.mentawai.tag.html;
 import javax.servlet.jsp.JspException;
 
 import org.mentaregex.Regex;
+import org.mentawai.cript.MentaCript;
 
 /**
  * @author Sergio Oliveira
@@ -46,7 +47,7 @@ public class Input extends HTMLTag {
     public void setType(String type) { this.type = type; }
     public void setValue(String value) { this.value = value; }
     public void setLoseValue(boolean value) { this.loseValue = value; }
-	
+    
 	protected StringBuffer buildTag() {
 		
 		Object value = null;
@@ -170,12 +171,12 @@ public class Input extends HTMLTag {
     
     public String getStringToPrint() throws JspException {
 
-        StringBuffer sb = new StringBuffer(200);
+    	StringBuilder sb = new StringBuilder(200);
 		sb.append(buildTag().toString());		
         sb.append(" />");
 		
-		return sb.toString();
+		return processCriptValue(sb.toString());
     }
-    
+
 }
             

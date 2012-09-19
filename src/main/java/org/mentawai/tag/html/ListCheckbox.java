@@ -82,7 +82,7 @@ public class ListCheckbox extends HTMLTag {
             
         }
         
-        StringBuffer sb = new StringBuffer(list.size() * 50);
+        StringBuilder sb = new StringBuilder(list.size() * 50);
         Iterator<ListItem> iter = list.getValues(loc).iterator();
     
         while(iter.hasNext()) {
@@ -130,7 +130,7 @@ public class ListCheckbox extends HTMLTag {
             }
         }
         
-        return sb.toString();
+        return processCriptValue(sb.toString());
     }
 	
 }
