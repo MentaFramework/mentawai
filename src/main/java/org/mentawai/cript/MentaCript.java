@@ -18,7 +18,7 @@ public class MentaCript {
 
 	public static final String PREFIX_CRIPT_TAG = "mtw_cript_";
 	
-	private static final String COMMON_KEY_PASS = "_defaultKeyPass";
+	private static String COMMON_KEY_PASS = "_defaultKeyPass";
 
 	private static final String CRIPT_SESSION_KEY = "_CRIPT_SESSION_KEY";
 	
@@ -27,6 +27,12 @@ public class MentaCript {
 	private static MentaCript singletonInstance;
 	
 	private MentaCript() {
+	}
+	
+	public static void changeCommonKey(String key) {
+		if(key == null) throw new IllegalArgumentException("Common key cannot be null.");
+		if(singletonInstance != null) throw new IllegalStateException("Change once only, and before use getCommonInstance.");
+		COMMON_KEY_PASS = key;
 	}
 	
 	/**

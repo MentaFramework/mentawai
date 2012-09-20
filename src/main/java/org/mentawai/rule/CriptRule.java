@@ -18,15 +18,34 @@ import org.mentawai.cript.MentaCript;
 public class CriptRule implements Rule {
 
 	private static CriptRule cache = null;
+	private static CriptRule cacheCommon = null;
+	private boolean useCommon = false;
 	
+	private CriptRule() {
+	}
+	
+	/**
+	 * Get an instance that use one key per session
+	 * @return CriptRule instance
+	 */
 	public static CriptRule getInstance() {
-		
 		if (cache != null) return cache;
 		
 		cache = new CriptRule();
-		
 		return cache;
 		
+	}
+	
+	/**
+	 * Get an instance that use one key pre configured always
+	 * @return CriptRule instance
+	 */
+	public static CriptRule getCommonInstance() {
+		if (cacheCommon != null) return cacheCommon;
+		
+		cacheCommon = new CriptRule();
+		cacheCommon.useCommon = true;
+		return cacheCommon;
 	}
 	
 	public boolean check(String field, Action action) {
@@ -42,7 +61,14 @@ public class CriptRule implements Rule {
 		}
 		
 		try {
-			MentaCript mc = MentaCript.getInstance((SessionContext) action.getSession());
+			MentaCript mc;
+			
+			if(useCommon) {
+				mc = MentaCript.getCommonInstance();
+			} else {
+				mc = MentaCript.getInstance((SessionContext) action.getSession());
+			}
+			
 			input.setValue(field, mc.decript(criptedValue));
 			return true;
 		} catch (DecriptException e) {
