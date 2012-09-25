@@ -94,6 +94,7 @@ public class TransactionFilter implements Filter {
 		this.onlyPost = onlyPost;
 		resultsForCommit.add(Action.SUCCESS);
 		resultsForRollback.add(Action.ERROR);
+		resultsForRollback.add(Action.EXCEPTION);
 	}
 
 	public TransactionFilter commitOn(String... results) {
