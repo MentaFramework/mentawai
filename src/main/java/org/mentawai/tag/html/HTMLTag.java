@@ -50,8 +50,7 @@ public abstract class HTMLTag extends PrintTag {
     public void setSeparator(String separator) { this.separator = separator; }
     
     /**
-     * 
-     * @param html tag that its values will be cripted
+     * @param s tag that its values will be cripted
      * @return html with values cripteds
      */
     protected String processCriptValue(String s) {
@@ -75,7 +74,7 @@ public abstract class HTMLTag extends PrintTag {
     
     /**
      * 
-     * @param html tag that its name will be changed to cript pattern
+     * @param v tag that its name will be changed to cript pattern
      * @return html with name cripted
      */
     protected String processCriptedName(String v) {

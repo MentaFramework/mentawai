@@ -53,7 +53,7 @@ public class MentaCript {
 	
 	/**
 	 * Return one instance per session with its own pass phrase.
-	 * @param SessionContext
+	 * @param sessionContext the session context
 	 * @return MentaCript instance
 	 */
 	public static MentaCript getInstance(SessionContext sessionContext) {
@@ -62,7 +62,7 @@ public class MentaCript {
 	
 	/**
 	 * Return one instance per session with its own pass phrase.
-	 * @param HttpSession
+	 * @param httpSession the http session
 	 * @return MentaCript instance
 	 */
 	public static MentaCript getInstance(HttpSession httpSession) {
