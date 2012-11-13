@@ -23,6 +23,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public class PrettyURLRequestInput extends RequestInput {
 	
+	private static final String PARAM_COUNT = "prettyUrlParamsCount";
+	
 	public PrettyURLRequestInput(HttpServletRequest req, HttpServletResponse res) {
 		
 		// super will process the parameters as usual...
@@ -62,7 +64,8 @@ public class PrettyURLRequestInput extends RequestInput {
 			
 			int total = s.length - 2;
 			
-			map.put("prettyUrlParamsCount", total);
+			map.put(PARAM_COUNT, total);
+			keys.add(PARAM_COUNT);
 			
 			for(int i=0;i<total;i++) {
 				map.put(String.valueOf(i), s[i + 2]);
