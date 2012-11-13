@@ -62,6 +62,8 @@ public class PrettyURLRequestInput extends RequestInput {
 			
 			int total = s.length - 2;
 			
+			map.put("prettyUrlParamsCount", total);
+			
 			for(int i=0;i<total;i++) {
 				map.put(String.valueOf(i), s[i + 2]);
 				keys.add(String.valueOf(i));
