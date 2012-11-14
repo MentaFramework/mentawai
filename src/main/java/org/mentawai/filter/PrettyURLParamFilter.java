@@ -53,7 +53,9 @@ public class PrettyURLParamFilter implements Filter {
 			
 			if (!input.hasValue(key)) break;
 			
-			input.setValue(paramsOrder[i], input.getValue(key));
+			if (!input.hasValue(paramsOrder[i])) { // allow a regular param to override/hide the pretty url param!
+				input.setValue(paramsOrder[i], input.getValue(key));
+			}
 			
 			input.removeValue(key);
 		}
