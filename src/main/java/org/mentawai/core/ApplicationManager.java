@@ -45,7 +45,7 @@ import org.mentacontainer.Container;
 import org.mentacontainer.Factory;
 import org.mentacontainer.Scope;
 import org.mentacontainer.impl.MentaContainer;
-import org.mentacontainer.impl.WrapperFactory;
+import org.mentacontainer.impl.SingletonFactory;
 import org.mentawai.ajax.AjaxConsequence;
 import org.mentawai.ajax.AjaxRenderer;
 import org.mentawai.coc.ConsequenceProvider;
@@ -1779,7 +1779,7 @@ public abstract class ApplicationManager {
     }
 
     public void ioc(String name, Object singleInstance) {
-    	WrapperFactory f = new WrapperFactory(singleInstance);
+    	SingletonFactory f = new SingletonFactory(singleInstance);
     	ioc(name, f);
     }
     
