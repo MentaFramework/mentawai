@@ -68,7 +68,10 @@ public class Input extends HTMLTag {
         if (style != null) sb.append(" style=\"").append(style).append("\"");
 		if (id != null) sb.append(" id=\"").append(id).append("\"");
         
-        if (type.equalsIgnoreCase("text") || type.equalsIgnoreCase("password") || type.equalsIgnoreCase("hidden")) {
+        if (type.equalsIgnoreCase("text") 
+        		|| type.equalsIgnoreCase("password") 
+        		|| type.equalsIgnoreCase("hidden")
+        		|| type.equalsIgnoreCase("email") ) {
         	
         	if (loseValue == null) {
         		
