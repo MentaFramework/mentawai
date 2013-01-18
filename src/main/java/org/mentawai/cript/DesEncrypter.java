@@ -1,6 +1,6 @@
 package org.mentawai.cript;
 
-import static org.mentalog.Log.*;
+import static org.mentalog.Log.Debug;
 
 import java.io.UnsupportedEncodingException;
 import java.security.spec.AlgorithmParameterSpec;
@@ -12,6 +12,8 @@ import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
+
+import com.thoughtworks.xstream.core.util.Base64Encoder;
 
 public class DesEncrypter {
 
@@ -51,7 +53,6 @@ public class DesEncrypter {
 		}
 	}
 
-	@SuppressWarnings("restriction")
 	public String encrypt(String str) {
 		try {
 			// Encode the string into bytes using utf-8
@@ -61,7 +62,7 @@ public class DesEncrypter {
 			byte[] enc = ecipher.doFinal(utf8);
 
 			// Encode bytes to base64 to get a string
-			return new sun.misc.BASE64Encoder().encode(enc);
+			return new Base64Encoder().encode(enc);
 		} catch (javax.crypto.BadPaddingException e) {
 			Debug.log("Error encrypting string: " + str, e);
 		} catch (IllegalBlockSizeException e) {
@@ -72,13 +73,12 @@ public class DesEncrypter {
 		return null;
 	}
 
-	@SuppressWarnings("restriction")
 	public String decrypt(String str) {
 		
 		try {
 			// Decode base64 to get bytes
-			byte[] dec = new sun.misc.BASE64Decoder().decodeBuffer(str);
-
+			byte[] dec = new Base64Encoder().decode(str);
+			
 			// Decrypt
 			byte[] utf8 = dcipher.doFinal(dec);
 
@@ -91,9 +91,7 @@ public class DesEncrypter {
 			Debug.log("Error decrypting string: " + str, e);
 		} catch (UnsupportedEncodingException e) {
 			Debug.log("Error decrypting string: " + str, e);
-		} catch (java.io.IOException e) {
-			Debug.log("Error decrypting string: " + str, e);
-		}
+		} 
 		
 		return null;
 	}

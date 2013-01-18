@@ -40,7 +40,7 @@ public class MentaCriptTest {
 	@Test(expected=DecriptException.class)
 	public void testDecriptException() throws DecriptException {
 		// will throw exception
-		mentaCript.decript("8PlvDGLiXak_=");
+		mentaCript.decript("8PlvDGLiXak0=");
 	}
 	
 	@Test(expected=DecriptException.class)
