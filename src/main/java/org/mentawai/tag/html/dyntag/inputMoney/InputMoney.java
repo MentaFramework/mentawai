@@ -114,12 +114,16 @@ public class InputMoney extends InputText {
 
 		StringBuffer results = new StringBuffer(super.buildTag().toString());
 		results.append(getTagClose());
-		results.append("\n");
-		results.append("\t\t<script type=\"text/javascript\">");
-		results.append("inputMoneyMask(document.getElementById(\"" + getId() + "\"),"
-				+ getDecimals() + ",\"" + getThousands_sep() + "\",\""
-				+ getDec_point() + "\")");
-		results.append("</script>");
+		
+		if( !(isDisabled() || isReadOnly()) ){
+			results.append("\n");
+			results.append("\t\t<script type=\"text/javascript\">");
+			results.append("inputMoneyMask(document.getElementById(\"" + getId() + "\"),"
+					+ getDecimals() + ",\"" + getThousands_sep() + "\",\""
+					+ getDec_point() + "\")");
+			results.append("</script>");
+		}
+		
 		return results;
 	}
 

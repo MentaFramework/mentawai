@@ -107,6 +107,9 @@ public abstract class BaseTag extends Base {
     /** Component has received focus event. */
     private String onfocus = null;
 
+	protected boolean isDisabled() {
+		return getDisabled() != null && getDisabled().equals("true");
+	}
 
 	public String getDisabled() {
 		return disabled;

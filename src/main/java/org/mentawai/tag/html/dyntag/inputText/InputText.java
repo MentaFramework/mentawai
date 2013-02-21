@@ -98,8 +98,6 @@ public class InputText extends BaseTag {
 		return false;
 	}
 
-
-
 	/** Method to build tag */
     protected StringBuffer buildTag() {
     	StringBuffer results = new StringBuffer("<input");
@@ -109,10 +107,10 @@ public class InputText extends BaseTag {
 		prepareAttribute(results, "style","text-align:"+getTextAlign()+";"+getKlassStyle());
 		prepareAttribute(results, "size",getSize());
 		prepareAttribute(results, "maxlength",getMaxlength());
-		if((getDisabled()!= null) && (getDisabled().equals("true"))){
+		if( isDisabled() ){
 		  results.append(" disabled=\"disabled\"");
 		}
-		if((getReadonly() != null) && (getReadonly().equals("true"))){
+		if( isReadOnly() ){
 		   results.append(" readonly=\"readonly\"");
 		}
 		if((getId() == null) || (getId().trim().equals(""))){
@@ -210,6 +208,10 @@ public class InputText extends BaseTag {
 
     }
 
+    protected boolean isReadOnly() {
+		return getReadonly() != null && getReadonly().equals("true");
+	}
+    
     public void setSeparator(String separator) {
 
         this.separator = separator;
