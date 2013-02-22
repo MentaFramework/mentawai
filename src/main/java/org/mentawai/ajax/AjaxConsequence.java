@@ -44,13 +44,20 @@ public class AjaxConsequence implements Consequence {
 
 	private boolean pretty;
 
+	private boolean disableCache;
+
 	public AjaxConsequence(AjaxRenderer renderer) {
 		this(renderer, true);
 	}
 
 	public AjaxConsequence(AjaxRenderer renderer, boolean pretty) {
+		this(renderer, pretty, true);
+	}
+	
+	public AjaxConsequence(AjaxRenderer renderer, boolean pretty, boolean disableCache) {
 		this.ajaxRenderer = renderer;
 		this.pretty = pretty;
+		this.disableCache = disableCache;
 	}
 	
 	public AjaxConsequence keyForObject(String key) {
@@ -108,8 +115,10 @@ public class AjaxConsequence implements Consequence {
 
 			String s = ajaxRenderer.encode(obj, a.getLocale(), pretty);
 
-			HttpUtils.disableCache(res);
-
+			if(disableCache){
+				HttpUtils.disableCache(res);
+			}
+			
 			PrintWriter printWriter = res.getWriter();
 			printWriter.print(s);
 			printWriter.flush();
