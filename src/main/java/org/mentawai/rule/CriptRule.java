@@ -53,10 +53,10 @@ public class CriptRule implements Rule {
 		Input input = action.getInput();
 		
 		String fieldCriptedName = MentaCript.PREFIX_CRIPT_TAG + field;
-		String criptedValue = input.getString( fieldCriptedName );
+		String[] criptedValues = input.getStrings( fieldCriptedName );
 		
 		// if field does not exist this check pass, use RequiredRule to assert that it will required
-		if(criptedValue == null) {
+		if(criptedValues == null) {
 			return true;	
 		}
 		
@@ -69,7 +69,17 @@ public class CriptRule implements Rule {
 				mc = MentaCript.getInstance((SessionContext) action.getSession());
 			}
 			
-			input.setValue(field, mc.decript(criptedValue));
+			if(criptedValues.length == 1) {
+				input.setValue(field, mc.decript(criptedValues[0]));
+			} else {
+				
+				String[] decriptedValues = new String[criptedValues.length];
+				for (int i = 0; i < criptedValues.length; i++) {
+					decriptedValues[i] = mc.decript(criptedValues[i]);
+				}
+				input.setValue(field, decriptedValues);
+			}
+			
 			return true;
 		} catch (DecriptException e) {
 			return false;
