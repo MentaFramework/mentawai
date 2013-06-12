@@ -57,7 +57,7 @@ public class MentaCript {
 	 * @return MentaCript instance
 	 */
 	public static MentaCript getInstance(SessionContext sessionContext) {
-		return getInstance(sessionContext.getSession());
+		return sessionContext == null ? getCommonInstance() : getInstance(sessionContext.getSession());
 	}
 	
 	/**
@@ -131,7 +131,7 @@ public class MentaCript {
 	 * @return decripted value
 	 * @throws DecriptException if not enable to decript
 	 */
-	public String decript(String v, SessionContext session) throws DecriptException {
+	public static String decript(String v, SessionContext session) throws DecriptException {
 		return MentaCript.getInstance(session).decript(v);
 	}
 }
