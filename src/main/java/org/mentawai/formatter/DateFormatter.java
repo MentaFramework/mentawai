@@ -26,17 +26,14 @@ import java.util.Locale;
 public class DateFormatter implements Formatter {
 	
 	private int style = -1;
-	
-	private SimpleDateFormat sdf = null;
+	private String pattern;
 	
 	public DateFormatter(int style) {
-		
 		this.style = style;
 	}
 	
 	public DateFormatter(String pattern) {
-		
-		this.sdf = new SimpleDateFormat(pattern);
+		this.pattern = pattern;
 	}
 	
 	public String format(Object value, Locale loc) {
@@ -47,9 +44,9 @@ public class DateFormatter implements Formatter {
 		
 		Date d = (Date) value;
 		
-		if (sdf != null) {
+		if (pattern != null) {
 			
-			return sdf.format(d);
+			return new SimpleDateFormat(pattern).format(d);
 			
 		} else if (style != -1) {
 			
