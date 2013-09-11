@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -30,6 +31,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.mentawai.filter.SessionListener;
 import org.mentawai.util.EnumerationToIterator;
 
 /**
@@ -42,9 +44,12 @@ public class SessionContext implements Context, Map<String, Object> {
 	private HttpSession session;
 	private HttpServletRequest req;
 	private HttpServletResponse res;
+	private LinkedList<SessionListener> sessionListeners;
+	private Action action;
 
 	public SessionContext(HttpSession session) {
 		this.session = session;
+		this.sessionListeners = ApplicationManager.getInstance().getSessionListeners();
 	}
 	
 	/**
@@ -53,9 +58,14 @@ public class SessionContext implements Context, Map<String, Object> {
 	 * @param req The request from where to get the session.
 	 */
 	public SessionContext(HttpServletRequest req, HttpServletResponse res) {
+		this(req.getSession(true));
 		this.req = req;
 		this.res = res;
-		this.session = req.getSession(true);
+	}
+
+	public SessionContext(HttpServletRequest req, HttpServletResponse res, Action action) {
+		this(req, res);
+		this.action = action;
 	}
 
 	public Object getAttribute(String name) {
@@ -63,16 +73,34 @@ public class SessionContext implements Context, Map<String, Object> {
 	}
 
 	public void setAttribute(String name, Object value) {
-		session.setAttribute(name, value);
+		
+		Holder<Object> holder = new Holder<Object>(value);
+		
+		for (SessionListener sl : sessionListeners) {
+			sl.beforeSetAttribute(name, holder, action);
+		}
+		
+		session.setAttribute(name, holder.getValue());
+		
 	}
 
 	public void removeAttribute(String name) {
+		
+		for (SessionListener sl : sessionListeners) {
+			sl.beforeRemoveAttribute(name, action);
+		}
+		
 		session.removeAttribute(name);
+		
 	}
 
 	public void reset() {
 		if(req == null) throw new IllegalStateException("Can not be reseted, the request is not valid ! It's only a SessionWrapper at this time.");
-			
+		
+		for (SessionListener sl : sessionListeners) {
+			sl.beforeResetSession(action);
+		}
+		
 		session.invalidate();
 		session = req.getSession(true);
 	}
@@ -252,4 +280,32 @@ public class SessionContext implements Context, Map<String, Object> {
         return list;
     }
 
+    /**
+     * 
+     * Holds the value because the listener can change it
+     * 
+     * @author Robert Willian Gil
+     *
+     */
+    public class Holder<T> {
+    	
+    	private T obj;
+
+		public Holder(T obj) {
+			this.obj = obj;
+		}
+		
+		/**
+		 * 
+		 * @param obj
+		 */
+		public void setValue(T obj){
+			this.obj = obj;
+		}
+		
+		public T getValue(){
+			return this.obj;
+		}
+    }
+    
 }

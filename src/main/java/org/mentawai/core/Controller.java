@@ -797,7 +797,7 @@ public class Controller extends HttpServlet {
 			
 			action.setInput(new PrettyURLRequestInput(req, res));
 			action.setOutput(new ResponseOutput(res));
-			action.setSession(new SessionContext(req, res));
+			action.setSession(new SessionContext(req, res, action));
 			action.setApplication(appContext);
 			action.setCookies(new CookieContext(req, res));
 			action.setLocale(LocaleManager.decideLocale(req, res));
@@ -806,7 +806,7 @@ public class Controller extends HttpServlet {
 		
     		action.setInput(new RequestInput(req, res));
     		action.setOutput(new ResponseOutput(res));
-    		action.setSession(new SessionContext(req, res));
+    		action.setSession(new SessionContext(req, res, action));
     		action.setApplication(appContext);
     		action.setCookies(new CookieContext(req, res));
     		action.setLocale(LocaleManager.decideLocale(req, res));

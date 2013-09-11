@@ -62,6 +62,7 @@ import org.mentawai.filter.OutjectionFilter;
 import org.mentawai.filter.OutputFilter;
 import org.mentawai.filter.PushIoCFilter;
 import org.mentawai.filter.RedirectAfterLoginFilter;
+import org.mentawai.filter.SessionListener;
 import org.mentawai.filter.TransactionFilter;
 import org.mentawai.formatter.DateFormatter;
 import org.mentawai.formatter.FormatterManager;
@@ -190,6 +191,26 @@ public abstract class ApplicationManager {
     private ConnectionHandler connHandler;
     
     private SessionHandler sessionHandler;
+    
+    private LinkedList<SessionListener> sessionListeners = new LinkedList<SessionListener>();
+    
+    
+    /**
+     * Add sessionListeners for session handler
+     * @see SessionListener
+     * @param sessionListener
+     */
+    protected void addSessionListener(SessionListener sessionListener){
+    	if(sessionListener == null){
+    		throw new IllegalArgumentException("sessionListener cannot be null");
+    	}
+    	sessionListeners.add(sessionListener);
+    }
+    
+    protected LinkedList<SessionListener> getSessionListeners(){
+    	return sessionListeners;
+    }
+    
     
     public void setConnectionHandler(ConnectionHandler connHandler) {
     	this.connHandler = connHandler;

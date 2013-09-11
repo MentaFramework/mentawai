@@ -127,7 +127,7 @@ public class RequiresAuthentication extends TagSupport {
                 
                 a.setInput(new RequestInput(req, res));
                 a.setOutput(new ResponseOutput(res));
-                a.setSession(new SessionContext(req, res));
+                a.setSession(new SessionContext(req, res, a));
                 a.setApplication(new ApplicationContext(sc));
                 a.setCookies(new CookieContext(req, res));
                 a.setLocale(loc);
