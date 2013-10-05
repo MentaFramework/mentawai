@@ -71,7 +71,9 @@ public class Input extends HTMLTag {
         if (type.equalsIgnoreCase("text") 
         		|| type.equalsIgnoreCase("password") 
         		|| type.equalsIgnoreCase("hidden")
-        		|| type.equalsIgnoreCase("email") ) {
+        		|| type.equalsIgnoreCase("email")
+        		|| type.equalsIgnoreCase("number")
+        		|| type.equalsIgnoreCase("url")) {
         	
         	if (loseValue == null) {
         		
