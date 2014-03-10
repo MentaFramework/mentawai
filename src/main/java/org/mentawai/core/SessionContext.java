@@ -101,7 +101,12 @@ public class SessionContext implements Context, Map<String, Object> {
 			sl.beforeResetSession(action);
 		}
 		
-		session.invalidate();
+		try {
+		    session.invalidate();
+		} catch (IllegalStateException ex){
+		    // Session already invalidated, does not matter
+		}
+		
 		session = req.getSession(true);
 	}
 	
