@@ -75,6 +75,8 @@ import org.mentawai.jruby.RubyActionConfig;
 import org.mentawai.list.DBListData;
 import org.mentawai.list.ListData;
 import org.mentawai.list.ListManager;
+import org.mentawai.rmi.RmiConsequence;
+import org.mentawai.rmi.RmiFilter;
 import org.mentawai.spring.SpringActionConfig;
 import org.mentawai.transaction.HibernateTransaction;
 import org.mentawai.transaction.JdbcTransaction;
@@ -449,6 +451,13 @@ public abstract class ApplicationManager {
     }
 
     	return props;
+    }
+    
+    public ActionConfig rmi(String req, Class klass, String innerAction) {
+    	
+    	return action(req, klass, innerAction)
+    		.filter(new RmiFilter())
+    		.on(SUCCESS, new RmiConsequence());
     }
 
 
