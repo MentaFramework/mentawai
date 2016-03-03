@@ -55,10 +55,14 @@ public class RmiClient {
 			
 			queryString.append("p").append(i).append("=");
 			
-			queryString.append(encode(params[i]));
+			queryString.append(encode(params[i])).append("&");
 		}
 		
-		String urlParameters  = queryString.toString();
+		String qs = queryString.toString();
+		
+		if (qs.length() > 0) qs = qs.substring(0, qs.length() - 1);
+		
+		String urlParameters  = qs;
 		byte[] postData       = urlParameters.getBytes();
 		int    postDataLength = postData.length;
 		
