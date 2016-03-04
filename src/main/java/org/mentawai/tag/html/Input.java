@@ -49,8 +49,6 @@ public class Input extends HTMLTag {
     
 	protected StringBuffer buildTag() {
 		
-		System.out.println("=========> Name: " + name + " loseValue=" + loseValue + " blah: " + System.identityHashCode(this) + " klass: " + klass);
-		
 		Object value = null;
 		
 		if (type.equalsIgnoreCase("checkbox") || type.equalsIgnoreCase("radio")) {
