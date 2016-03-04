@@ -49,6 +49,8 @@ public class Input extends HTMLTag {
     
 	protected StringBuffer buildTag() {
 		
+		System.out.println("=========> Name: " + name + " loseValue=" + loseValue + " blah: " + System.identityHashCode(this) + " klass: " + klass);
+		
 		Object value = null;
 		
 		if (type.equalsIgnoreCase("checkbox") || type.equalsIgnoreCase("radio")) {
@@ -75,7 +77,9 @@ public class Input extends HTMLTag {
         		|| type.equalsIgnoreCase("number")
         		|| type.equalsIgnoreCase("url")) {
         	
-        	if (loseValue == null) {
+        	boolean loseValue = false;
+        	
+        	if (this.loseValue == null) {
         		
         		// default values...
         		
@@ -83,10 +87,11 @@ public class Input extends HTMLTag {
         			
         			loseValue = true; // better for security
         			
-        		} else {
-        			
-        			loseValue = false;
         		}
+        		
+        	} else {
+        		
+        		loseValue = this.loseValue;
         	}
         	
         	if (!loseValue) {
