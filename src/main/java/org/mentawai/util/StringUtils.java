@@ -26,6 +26,7 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.codec.binary.Base64;
 import org.mentawai.i18n.LocaleManager;
 
 public class StringUtils {
@@ -38,6 +39,13 @@ public class StringUtils {
     
     public static boolean isNotEmpty(String s) {
         return s != null && s.length() > 0;
+    }
+    
+    public static String decodeBase64(String s) {
+        return org.apache.commons.codec.binary.StringUtils.newStringUtf8(Base64.decodeBase64(s));
+    }
+    public static String encodeBase64(String s) {
+        return Base64.encodeBase64String(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(s));
     }
     
     /**
