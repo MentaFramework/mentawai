@@ -1001,6 +1001,14 @@ public class ActionConfig {
     public String toString() {
         return name;
     }
+
+	protected Map<String, Consequence> getConsequences() {
+		return consequences;
+	}
+
+	protected Map<String, Map<String, Consequence>> getInnerConsequences() {
+		return innerConsequences;
+	}
 }
 
 		

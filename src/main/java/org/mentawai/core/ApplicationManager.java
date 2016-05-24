@@ -760,6 +760,10 @@ public abstract class ApplicationManager {
 		return actions;
 	}
 
+	protected Map<String, Map<String, ActionConfig>> getInnerActions(){
+		return innerActions;
+	}
+	
 	/**
 	 * Gets the Inner ActionConfig with the given name and inner action.
 	 *
