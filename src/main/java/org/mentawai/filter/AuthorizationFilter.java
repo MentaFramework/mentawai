@@ -49,6 +49,7 @@ public class AuthorizationFilter implements Filter {
     private List<String> groups = null;
     private List<String> permissions = null;
     private List<Group> listGroups;
+    private boolean both = false;
 
     public AuthorizationFilter() {
 
@@ -199,7 +200,8 @@ public class AuthorizationFilter implements Filter {
 
         Object user = BaseLoginAction.getUserSession(session);
 
-        boolean ok = false;
+        boolean hasGroup = false;
+        boolean hasPermission = false;
 
         if (this.groups == null && this.permissions == null) {
 
@@ -207,24 +209,16 @@ public class AuthorizationFilter implements Filter {
 
         		Authorizable authorizable = (Authorizable) actionImpl;
 
-        		ok = authorizable.authorize(chain.getInnerAction(), user, usergroups);
+        		hasGroup = authorizable.authorize(chain.getInnerAction(), user, usergroups);
 
         	} else {
 
-        		ok = isAuthorized(action, chain.getActionName(), chain.getInnerAction(), user, usergroups);
+        		hasGroup = isAuthorized(action, chain.getActionName(), chain.getInnerAction(), user, usergroups);
         	}
 
         } else {
 
-	        if (usergroups == null || usergroups.size() == 0) {
-
-	        	if (actionImpl instanceof AjaxAction) {
-	        		return AJAX_DENIED;
-
-	        	}
-				return ACCESSDENIED;
-			}
-
+            
 	        if (groups != null && groups.size() > 0) {
 
 	            for(int i=0;i<groups.size();i++) {
@@ -244,16 +238,16 @@ public class AuthorizationFilter implements Filter {
 
 	                	if (group.startsWith("!")) {
 	                		if (usergroup.equalsIgnoreCase(group.substring(1))) {
-	                		    ok = false;
+	                		    hasGroup = false;
 	                		}else{
-	                			ok = true;
+	                			hasGroup = true;
 	                		    i = groups.size();
 	 	                        j = usergroups.size();
 	                		}
 
 	                	}else {
 	                		if (usergroup.equalsIgnoreCase(group)) {
-	                			ok = true;
+	                			hasGroup = true;
 	                			 i = groups.size();
 	 	                        j = usergroups.size();
 	                		}
@@ -261,15 +255,7 @@ public class AuthorizationFilter implements Filter {
 
 	                }
 	            }
-	            if (!ok) {
-
-	            	if (actionImpl instanceof AjaxAction) {
-
-	            		return AJAX_DENIED;
-	            	}
-
-	                return ACCESSDENIED;
-	            }
+	            
 	        }
 
 	        if (permissions != null && permissions.size() > 0) {
@@ -288,7 +274,7 @@ public class AuthorizationFilter implements Filter {
                     		for(int a=0;a<permissions.size();a++) {
                     			String ppp = permissions.get(a).substring(1);
                     			if (AuthorizationManager.check(ggg, ppp)) {
-   		                			ok = true;
+                    			    hasPermission = true;
     		                		break;
     		                	}
     		                }
@@ -300,7 +286,7 @@ public class AuthorizationFilter implements Filter {
 	            			for(int a=0;a<permissions.size();a++) {
 			                	String ppp = permissions.get(a);
 			                	if (AuthorizationManager.check(usergroup, ppp)) {
-		                			ok = true;
+			                	    hasPermission = true;
 			                		break;
 			                	}
 			                }
@@ -311,7 +297,7 @@ public class AuthorizationFilter implements Filter {
 		            	for(int a=0;a<permissions.size();a++) {
 			               	String ppp = permissions.get(a);
 			               	if (AuthorizationManager.check(ggg, ppp)) {
-		               			ok = true;
+			               	    hasPermission = true;
 			               		break;
 			               	}
 			             }
@@ -319,34 +305,39 @@ public class AuthorizationFilter implements Filter {
 
 	            }
 
-	            if (!ok) {
-
-	            	if (actionImpl instanceof AjaxAction) {
-
-	            		return AJAX_DENIED;
-
-	            	}
-
-	                return ACCESSDENIED;
-	            }
 	        }
 
         }
 
+        boolean ok = false;
+        
+        if (both) {
+            ok = hasGroup && hasPermission;
+            
+        } else {
+            ok = hasGroup || hasPermission;
+            
+        }
+        
+        
         if (!ok) {
-
         	if (actionImpl instanceof AjaxAction) {
-
         		return AJAX_DENIED;
-
         	}
 
             return ACCESSDENIED;
         }
 
+        
 		return chain.invoke();
 	}
 
     public void destroy() { }
 
+
+    public AuthorizationFilter both(){
+        this.both = true;
+        return this;
+    }
+    
 }
