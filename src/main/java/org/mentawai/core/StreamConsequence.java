@@ -96,6 +96,8 @@ public class StreamConsequence implements Consequence {
 
     private String keyForFilename = FILENAME;
 
+    private boolean quietAbort;
+
     /**
      * Creates a new instance of the StreamConsequence class.
      * The content type and everything else will be dynamic, in
@@ -103,6 +105,15 @@ public class StreamConsequence implements Consequence {
      */
     public StreamConsequence() {
 
+    }
+    
+    public StreamConsequence(boolean quietAbort) {
+        this.quietAbort = quietAbort;
+    }
+    
+    public StreamConsequence(String contentType, boolean quietAbort) {
+        this(quietAbort);
+        this.contentType = contentType;
     }
 
 	/**
@@ -225,7 +236,11 @@ public class StreamConsequence implements Consequence {
                 throw new ConsequenceException("Cannot find stream: " + keyForStream);
             }
         } catch(Exception e) {
-            throw new ConsequenceException(e);
+            
+            if( !(e instanceof IOException && quietAbort) ) {
+                throw new ConsequenceException(e);
+            }
+            
         }
     }
 
