@@ -5,16 +5,16 @@
 Calendar._DN = new Array
 ("Domingo",
  "Segunda-feira",
- "Terça-feira",
+ "Terï¿½a-feira",
  "Quarta-feira",
  "Quinta-feira",
  "Sexta-feira",
- "Sábado",
+ "Sï¿½bado",
  "Domingo");
 Calendar._MN = new Array
 ("Janeiro",
  "Fevereiro",
- "Março",
+ "Marï¿½o",
  "Abril",
  "Maio",
  "Junho",
@@ -28,10 +28,10 @@ Calendar._MN = new Array
 Calendar._TT = {};
 Calendar._TT["TOGGLE"] = "Mudar o primeiro dia da semana";
 Calendar._TT["PREV_YEAR"] = "Voltar ano";
-Calendar._TT["PREV_MONTH"] = "Voltar mês";
+Calendar._TT["PREV_MONTH"] = "Voltar mï¿½s";
 Calendar._TT["GO_TODAY"] = "Voltar para a data atual";
-Calendar._TT["NEXT_MONTH"] = "Próximo mês";
-Calendar._TT["NEXT_YEAR"] = "Próximo ano";
+Calendar._TT["NEXT_MONTH"] = "Prï¿½ximo mï¿½s";
+Calendar._TT["NEXT_YEAR"] = "Prï¿½ximo ano";
 Calendar._TT["SEL_DATE"] = "Selecionar data";
 Calendar._TT["DRAG_TO_MOVE"] = "Mover janela";
 Calendar._TT["PART_TODAY"] = " (hoje)";
@@ -180,7 +180,7 @@ inpuDateAddEvent = function(o, e, f, s){
 
 inputDateMask = function(f, m){ //v1.0
 	function mask(e){
-		var patterns = {"1": /[A-Z]/i, "2": /[0-9]/, "4": /[À-ÿ]/i, "8": /./ },
+		var patterns = {"1": /[A-Z]/i, "2": /[0-9]/, "4": /[\xC0-\xFF]/i, "8": /./ },
 			rules = { "a": 3, "A": 7, "9": 2, "C":5, "c": 1, "*": 8};
 		function accept(c, rule){
 			for(var i = 1, r = rules[rule] || 0; i <= r; i<<=1)
@@ -188,7 +188,7 @@ inputDateMask = function(f, m){ //v1.0
 					break;
 				return i <= r || c == rule;
 		}
-		var k, mC, r, c = String.fromCharCode(k = e.key), l = f.value.length;
+		var k, mC, r, c = String.fromCharCode(k = e.keyCode), l = f.value.length;
 		(!k || k == 8 ? 1 : (r = /^(.)\^(.*)$/.exec(m)) && (r[0] = r[2].indexOf(c) + 1) + 1 ?
 			r[1] == "O" ? r[0] : r[1] == "E" ? !r[0] : accept(c, r[1]) || r[0]
 			: (l = (f.value += m.substr(l, (r = /[A|9|C|\*]/i.exec(m.substr(l))) ?
