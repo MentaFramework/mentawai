@@ -188,6 +188,10 @@ public class AuthorizationFilter implements Filter {
 	@SuppressWarnings("unchecked")
 	public String filter(InvocationChain chain) throws Exception {
 
+		if(!BaseLoginAction.isLogged(chain.getAction().getSession())){
+			return ACCESSDENIED;
+		}
+		
         Action action = chain.getAction();
 
         Object pojo = chain.getPojo();
